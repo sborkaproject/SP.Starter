@@ -1,0 +1,38 @@
+{
+  "name": "sp.starter",
+  "version": "0.0.3",
+  "description": "Boilerplate for html+js+css apps by Sborka Project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sborkaproject/SP.Starter"
+  },
+  "dependencies": {
+    "autoprefixer": "^6.4.1",
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "browser-sync": "^2.16.0",
+    "connect-history-api-fallback": "^1.3.0",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-if": "^2.0.1",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-postcss": "^6.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-rigger": "^0.5.8",
+    "gulp-rimraf": "^0.2.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-svgmin": "^1.2.3",
+    "gulp-svgstore": "^5.0.5",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.9",
+    "imagemin-pngquant": "^4.2.2",
+    "json-loader": "^0.5.4",
+    "postcss-assets": "^3.0.3",
+    "postcss-sprites": "^2.0.3",
+    "run-sequence": "^1.2.2",
+    "vinyl-named": "^1.1.0",
+    "webpack-stream": "^3.2.0",
+    "yargs": "^3.32.0"
+  }
+}

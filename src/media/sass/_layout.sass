@@ -1,0 +1,49 @@
+.wrapper
+	position: relative
+	min-height: 100%
+	height: auto !important
+	height: 100%
+	margin-bottom: -110px
+	&__push
+		height: 110px
+
+.skin
+	position: relative
+	width: 960px
+	margin: auto
+
+.row
+	@extend .clearfix
+	position: relative
+	margin-left: -20px
+	margin-right: -20px
+
+.col
+	float: left
+	padding-left: 20px
+	padding-right: 20px
+	+box
+	&._1
+		width: (100%/12)
+	&._2
+		width: (100%/12*2)
+	&._3
+		width: (100%/12*3)
+	&._4
+		width: (100%/12*4)
+	&._5
+		width: (100%/12*5)
+	&._6
+		width: (100%/12*6)
+	&._7
+		width: (100%/12*7)
+	&._8
+		width: (100%/12*8)
+	&._9
+		width: (100%/12*9)
+	&._10
+		width: (100%/12*10)
+	&._11
+		width: (100%/12*11)
+	&._12
+		width: 100%

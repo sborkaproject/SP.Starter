@@ -1,0 +1,21 @@
+{
+  "name": "sp.starter",
+  "description": "Boilerplate for html+js+css apps by Sborka Project",
+  "main": "",
+  "authors": [
+    "'Sborka Project'"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/sborkaproject/SP.Starter",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1.12.4"
+  }
+}
