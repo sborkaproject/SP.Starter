@@ -154,7 +154,7 @@
 // by:              Gaya Kessler
 // last update:     03/11/14
 // url: https://github.com/pixelmord/Retina-Sprites-for-Compass
-// 
+//
 // Usage:
 // 1. create background image for pixel ratio 1 screens and put it somewhere in your images folder.
 // 2. create background image for pixel ratio 2 screens and put it somewhere in your images folder.
@@ -168,3 +168,16 @@
 			background-size: contain
 		@else
 			background-size: (image-width($retina) / 2) (image-height($retina) / 2)
+
+=vertical-align($parent_container)
+	vertical-align: middle
+	display: inline-block
+	white-space: normal
+	@at-root #{$parent_container}
+		white-space: nowrap
+		&:before
+			content: ""
+			display: inline-block
+			vertical-align: middle
+			height: 100%
+			width: 0
