@@ -1,4 +1,0 @@
-[18.09.2016]
-- remove externals
-- set #cheap-source-map
-- rewrite gulpfile.js with ES6 syntax
