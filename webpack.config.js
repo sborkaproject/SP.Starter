@@ -31,8 +31,15 @@ var config = {
         loaders: [
             {
                 test: /\.jsx?$/,
+                exclude: [
+                    /node_modules/,
+                    /bower_components/
+                ],
                 include: PATHS.app,
-                loaders: ['babel?cacheDirectory']
+                loader: 'babel-loader',
+                query: {
+                    presets: ['es2015', 'react']
+                }
             },
             {
                 test: /\.json?$/,
