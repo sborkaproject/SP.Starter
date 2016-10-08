@@ -44,11 +44,7 @@ var config = {
             {
                 test: /\.json?$/,
                 loader: 'json-loader',
-            },
-	        {
-				test: /\.txt$/,
-		        loader: 'raw-loader'
-	        }
+            }
         ],
     },
     watch: argv.production ? false : true,
