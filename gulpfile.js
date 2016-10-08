@@ -76,8 +76,9 @@ var PATHS = {
 		css:	 'build/media/css/',
 		img:	 'build/media/img/',
 		fonts:	 'build/media/fonts/',
-		sprites: 'build/media/img/sprites',
-		svg:	 'build/media/svg'
+		sprites: 'build/media/img/sprites/',
+		svg:	 'build/media/svg/',
+		video:	 'build/media/video/'
 	},
 	src: {
 		html:	 'src/*.html',
@@ -86,7 +87,8 @@ var PATHS = {
 		img:	 'src/media/img/**/*.*',
 		fonts:	 'src/media/fonts/**/*.*',
 		sprites: 'src/media/img/sprites/*.png',
-		svg:	 'src/media/svg/**/*.svg'
+		svg:	 'src/media/svg/**/*.svg',
+		video:	 'src/media/video/**/*.*'
 	},
 	watch: {
 		html:	 'src/**/*.html',
