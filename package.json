@@ -32,6 +32,7 @@
     "json-loader": "^0.5.4",
     "postcss-assets": "^3.0.3",
     "postcss-sprites": "^2.0.3",
+    "raw-loader": "^0.5.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "run-sequence": "^1.2.2",

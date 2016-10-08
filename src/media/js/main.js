@@ -82,9 +82,10 @@ var App = global.App = new (function App() {
     };
 
     // Startup
+	var self = this;
 
-    var self = this;
-    $(function () {
+	$(function () {
+
         // Module init order is important!
         self.modules.Module.init();
 
