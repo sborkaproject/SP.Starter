@@ -24,7 +24,8 @@ var gulp				= require('gulp'),
 	webpackStream 		= require('webpack-stream'),
 	named 				= require('vinyl-named'),
 	historyApiFallback	= require('connect-history-api-fallback'),
-	runSequence			= require('run-sequence');
+	runSequence			= require('run-sequence'),
+	path                = require('path');
 
 
 var PRODUCTION = argv.production;
@@ -176,9 +177,21 @@ gulp.task('fonts:build', function () {
 		.pipe(gulp.dest(PATHS.build.fonts));
 });
 
-gulp.task('svg:build', function () {
+gulp.task('svg:build', function() {
 	return gulp.src(PATHS.src.svg)
-		.pipe(svgmin())
+		.pipe(svgmin(function (file){
+			var prefix = path.basename(file.relative, path.extname(file.relative));
+			return {
+				plugins: [{
+					removeUselessStrokeAndFill : false
+				}, {
+					cleanupIDs: {
+						prefix: prefix + '-',
+						minify: true
+					}
+				}]
+			};
+		}))
 		.pipe(rename({prefix: 'icon-'}))
 		.pipe(svgstore({ inlineSvg: true }))
 		.pipe(rename('sprite.svg'))
