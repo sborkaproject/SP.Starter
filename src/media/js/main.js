@@ -8,6 +8,10 @@ require('./vendor/jquery.helpers.js');
 var App = global.App = new (function App() {
     var self = this;
 
+    // Add define/resolve options to App
+    // owner, autoWatch, allowLogging
+    require('./drengine')(this, true, true);
+
     // Environment settings
     var MobileDetect = require('./vendor/mobile-detect.min.js');
     var mobileDetectInstance = new MobileDetect(window.navigator.userAgent);
@@ -23,6 +27,7 @@ var App = global.App = new (function App() {
         height: window.innerHeight,
         detector: mobileDetectInstance,
         SVGSupported: !!document.createElementNS && !!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect,
+        isRetina: window.devicePixelRatio > 1
     };
 
     // Base DOM structure
@@ -39,12 +44,12 @@ var App = global.App = new (function App() {
     };
 
     // HTML classes
-    this.env.isMobile   && this.dom.$html.addClass('_mobile');
-    this.env.isTablet   && this.dom.$html.addClass('_tablet');
-    this.env.isPhone    && this.dom.$html.addClass('_phone');
-    this.env.isDesktop  && this.dom.$html.addClass('_desktop');
-    this.env.isMac      && this.dom.$html.addClass('_mac');
-    this.env.isWin      && this.dom.$html.addClass('_win');
+    var htmlClasses = [
+      this.env.isDesktop ? '_desktop' : ('_mobile ' + (this.env.isPhone ? '_phone' : '_tablet') ),
+      this.env.isWin ? '_win' : '_mac'
+    ];
+    this.env.isRetina && htmlClasses.push('_retina');
+    this.dom.$html.addClass(htmlClasses.join(' '));
 
     // SVG Sprites
     function addSVGSprite(data) {
@@ -82,7 +87,6 @@ var App = global.App = new (function App() {
     };
 
     // Startup
-
     $(function () {
         // Module init order is important!
         self.modules.Module.init();
@@ -99,4 +103,4 @@ App.classes.Callback = require('./classes/Callback');
 App.modules.Module = require('./modules/Module');
 
 // App -> ProjectName
-global.ProjectName = global.App, delete global.App;
+global.A = global.App, delete global.App;
