@@ -11,8 +11,6 @@ var gulp				= require('gulp'),
 	imagemin			= require('gulp-imagemin'),
 	pngquant			= require('imagemin-pngquant'),
 	rimraf				= require('gulp-rimraf'),
-	browserSync			= require('browser-sync'),
-	reload				= browserSync.reload,
 	postcss				= require('gulp-postcss'),
 	autoprefixer		= require('autoprefixer'),
 	sprites				= require('postcss-sprites'), //.default,
@@ -20,7 +18,6 @@ var gulp				= require('gulp'),
 	svgstore			= require('gulp-svgstore'),
 	svgmin				= require('gulp-svgmin'),
 	rename				= require('gulp-rename'),
-	gutil 				= require('gulp-util'),
 	webpackStream 		= require('webpack-stream'),
 	named 				= require('vinyl-named'),
 	historyApiFallback	= require('connect-history-api-fallback'),
@@ -31,22 +28,6 @@ var gulp				= require('gulp'),
 var PRODUCTION = argv.production;
 
 var CONFIG = {
-	browserSync: {
-		server: {
-			baseDir: './build'
-		},
-		tunnel: false,
-		host: 'localhost',
-		port: 9000,
-		logPrefix: 'SP.Starter',
-		open: false,
-		middleware: [ historyApiFallback({
-			htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'],
-			rewrites: [
-				{ from: /.*!test.json/, to: '/index.html'}
-			]
-		}) ]
-	},
 	sourcemaps: {
 		css: true,
 		js: false
@@ -103,10 +84,6 @@ var PATHS = {
 	clean: './build'
 };
 
-gulp.task('webserver', function () {
-	browserSync(CONFIG.browserSync);
-});
-
 gulp.task('clean', function () {
 	return gulp.src(PATHS.clean, {read: false})
 		.pipe(rimraf({ force: true }));
@@ -115,8 +92,7 @@ gulp.task('clean', function () {
 gulp.task('html:build', function () {
 	gulp.src(PATHS.src.html)
 		.pipe(rigger({tolerant: true}))
-		.pipe(gulp.dest(PATHS.build.html))
-		.pipe(reload({stream: true}));
+		.pipe(gulp.dest(PATHS.build.html));
 });
 
 gulp.task('style:build', function () {
@@ -157,8 +133,7 @@ gulp.task('style:build', function () {
 		.pipe(postcss(processors))
 		.pipe(gulpif(CONFIG.compress.css, cssmin({processImport: false})))
 		.pipe(gulpif(CONFIG.sourcemaps.css, sourcemaps.write()))
-		.pipe(gulp.dest(PATHS.build.css))
-		.pipe(reload({stream: true}));
+		.pipe(gulp.dest(PATHS.build.css));
 });
 
 gulp.task('image:build', function () {
@@ -198,44 +173,12 @@ gulp.task('svg:build', function() {
 		.pipe(gulp.dest(PATHS.build.svg));
 });
 
-gulp.task('webpack', function (callback) {
-	var firstBuildReady = false;
+gulp.task('webpack', function () {
 	var webpackConfig = require('./webpack.config.js');
-	var defaultStatsOptions = {
-		colors: gutil.colors.supportsColor,
-		hash: false,
-		timings: false,
-		chunks: false,
-		chunkModules: false,
-		modules: false,
-		children: true,
-		version: true,
-		cached: false,
-		cachedAssets: false,
-		reasons: false,
-		source: false,
-		errorDetails: false
-	};
-	function done(err, stats) {
-		firstBuildReady = true;
-		if (err) {
-			return;
-		}
-		gutil.log(stats.toString(defaultStatsOptions));
-	}
 	return gulp.src(PATHS.src.js)
 		.pipe(named())
-		.pipe(webpackStream(webpackConfig, null, done))
-		.pipe(gulp.dest(PATHS.build.js))
-		.on('data', function () {
-			if (!PRODUCTION) {
-				if (firstBuildReady && !callback.called) {
-					callback.called = true;
-					callback();
-				}
-				reload();
-			}
-		});
+		.pipe(webpackStream(webpackConfig, null))
+		.pipe(gulp.dest(PATHS.build.js));
 });
 
 
@@ -274,4 +217,31 @@ if (PRODUCTION) {
 	gulp.task('build', buildDeps);
 }
 
-gulp.task('default', ['build', 'webserver', 'watch']);
+gulp.task('default', [
+	'build',
+	'watch'
+]);
+
+if (!PRODUCTION) {
+	var browserSync = require('browser-sync');
+	browserSync({
+		server: {
+			baseDir: 'build',
+		},
+		host: 'localhost',
+		port: 9000,
+		logPrefix: 'SP.Starter',
+		open: false,
+		files: [
+			'build/media/css/*.css',
+			'build/media/js/*.js',
+			'build/*.html',
+		],
+		middleware: [ historyApiFallback({
+			htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'],
+			rewrites: [
+				{ from: /.*!test.json/, to: '/index.html'}
+			]
+		}) ]
+	});
+}

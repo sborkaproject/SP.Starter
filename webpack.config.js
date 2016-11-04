@@ -51,6 +51,9 @@ var config = {
         ],
     },
     watch: argv.production ? false : true,
+	watchOptions: {
+		aggregateTimeout: 700
+	},
     resolve:  {
         extensions: ['', '.js', '.jsx'],
         modulesDirectories: ['node_modules', 'bower_components']
