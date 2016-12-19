@@ -1,0 +1,5 @@
+{% macro svgUse(value, attrs) %}
+	<svg {% for attr, value in attrs %}{{ attr }}="{{ value }}" {% endfor %}>
+		<use xlink:href="#icon-{{ value }}"></use>
+	</svg>
+{% endmacro %}

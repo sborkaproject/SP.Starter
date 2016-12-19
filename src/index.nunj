@@ -1,0 +1,61 @@
+{% extends "templates/base.nunj" %}
+
+{% from "templates/lib/macro.nunj" import svgUse %}
+{% from "templates/variables.nunj" import someData %}
+
+
+{# Пример расширения существующего блока #}
+{% block title %}Home {{ super() }}{% endblock title %}
+
+{% block content %}
+	<div class="skin">
+
+		<main style="float:left; width: 75%;">
+
+            <div style="padding:20px 0;">
+				<h2 style="margin-bottom: 15px;">Сетка в 12 колонок:</h2>
+				{# Пример использования циклов и функции range() #}
+                <div class="row">
+                    {% for i in range(1, 13)  %}
+                        <div class="col _1">{{ i }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div style="padding:20px 0;">
+
+				<h2 style="margin-bottom: 15px;">Использование макросов на примере SVG-спрайтов:</h2>
+
+                {{ svgUse('beamed-note', {style: 'width:40px;height:40px;', class: 'class-example'}) }}
+                {{ svgUse('bell', {style: 'width:40px;height:40px;', class: 'class-example'}) }}
+                {{ svgUse('chat', {style: 'width:40px;height:40px;', class: 'class-example'}) }}
+
+            </div>
+
+            <div style="padding:20px 0;">
+
+				<h2 style="margin-bottom: 15px;">Пример с переменными:</h2>
+
+                {% for item in someData %}
+                    <div style="margin-bottom: 15px;">
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.text }}</p>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+			{% if not PRODUCTION %}
+				<div class="debug">
+					<h2 style="margin-bottom: 15px;">Debug</h2>
+					<p>Эта информация будет выводиться только при PRODUCTION = false.</p>
+				</div>
+			{% endif %}
+
+		</main>
+
+		{# Вложенные шаблоны #}
+		{% include 'templates/parts/_sidebar.nunj' %}
+
+	</div>
+{% endblock content %}

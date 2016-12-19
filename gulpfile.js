@@ -6,7 +6,6 @@ var gulp				= require('gulp'),
 	watch				= require('gulp-watch'),
 	sass				= require('gulp-sass'),
 	sourcemaps			= require('gulp-sourcemaps'),
-	rigger				= require('gulp-rigger'),
 	cssmin				= require('gulp-clean-css'),
 	imagemin			= require('gulp-imagemin'),
 	pngquant			= require('imagemin-pngquant'),
@@ -22,7 +21,8 @@ var gulp				= require('gulp'),
 	named 				= require('vinyl-named'),
 	historyApiFallback	= require('connect-history-api-fallback'),
 	runSequence			= require('run-sequence'),
-	path                = require('path');
+	path                = require('path'),
+	nunjucks            = require('gulp-nunjucks');
 
 
 var PRODUCTION = argv.production;
@@ -63,7 +63,7 @@ var PATHS = {
 		video:	 'build/media/video/'
 	},
 	src: {
-		html:	 'src/*.html',
+		html:	 'src/*.nunj',
 		js:		 ['src/media/js/main.js'],
 		style:	 'src/media/sass/screen.sass',
 		img:	 'src/media/img/**/*.*',
@@ -73,7 +73,7 @@ var PATHS = {
 		video:	 'src/media/video/**/*.*'
 	},
 	watch: {
-		html:	 'src/**/*.html',
+		html:	 'src/**/*.nunj',
 		js:		 'src/media/js/**/*.js',
 		style:	 'src/media/sass/**/*.sass',
 		img:	 'src/media/img/**/*.*',
@@ -91,7 +91,10 @@ gulp.task('clean', function () {
 
 gulp.task('html:build', function () {
 	gulp.src(PATHS.src.html)
-		.pipe(rigger({tolerant: true}))
+		.pipe(nunjucks.compile({PRODUCTION: PRODUCTION}))
+		.pipe(rename({
+			extname: '.html'
+		}))
 		.pipe(gulp.dest(PATHS.build.html));
 });
 
@@ -240,7 +243,7 @@ if (!PRODUCTION) {
 		middleware: [ historyApiFallback({
 			htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'],
 			rewrites: [
-				{ from: /.*!test.json/, to: '/index.html'}
+				{ from: /.*!test.json/, to: '/index.nunj'}
 			]
 		}) ]
 	});
