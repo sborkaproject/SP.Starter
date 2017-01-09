@@ -34,7 +34,7 @@
     "raw-loader": "^0.5.1",
     "run-sequence": "^1.2.2",
     "vinyl-named": "^1.1.0",
-    "webpack-stream": "^3.2.0",
+    "webpack-stream": "git://github.com/scootnetworks/webpack-stream.git#397124ef7f4cf08e890ca9b43bd3b345a7251ed4",
     "yargs": "^3.32.0"
   }
 }
