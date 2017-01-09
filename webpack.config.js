@@ -40,7 +40,7 @@ var config = {
                 query: {
                     presets: [
                     	'es2015',
-                        'react'
+                        // 'react'
                     ]
                 }
             },
