@@ -1,55 +1,16 @@
-var $ = global.$ = global.jQuery = require('./vendor/jquery-3.1.0.min.js');
+const $ = global.$ = global.jQuery = require('./vendor/jquery-3.1.0.min');
 
-var TweenMax = global.TweenMax = require('./vendor/tweenmax.min.js');
-require('./vendor/jquery.gsap.min.js');
+const TweenMax = global.TweenMax = require('./vendor/tweenmax.min');
+require('./vendor/jquery.gsap.min');
 
-require('./vendor/jquery.helpers.js');
+require('./utils/jqExtensions');
 
-var App = global.App = new (function App() {
-    var self = this;
+let App = global.App = new (function App() {
+    let self = this;
 
-    // Add define/resolve options to App
-    // owner, autoWatch, allowLogging
-    require('./drengine')(this, true, true);
-
-    // Environment settings
-    var MobileDetect = require('./vendor/mobile-detect.min.js');
-    var mobileDetectInstance = new MobileDetect(window.navigator.userAgent);
-
-    this.env = {
-        isMobile: !!mobileDetectInstance.mobile(),
-        isTablet: !!mobileDetectInstance.tablet(),
-        isPhone: !!mobileDetectInstance.phone(),
-        isDesktop: !(!!mobileDetectInstance.mobile()),
-        isMac: navigator.platform.indexOf('Mac') > -1,
-        isWin: navigator.platform.indexOf('Win') > -1,
-        width: window.innerWidth,
-        height: window.innerHeight,
-        detector: mobileDetectInstance,
-        SVGSupported: !!document.createElementNS && !!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect,
-        isRetina: window.devicePixelRatio > 1
-    };
-
-    // Base DOM structure
-    this.dom = {
-        $body: $('body'),
-        $html: $('html'),
-        $document: $(document),
-        $window: $(window).on('resize orientationchange', function (e) {
-            self.env.width = window.innerWidth;
-            self.env.height = window.innerHeight;
-            self.env.maxSize = Math.max(window.innerWidth, window.innerHeight);
-            self.env.minSize = Math.min(window.innerWidth, window.innerHeight);
-        }),
-    };
-
-    // HTML classes
-    var htmlClasses = [
-      this.env.isDesktop ? '_desktop' : ('_mobile ' + (this.env.isPhone ? '_phone' : '_tablet') ),
-      this.env.isWin ? '_win' : '_mac'
-    ];
-    this.env.isRetina && htmlClasses.push('_retina');
-    this.dom.$html.addClass(htmlClasses.join(' '));
+    this.env = require('./utils/ENV');
+    this.dom = require('./utils/DOM');
+    this.utils = require('./utils/Utils');
 
     // SVG Sprites
     function addSVGSprite(data) {
@@ -64,43 +25,24 @@ var App = global.App = new (function App() {
     $.get('media/svg/sprite.svg', addSVGSprite);
 
     // Classes
-    this.classes = {};
+    this.classes = {
+        Callback: require('./classes/Callback'),
+    };
 
     // Modules
-    this.modules = {};
-
-    // Helpers
-    this.helpers = {};
-
-    // Utils
-    this.utils = {
-        now: function () {
-            var P = 'performance';
-            if (window[P] && window[P]['now']) {
-                this.now = function () { return window.performance.now(); };
-            } else {
-                this.now = function () { return +(new Date()); };
-            }
-
-            return this.now();
-        },
+    this.modules = {
+        Module1: require('./modules/Module1'),
+        Module2: require('./modules/Module2'),
     };
 
     // Startup
     $(function () {
-        // Module init order is important!
-        self.modules.Module.init();
+        self.modules.Module2.testMethod();
 
         // Remove _loading modificator
         self.dom.$html.removeClass('_loading');
     });
 })();
 
-// import classes first
-App.classes.Callback = require('./classes/Callback');
-
-// import modules
-App.modules.Module = require('./modules/Module');
-
 // App -> ProjectName
-global.A = global.App, delete global.App;
+global.ProjectName = global.App, delete global.App;
