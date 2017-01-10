@@ -4,3 +4,4 @@ bower_components
 build
 *.log
 .fuse_hidden*
+.DS_Store

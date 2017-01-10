@@ -100,7 +100,12 @@ gulp.task('html', function () {
 		})}))
 		.pipe(nunjucksRender({
 			src: 'src/templates',
-			data: require('./src/templates/global-data.json'),
+			data: Object.assign(
+				{
+					PRODUCTION: PRODUCTION
+				},
+				require('./src/templates/global-data.json')
+			),
 			filters: require('./src/templates/lib/filters.js'),
 			functions: require('./src/templates/lib/functions.js'),
 			trimBlocks: true,

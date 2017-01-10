@@ -7,11 +7,11 @@
 {% block title %}Home {{ super() }}{% endblock title %}
 
 {% block content %}
-	<div class="skin">
+	<div class="skin clearfix">
 
 		<main style="float:left; width: 75%;">
 
-            <div style="padding:20px 0;">
+			<div style="padding:20px 0;">
 				<h2 style="margin-bottom: 15px;">Сетка в 12 колонок:</h2>
 				{# Пример использования циклов и функции range() #}
                 <div class="row">
@@ -44,8 +44,11 @@
 
             </div>
 
+			{# Пример с функциями #}
+			<p style="margin-bottom: 20px;">{{ addAwesome('Это текст для теста функций') }}</p>
+
 			{% if not PRODUCTION %}
-				<div class="debug">
+				<div class="debug" style="margin-bottom: 20px;">
 					<h2 style="margin-bottom: 15px;">Debug</h2>
 					<p>Эта информация будет выводиться только при PRODUCTION = false.</p>
 				</div>
