@@ -22,7 +22,10 @@ var gulp				= require('gulp'),
 	historyApiFallback	= require('connect-history-api-fallback'),
 	runSequence			= require('run-sequence'),
 	path                = require('path'),
-	nunjucks            = require('gulp-nunjucks');
+	nunjucksRender      = require('gulp-nunjucks-api'),
+	prettify            = require('gulp-html-prettify'),
+	plumber             = require('gulp-plumber'),
+	notify              = require('gulp-notify');
 
 
 var PRODUCTION = argv.production;
@@ -63,7 +66,7 @@ var PATHS = {
 		video:	 'build/media/video/'
 	},
 	src: {
-		html:	 'src/*.nunj',
+		html:	 'src/templates/*.nunj',
 		js:		 ['src/media/js/main.js'],
 		style:	 'src/media/sass/screen.sass',
 		img:	 'src/media/img/**/*.*',
@@ -89,12 +92,24 @@ gulp.task('clean', function () {
 		.pipe(rimraf({ force: true }));
 });
 
-gulp.task('html:build', function () {
+gulp.task('html', function () {
 	gulp.src(PATHS.src.html)
-		.pipe(nunjucks.compile({PRODUCTION: PRODUCTION}))
-		.pipe(rename({
-			extname: '.html'
+		.pipe(plumber({errorHandler: notify.onError({
+			title: 'Nunjucks compilation error',
+			message: 'Error: <%= error.message %>'
+		})}))
+		.pipe(nunjucksRender({
+			src: 'src/templates',
+			data: require('./src/templates/global-data.json'),
+			filters: require('./src/templates/lib/filters.js'),
+			functions: require('./src/templates/lib/functions.js'),
+			trimBlocks: true,
+			lstripBlocks: true
 		}))
+        // .on('error', function(err) {
+        //     console.log('ERROR!!!!!!!!!!!!!!!!!!!!!!!');
+        // })
+		.pipe(prettify({indent_char: ' ', indent_size: 4}))
 		.pipe(gulp.dest(PATHS.build.html));
 });
 
@@ -124,6 +139,10 @@ gulp.task('style:build', function () {
 	];
 
 	gulp.src(PATHS.src.style)
+		.pipe(plumber({errorHandler: notify.onError({
+			title: 'SASS compilation error',
+			message: 'Error: <%= error.message %>'
+		})}))
 		.pipe(gulpif(CONFIG.sourcemaps.css, sourcemaps.init()))
 		.pipe(sass({
 			outputStyle: 'compact',
@@ -178,16 +197,26 @@ gulp.task('svg:build', function() {
 
 gulp.task('webpack', function () {
 	var webpackConfig = require('./webpack.config.js');
+	notify.on('error-compilation', function() {
+		console.log('Compilation error');
+	});
 	return gulp.src(PATHS.src.js)
 		.pipe(named())
 		.pipe(webpackStream(webpackConfig, null))
+		.on('compilation-error', notify.onError(function (err) {
+			var msg = err.message.slice(0, 200).replace(/^\s+|\s+$/g, '') + '...';
+			return {
+				title: 'Webpack compilation error',
+				message: 'Error: ' + msg
+			};
+		}))
 		.pipe(gulp.dest(PATHS.build.js));
 });
 
 
 gulp.task('watch', function () {
 	watch([PATHS.watch.html], function (event, cb) {
-		gulp.start('html:build');
+		gulp.start('html');
 	});
 	watch([PATHS.watch.style], function (event, cb) {
 		gulp.start('style:build');
@@ -205,7 +234,7 @@ gulp.task('watch', function () {
 
 
 var buildDeps = [
-	'html:build',
+	'html',
 	'style:build',
 	'fonts:build',
 	'image:build',

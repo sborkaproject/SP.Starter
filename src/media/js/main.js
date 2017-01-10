@@ -8,6 +8,7 @@ require('./vendor/jquery.helpers.js');
 var App = global.App = new (function App() {
     var self = this;
 
+
     // Environment settings
     var MobileDetect = require('./vendor/mobile-detect.min.js');
     var mobileDetectInstance = new MobileDetect(window.navigator.userAgent);
