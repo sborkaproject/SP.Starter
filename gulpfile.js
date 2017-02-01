@@ -22,7 +22,8 @@ var gulp				= require('gulp'),
 	named 				= require('vinyl-named'),
 	historyApiFallback	= require('connect-history-api-fallback'),
 	runSequence			= require('run-sequence'),
-	path                = require('path');
+	path                = require('path'),
+	zip                 = require('gulp-zip');
 
 
 var PRODUCTION = argv.production;
@@ -53,7 +54,7 @@ if (PRODUCTION) {
 
 var PATHS = {
 	build: {
-		html:	 'build/',
+		html:	 'build',
 		js:		 'build/media/js/',
 		css:	 'build/media/css/',
 		img:	 'build/media/img/',
@@ -181,6 +182,35 @@ gulp.task('webpack', function () {
 		.pipe(gulp.dest(PATHS.build.js));
 });
 
+gulp.task('zip', function () {
+	return gulp.src(PATHS.build.html)
+		.pipe(zip(`${PATHS.build.html}.zip`))
+		.pipe(gulp.dest('./'));
+});
+
+gulp.task('browserSync', () => {
+	var browserSync = require('browser-sync');
+	browserSync({
+		server: {
+			baseDir: 'build',
+		},
+		host: 'localhost',
+		port: 9000,
+		logPrefix: 'SP.Starter',
+		open: false,
+		files: [
+			'build/media/css/*.css',
+			'build/media/js/*.js',
+			'build/*.html',
+		],
+		middleware: [ historyApiFallback({
+			htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'],
+			rewrites: [
+				{ from: /.*!test.json/, to: '/index.html'}
+			]
+		}) ]
+	});
+});
 
 gulp.task('watch', function () {
 	watch([PATHS.watch.html], function (event, cb) {
@@ -219,29 +249,6 @@ if (PRODUCTION) {
 
 gulp.task('default', [
 	'build',
-	'watch'
+	'watch',
+	'browserSync'
 ]);
-
-if (!PRODUCTION) {
-	var browserSync = require('browser-sync');
-	browserSync({
-		server: {
-			baseDir: 'build',
-		},
-		host: 'localhost',
-		port: 9000,
-		logPrefix: 'SP.Starter',
-		open: false,
-		files: [
-			'build/media/css/*.css',
-			'build/media/js/*.js',
-			'build/*.html',
-		],
-		middleware: [ historyApiFallback({
-			htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'],
-			rewrites: [
-				{ from: /.*!test.json/, to: '/index.html'}
-			]
-		}) ]
-	});
-}
