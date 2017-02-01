@@ -1,13 +1,13 @@
 'use strict';
 
-var webpack = require('webpack');
-var argv = require('yargs').argv;
+const webpack = require('webpack');
+const argv = require('yargs').argv;
 
-var PATHS = {
+const PATHS = {
     app: __dirname + '/src/media/js'
 };
 
-var plugins = [
+let plugins = [
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
@@ -26,7 +26,7 @@ if (argv.production) {
     }));
 }
 
-var config = {
+const config = {
     module: {
         loaders: [
             {
@@ -39,8 +39,7 @@ var config = {
                 loader: 'babel-loader',
                 query: {
                     presets: [
-                    	'es2015',
-                        // 'react'
+                    	'es2015'
                     ]
                 }
             },
@@ -50,7 +49,7 @@ var config = {
             }
         ],
     },
-    watch: argv.production ? false : true,
+    watch: !argv.production,
 	watchOptions: {
 		aggregateTimeout: 700
 	},
@@ -59,7 +58,7 @@ var config = {
         modulesDirectories: ['node_modules', 'bower_components']
     },
     plugins: plugins,
-    debug: argv.production ? false : true,
+    debug: !argv.production,
     devtool: argv.production ? null : '#eval',
     externals: {
         '../TweenLite': 'TweenLite',
