@@ -183,11 +183,35 @@
 			vertical-align: middle
 			height: 100%
 			width: 0
+	
+=loading
+	@at-root html._loading #{&}
+		@content
 
 =mac
-	@at-root ._mac #{&}
+	@at-root html._mac #{&}
 		@content
 
 =windows
-	@at-root ._win #{&}
+	@at-root html._win #{&}
+		@content
+	
+=desktop
+	@at-root html._desktop #{&}
+		@content
+	
+=mobile
+	@at-root html._mobile #{&}
+		@content
+	
+=tablet
+	@at-root html._tablet #{&}
+		@content
+	
+=phone
+	@at-root html._phone #{&}
+		@content
+	
+=retina
+	@at-root html._retina #{&}
 		@content
