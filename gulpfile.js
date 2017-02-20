@@ -1,7 +1,7 @@
 'use strict';
+const IS_PRODUCTION = require('./config').IS_PRODUCTION;
 
 const gulp = require('gulp');
-const argv = require('yargs').argv;
 const gulpif = require('gulp-if');
 const watch = require('gulp-watch');
 const sass = require('gulp-sass');
@@ -10,7 +10,6 @@ const rigger = require('gulp-rigger');
 const cssmin = require('gulp-clean-css');
 const imagemin = require('gulp-imagemin');
 const pngquant = require('imagemin-pngquant');
-const rimraf = require('gulp-rimraf');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const sprites = require('postcss-sprites');
@@ -24,8 +23,7 @@ const historyApiFallback = require('connect-history-api-fallback');
 const runSequence = require('run-sequence');
 const path = require('path');
 const zip = require('gulp-zip');
-
-const PRODUCTION = argv.production;
+const del = require('del');
 
 const CONFIG = {
 	sourcemaps: {
@@ -39,7 +37,7 @@ const CONFIG = {
 	}
 };
 
-if (PRODUCTION) {
+if (IS_PRODUCTION) {
 	CONFIG.sourcemaps = {
 		css: false,
 		js: false
@@ -85,8 +83,7 @@ const PATHS = {
 };
 
 gulp.task('clean', () => {
-	gulp.src(PATHS.clean, {read: false})
-		.pipe(rimraf({force: true}));
+	return del(PATHS.clean);
 });
 
 gulp.task('html:build', () => {
@@ -178,8 +175,8 @@ gulp.task('webpack', () => {
 		.pipe(gulp.dest(PATHS.build.js));
 });
 
-gulp.task('zip', () => {
-	gulp.src(PATHS.build.html)
+gulp.task('zip-archive', () => {
+	gulp.src(PATHS.build.html + '/**/*')
 		.pipe(zip(`${PATHS.build.html}.zip`))
 		.pipe(gulp.dest('./'));
 });
@@ -225,7 +222,9 @@ const buildDeps = [
 	'webpack'
 ];
 
-PRODUCTION ? gulp.task('build', () => runSequence('clean', buildDeps)) : gulp.task('build', buildDeps);
+IS_PRODUCTION ? gulp.task('build', () => runSequence('clean', buildDeps)) : gulp.task('build', buildDeps);
+
+gulp.task('zip', () => runSequence('clean', buildDeps, 'zip-archive'));
 
 gulp.task('default', [
 	'build',

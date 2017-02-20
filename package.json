@@ -6,6 +6,10 @@
     "type": "git",
     "url": "https://github.com/sborkaproject/SP.Starter"
   },
+  "scripts": {
+    "build": "NODE_ENV=production gulp build",
+    "zip": "NODE_ENV=production gulp zip"
+  },
   "dependencies": {
     "autoprefixer": "^6.6.1",
     "babel-core": "^6.21.0",
@@ -13,6 +17,7 @@
     "babel-preset-es2015": "^6.18.0",
     "browser-sync": "^2.18.6",
     "connect-history-api-fallback": "^1.3.0",
+    "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^2.3.2",
     "gulp-if": "^2.0.2",

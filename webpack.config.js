@@ -1,7 +1,6 @@
 'use strict';
-
+const IS_PRODUCTION = require('./config').IS_PRODUCTION;
 const webpack = require('webpack');
-const argv = require('yargs').argv;
 
 const PATHS = {
     app: __dirname + '/src/media/js'
@@ -17,7 +16,7 @@ let plugins = [
     )
 ];
 
-if (argv.production) {
+if (IS_PRODUCTION) {
     plugins.push(new webpack.optimize.UglifyJsPlugin({
         minimize: true,
         beautify: false,
@@ -49,7 +48,7 @@ const config = {
             }
         ],
     },
-    watch: !argv.production,
+    watch: !IS_PRODUCTION,
 	watchOptions: {
 		aggregateTimeout: 700
 	},
@@ -58,8 +57,8 @@ const config = {
         modulesDirectories: ['node_modules', 'bower_components']
     },
     plugins: plugins,
-    debug: !argv.production,
-    devtool: argv.production ? null : '#eval',
+    debug: !IS_PRODUCTION,
+    devtool: IS_PRODUCTION ? null : '#eval',
     externals: {
         '../TweenLite': 'TweenLite',
         './TweenLite': 'TweenLite',
