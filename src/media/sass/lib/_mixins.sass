@@ -173,11 +173,45 @@
 	vertical-align: middle
 	display: inline-block
 	white-space: normal
+	font-size: $default-font-size
 	@at-root #{$parent_container}
 		white-space: nowrap
+		font-size: 0
 		&:before
 			content: ""
 			display: inline-block
 			vertical-align: middle
 			height: 100%
 			width: 0
+	
+=loading
+	@at-root html._loading #{&}
+		@content
+
+=mac
+	@at-root html._mac #{&}
+		@content
+
+=windows
+	@at-root html._win #{&}
+		@content
+	
+=desktop
+	@at-root html._desktop #{&}
+		@content
+	
+=mobile
+	@at-root html._mobile #{&}
+		@content
+	
+=tablet
+	@at-root html._tablet #{&}
+		@content
+	
+=phone
+	@at-root html._phone #{&}
+		@content
+	
+=retina
+	@at-root html._retina #{&}
+		@content

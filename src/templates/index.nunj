@@ -47,10 +47,10 @@
 			{# Пример с функциями #}
 			<p style="margin-bottom: 20px;">{{ addAwesome('Это текст для теста функций') }}</p>
 
-			{% if not PRODUCTION %}
+			{% if DEVELOP %}
 				<div class="debug" style="margin-bottom: 20px;">
 					<h2 style="margin-bottom: 15px;">Debug</h2>
-					<p>Эта информация будет выводиться только при PRODUCTION = false.</p>
+					<p>Эта информация будет выводиться только при DEVELOP = true.</p>
 				</div>
 			{% endif %}
 

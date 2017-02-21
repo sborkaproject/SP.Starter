@@ -1,13 +1,12 @@
 'use strict';
+const IS_PRODUCTION = require('./config').IS_PRODUCTION;
+const webpack = require('webpack');
 
-var webpack = require('webpack');
-var argv = require('yargs').argv;
-
-var PATHS = {
+const PATHS = {
     app: __dirname + '/src/media/js'
 };
 
-var plugins = [
+let plugins = [
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
@@ -17,7 +16,7 @@ var plugins = [
     )
 ];
 
-if (argv.production) {
+if (IS_PRODUCTION) {
     plugins.push(new webpack.optimize.UglifyJsPlugin({
         minimize: true,
         beautify: false,
@@ -26,7 +25,7 @@ if (argv.production) {
     }));
 }
 
-var config = {
+const config = {
     module: {
         loaders: [
             {
@@ -49,7 +48,7 @@ var config = {
             }
         ],
     },
-    watch: argv.production ? false : true,
+    watch: !IS_PRODUCTION,
 	watchOptions: {
 		aggregateTimeout: 700
 	},
@@ -58,8 +57,8 @@ var config = {
         modulesDirectories: ['node_modules', 'bower_components']
     },
     plugins: plugins,
-    debug: argv.production ? false : true,
-    devtool: argv.production ? null : '#eval',
+    debug: !IS_PRODUCTION,
+    devtool: IS_PRODUCTION ? null : '#eval',
     externals: {
         '../TweenLite': 'TweenLite',
         './TweenLite': 'TweenLite',

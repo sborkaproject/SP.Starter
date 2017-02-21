@@ -1,4 +1,4 @@
 <aside style="float:right; width:25%; padding: 20px; box-sizing:border-box;">
-	<h3 style="margin-bottom: 15px;">Пример</h3>
-	<p>Стоит отметить, что продвижение проекта транслирует рекламоноситель. Не факт, что принцип восприятия разнородно уравновешивает коллективный нестандартный подход. Воздействие на потребителя не критично.</p>
+	<h3 style="margin-bottom: 15px;">{{ someData[0].title }}</h3>
+	<p>{{ someData[0].text }}</p>
 </aside>

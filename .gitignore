@@ -1,7 +1,8 @@
+.DS_Store
 .idea
 node_modules
 bower_components
 build
 *.log
 .fuse_hidden*
-.DS_Store
+build.zip
