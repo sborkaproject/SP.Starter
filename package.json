@@ -7,9 +7,9 @@
     "url": "https://github.com/sborkaproject/SP.Starter"
   },
   "scripts": {
-    "dev": "./node_modules/.bin/gulp",
-    "build": "NODE_ENV=production ./node_modules/.bin/gulp build",
-    "zip": "NODE_ENV=production ./node_modules/.bin/gulp zip"
+    "start": "gulp",
+    "build": "NODE_ENV=production gulp build",
+    "zip": "NODE_ENV=production gulp zip"
   },
   "dependencies": {
     "autoprefixer": "^6.6.1",
