@@ -6,7 +6,6 @@ const gulpif = require('gulp-if');
 const watch = require('gulp-watch');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
-const rigger = require('gulp-rigger');
 const cssmin = require('gulp-clean-css');
 const imagemin = require('gulp-imagemin');
 const pngquant = require('imagemin-pngquant');
