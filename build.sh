@@ -6,4 +6,4 @@ endColor='\x1B[0m'
 # сборка основного проекта
 echo "Build main"
 npm install
-npm run start
+npm run build
