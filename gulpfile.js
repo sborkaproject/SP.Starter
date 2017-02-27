@@ -95,6 +95,7 @@ gulp.task('html:build', () => {
 	gulp.src(PATHS.src.html)
 		.pipe(plumber({
 			errorHandler: function (err) {
+				gutil.log(err.message);
 				notifier.notify({
 					title: 'Nunjucks compilation error',
 					message: err.message
