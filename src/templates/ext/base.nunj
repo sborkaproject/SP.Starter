@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<!--[if lte IE 8]><html class="lteie8 _loading"><![endif]-->
-<!--[if gt IE 8]><!--><html class="_loading"><!--<![endif]-->
+<html class="_loading">
 <head>
 	<!-- Client-side programming by sborkaproject.com -->
 	<meta charset="utf-8" />
