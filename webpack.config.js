@@ -1,6 +1,6 @@
 'use strict';
-const IS_PRODUCTION = require('./config').IS_PRODUCTION;
-const webpack = require('webpack');
+import { IS_PRODUCTION } from './config'
+import webpack from 'webpack'
 
 const PATHS = {
     app: __dirname + '/src/media/js'
@@ -70,4 +70,4 @@ const config = {
     }
 };
 
-module.exports = config;
+export default config;
