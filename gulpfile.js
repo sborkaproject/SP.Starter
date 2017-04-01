@@ -76,7 +76,7 @@ const PATHS = {
 		video: 'src/media/video/**/*.*'
 	},
 	watch: {
-		html: 'src/**/*.nunj',
+		html: 'src/templates/**/*.nunj',
 		js: 'src/media/js/**/*.js',
 		style: 'src/media/sass/**/*.sass',
 		img: 'src/media/img/**/*.*',
