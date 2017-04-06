@@ -1,10 +1,10 @@
-const dom = require('./DOM');
-const $body = dom.$body;
+var dom = require('./DOM');
+var $body = dom.$body;
 
 $.fn.outerClick = function (handler) {
-    let self = this;
+    var self = this;
     $body.on('mousedown touchstart', function (e) {
-        let target = e.target;
+        var target = e.target;
 
         if (self.is(target)) {
             return;
@@ -24,18 +24,34 @@ $.fn.nope = function (state) {
     return state === false ? this.removeClass('no-pe') : this.addClass('no-pe');
 };
 
-$.fn.outline = function( state ){
+$.fn.outline = function (state) {
     return this.css({ outline: state === false ? '' : '1px solid red' });
-}
+};
 
 var delayedFocusTimeout;
-$.fn.delayedFocus = function( delay ){
+$.fn.delayedFocus = function (delay) {
     clearTimeout(delayedFocusTimeout);
 
     var self = this;
-    delayedFocusTimeout = setTimeout(function(){
+    delayedFocusTimeout = setTimeout(function () {
         self.focus();
     }, delay || 150);
 
     return this;
-}
+};
+
+$.fn.focusOnEnd = function () {
+    this.focus().val(this.val());
+    return this;
+};
+
+$.fn.delayedFocusOnEnd = function (delay) {
+    clearTimeout(delayedFocusTimeout);
+
+    var self = this;
+    delayedFocusTimeout = setTimeout(function () {
+        self.focus().val(self.val());
+    }, delay || 150);
+
+    return this;
+};
