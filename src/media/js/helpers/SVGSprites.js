@@ -1,5 +1,5 @@
 function SVGSprites() {
-    this.$container = $('<div></div>').prependTo(document.body);
+    this.$container = $('<div style="width:0;height:0;overflow:hidden"></div>').prependTo(document.body);
     var self = this;
 
     $.get('media/svg/sprite.svg', function (data) {
