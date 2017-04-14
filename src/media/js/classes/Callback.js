@@ -1,3 +1,5 @@
+// Callback is equal to Signal
+
 function Callback() {
     this._handlers = [];
 
