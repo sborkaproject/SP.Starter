@@ -31,7 +31,8 @@ gulp.task('html:build', () => {
 			filters: filters,
 			functions: functions,
 			trimBlocks: true,
-			lstripBlocks: true
+			lstripBlocks: true,
+			autoescape: false
 		}))
 		.pipe(prettify({indent_char: ' ', indent_size: 4}))
 		.pipe(gulp.dest(PATHS.build.html));
