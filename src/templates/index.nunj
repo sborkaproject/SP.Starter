@@ -1,6 +1,6 @@
 {% extends "./ext/base.nunj" %}
 
-{% from "./lib/macro.nunj" import svgUse %}
+{% from "./lib/macro.nunj" import exampleMacro %}
 
 
 {# Пример расширения существующего блока #}
@@ -23,11 +23,9 @@
 
             <div style="padding:20px 0;">
 
-				<h2 style="margin-bottom: 15px;">Использование макросов на примере SVG-спрайтов:</h2>
+				<h2 style="margin-bottom: 15px;">Пример использования макросов:</h2>
 
-                {{ svgUse('beamed-note', {style: 'width:40px;height:40px;', class: 'class-example'}) }}
-                {{ svgUse('bell', {style: 'width:40px;height:40px;', class: 'class-example'}) }}
-                {{ svgUse('chat', {style: 'width:40px;height:40px;', class: 'class-example'}) }}
+				{{ exampleMacro('Пример') }}
 
             </div>
 
