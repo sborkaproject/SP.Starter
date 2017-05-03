@@ -113,4 +113,4 @@ background-size: size('sp.png')
 
 [Сборка фронтенд-проекта с помощью Gulp](http://habrahabr.ru/post/250569/).
 
-[Адаптивная сетка Twitter Bootstrap](http://getbootstrap.com/css/#grid)
+[Адаптивная сетка Twitter Bootstrap](http://getbootstrap.com/css/#grid).
