@@ -14,30 +14,31 @@ import gulpif from 'gulp-if'
 import PATHS from '../paths'
 import CONFIG from '../config'
 
-gulp.task('style:build', () => {
-	const PROCESSORS = [
-		autoprefixer({
-			browsers: ['last 4 versions'],
-			cascade: true
-		}),
-		assets({
-			basePath: 'src/',
-			baseUrl: '../',
-			loadPaths: ['media/img/']
-		}),
-		sprites({
-			stylesheetPath: './build/media/css/',
-			spritePath: './build/media/img/sprite.png',
-			retina: true,
-			outputDimensions: true,
-			padding: 4,
-			filterBy: (image) => /sprites\/.*\.png$/gi.test(image.url)
-		})
-	];
+const PROCESSORS = [
+	autoprefixer({
+		browsers: ['last 4 versions'],
+		cascade: true
+	}),
+	assets({
+		basePath: 'src/',
+		baseUrl: '../',
+		loadPaths: ['media/img/']
+	}),
+	sprites({
+		stylesheetPath: './build/media/css/',
+		spritePath: './build/media/img/sprite.png',
+		retina: true,
+		outputDimensions: true,
+		padding: 4,
+		filterBy: (image) => /sprites\/.*\.png$/gi.test(image.url)
+	})
+];
 
-	return gulp.src(PATHS.src.style)
+gulp.task('style:build', () => {
+	gulp.src(PATHS.src.style)
 		.pipe(plumber({
 			errorHandler: function (err) {
+				gutil.log(err.message);
 				notifier.notify({
 					title: 'SASS compilation error',
 					message: err.message
@@ -50,13 +51,9 @@ gulp.task('style:build', () => {
 			sourceMap: false,
 			errLogToConsole: true,
 			indentedSyntax: true
-		})
-			.on('error', (err) => {
-				gutil.log(err.message);
-			}))
+		}))
 		.pipe(postcss(PROCESSORS))
 		.pipe(gulpif(CONFIG.compress.css, cssmin({processImport: false})))
 		.pipe(gulpif(CONFIG.sourcemaps.css, sourcemaps.write()))
 		.pipe(gulp.dest(PATHS.build.css));
-
 });

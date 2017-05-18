@@ -15,35 +15,84 @@
 .row
 	@extend .clearfix
 	position: relative
-	margin-left: -20px
-	margin-right: -20px
+	margin-left: -$indent-col-lg
+	margin-right: -$indent-col-lg
+	+max-screen($breakpoint-lg)
+		margin-left: -$indent-col-md
+		margin-right: -$indent-col-md
+	+max-screen($breakpoint-md)
+		margin-left: -$indent-col-sm
+		margin-right: -$indent-col-sm
+	+max-screen($breakpoint-sm)
+		margin-left: -$indent-col-xs
+		margin-right: -$indent-col-xs
+
+=col($max-cols)
+	@for $i from 1 through $max-cols
+		&-#{$i}
+			display: block
+			float: left
+			width: (100%/$max-cols*$i)
 
 .col
-	float: left
-	padding-left: 20px
-	padding-right: 20px
-	+box
-	&._1
-		width: (100%/12)
-	&._2
-		width: (100%/12*2)
-	&._3
-		width: (100%/12*3)
-	&._4
-		width: (100%/12*4)
-	&._5
-		width: (100%/12*5)
-	&._6
-		width: (100%/12*6)
-	&._7
-		width: (100%/12*7)
-	&._8
-		width: (100%/12*8)
-	&._9
-		width: (100%/12*9)
-	&._10
-		width: (100%/12*10)
-	&._11
-		width: (100%/12*11)
-	&._12
-		width: 100%
+	&-lg, &-md, &-sm, &-xs
+		@for $i from 1 through $cols-total
+			&-#{$i}
+				+box
+	&-lg
+		@for $i from 1 through $cols-total
+			&-#{$i}
+				padding-left: $indent-col-lg
+				padding-right: $indent-col-lg
+		+col($cols-total)
+	&-md
+		+max-screen($breakpoint-lg)
+			@for $i from 1 through $cols-total
+				&-#{$i}
+					padding-right: $indent-col-md
+					padding-left: $indent-col-md
+			+col(10)
+	&-sm
+		+max-screen($breakpoint-md)
+			@for $i from 1 through $cols-total
+				&-#{$i}
+					padding-right: $indent-col-sm
+					padding-left: $indent-col-sm
+			+col($cols-total)
+	&-xs
+		+max-screen($breakpoint-sm)
+			@for $i from 1 through $cols-total
+				&-#{$i}
+					padding-right: $indent-col-xs
+					padding-left: $indent-col-xs
+			+col($cols-total)
+
+=offset-width($max-cols)
+	@for $i from 0 through $max-cols
+		&-#{$i}
+			@if $i == 0
+				margin-left: 0
+			@else
+				margin-left: (100%/$max-cols*$i)
+
+.offset
+	&-lg
+		+offset-width($cols-total)
+	&-md
+		+max-screen($breakpoint-lg)
+			+offset-width($cols-total)
+	&-sm
+		+max-screen($breakpoint-md)
+			+offset-width($cols-total)
+	&-xs
+		+max-screen($breakpoint-sm)
+			+offset-width($cols-total)
+
+.hidden-xs
+	+max-screen($breakpoint-sm)
+		display: none
+
+.visible-xs
+	display: none
+	+max-screen($breakpoint-sm)
+		display: block

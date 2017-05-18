@@ -1,6 +1,6 @@
 {% extends "./ext/base.nunj" %}
 
-{% from "./lib/macro.nunj" import svgUse %}
+{% from "./lib/macro.nunj" import exampleMacro %}
 
 
 {# Пример расширения существующего блока #}
@@ -12,37 +12,43 @@
 		<main style="float:left; width: 75%;">
 
 			<div style="padding:20px 0;">
-				<h2 style="margin-bottom: 15px;">Сетка в 12 колонок:</h2>
-				{# Пример использования циклов и функции range() #}
-                <div class="row">
-                    {% for i in range(1, 13)  %}
-                        <div class="col _1">{{ i }}</div>
-                    {% endfor %}
-                </div>
-            </div>
+				<h2 style="margin-bottom: 15px;">Респонсив сетка из 12 колонок:</h2>
+				<div class="row">
+					<div class="col-lg-6 col-md-4 col-xs-12">Колонка 1</div>
+					<div class="col-lg-6 col-md-4 col-xs-12">Колонка 2</div>
+					<div class="col-lg-6 offset-lg-6 col-md-4 offset-md-4 col-xs-12 offset-xs-0">Колонка с отступом</div>
+				</div>
+			</div>
 
-            <div style="padding:20px 0;">
+			<div style="padding:20px 0;">
+				<h2 style="margin-bottom: 15px;">Пример использования циклов и функции range():</h2>
+				<div class="row">
+					{% for i in range(1, 13)  %}
+						<div class="col-lg-1">{{ i }}</div>
+					{% endfor %}
+				</div>
+			</div>
 
-				<h2 style="margin-bottom: 15px;">Использование макросов на примере SVG-спрайтов:</h2>
+			<div style="padding:20px 0;">
 
-                {{ svgUse('beamed-note', {style: 'width:40px;height:40px;', class: 'class-example'}) }}
-                {{ svgUse('bell', {style: 'width:40px;height:40px;', class: 'class-example'}) }}
-                {{ svgUse('chat', {style: 'width:40px;height:40px;', class: 'class-example'}) }}
+				<h2 style="margin-bottom: 15px;">Пример использования макросов:</h2>
 
-            </div>
+				{{ exampleMacro('Пример') }}
 
-            <div style="padding:20px 0;">
+			</div>
+
+			<div style="padding:20px 0;">
 
 				<h2 style="margin-bottom: 15px;">Пример с переменными:</h2>
 
-                {% for item in someData %}
-                    <div style="margin-bottom: 15px;">
-                        <h3>{{ item.title }}</h3>
-                        <p>{{ item.text }}</p>
-                    </div>
-                {% endfor %}
+				{% for item in someData %}
+					<div style="margin-bottom: 15px;">
+						<h3>{{ item.title }}</h3>
+						<p>{{ item.text }}</p>
+					</div>
+				{% endfor %}
 
-            </div>
+			</div>
 
 			{# Пример с функциями #}
 			<p style="margin-bottom: 20px;">{{ addAwesome('Это текст для теста функций') }}</p>
