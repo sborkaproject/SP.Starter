@@ -36,6 +36,9 @@
 	overflow: hidden
 	text-overflow: ellipsis
 	white-space: nowrap
+	
+=letterSpacing($interval)
+	letter-spacing: unquote(($interval / 1000) + 'em')
 
 =cover
 	background-repeat: no-repeat
