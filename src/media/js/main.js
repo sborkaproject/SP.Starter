@@ -31,6 +31,6 @@ var App = global.App = new (function App() {
     });
 })();
 
-// App -> ProjectName
+// App → ProjectName
 global.ProjectName = global.App, delete global.App;
 global.ProjectName.VERSION = '0.000';

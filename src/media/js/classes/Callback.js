@@ -21,6 +21,8 @@ Callback.prototype = {
         }
 
         this._handlers.push({ handler: handler, context: context });
+
+        return handler;
     },
 
     remove: function (handler) {
@@ -33,7 +35,7 @@ Callback.prototype = {
         for (var k = 0; k < totalHandlers; k++) {
             if (handler === this._handlers[k].handler) {
                 this._handlers.splice(k, 1);
-                return;
+                return handler;
             }
         }
     },
