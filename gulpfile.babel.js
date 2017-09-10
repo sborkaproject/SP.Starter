@@ -8,7 +8,7 @@ const buildDeps = [
 	'html:build',
 	'style:build',
 	'fonts:build',
-	'image:build',
+	'images:build',
 	'svg:build',
 	'webpack'
 ];
