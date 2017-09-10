@@ -6,7 +6,7 @@ import { IS_PRODUCTION } from './config'
 
 const buildDeps = [
 	'html:build',
-	'style:build',
+	'styles:build',
 	'fonts:build',
 	'images:build',
 	'svg:build',

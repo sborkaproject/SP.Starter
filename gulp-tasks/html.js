@@ -12,7 +12,7 @@ import functions from '../src/templates/lib/functions.js'
 const globalData = require('../global-data.json');
 
 gulp.task('html:build', () => {
-	return gulp.src(PATHS.src.html)
+	return gulp.src(PATHS.src.nunj)
 		.pipe(plumber({
 			errorHandler: function (err) {
 				gutil.log(err.message);

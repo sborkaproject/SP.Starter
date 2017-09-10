@@ -34,8 +34,8 @@ const PROCESSORS = [
 	})
 ];
 
-gulp.task('style:build', () => {
-	gulp.src(PATHS.src.style)
+gulp.task('styles:build', () => {
+	gulp.src(PATHS.src.styles)
 		.pipe(plumber({
 			errorHandler: function (err) {
 				gutil.log(err.message);
@@ -45,7 +45,7 @@ gulp.task('style:build', () => {
 				});
 			}
 		}))
-		.pipe(gulpif(CONFIG.sourcemaps.css, sourcemaps.init()))
+		.pipe(gulpif(CONFIG.sourcemaps.styles, sourcemaps.init()))
 		.pipe(sass({
 			outputStyle: 'compact',
 			sourceMap: false,
@@ -55,5 +55,5 @@ gulp.task('style:build', () => {
 		.pipe(postcss(PROCESSORS))
 		.pipe(gulpif(CONFIG.compress.css, cssmin({processImport: false})))
 		.pipe(gulpif(CONFIG.sourcemaps.css, sourcemaps.write()))
-		.pipe(gulp.dest(PATHS.build.css));
+		.pipe(gulp.dest(PATHS.build.styles));
 });
