@@ -24,9 +24,11 @@ gulp.task('html:build', () => {
 		}))
 		.pipe(nunjucksRender({
 			src: PATHS.src.templates,
-			data: Object.assign({
+			data: Object.assign(
+				{
 					DEVELOP: !IS_PRODUCTION
-				}, globalData
+				},
+				globalData
 			),
 			filters: filters,
 			functions: functions,
