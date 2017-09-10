@@ -24,7 +24,7 @@ const defaultStatsOptions = {
 };
 
 gulp.task('webpack', function () {
-	return gulp.src(PATHS.src.js)
+	return gulp.src(PATHS.src.scripts)
 		.pipe(named())
 		.pipe(webpackStream(WEBPACK_CONFIG, null, (err, stats) => {
 			if (stats.compilation.errors.length) {
@@ -41,5 +41,5 @@ gulp.task('webpack', function () {
 			});
 			gutil.log(stats.toString(statsOptions));
 		}))
-		.pipe(gulp.dest(PATHS.build.js));
+		.pipe(gulp.dest(PATHS.build.scripts));
 });

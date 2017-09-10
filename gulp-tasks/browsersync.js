@@ -2,6 +2,7 @@ import gulp from 'gulp'
 import historyApiFallback from 'connect-history-api-fallback'
 import Rx from 'rx'
 import chokidar from 'chokidar'
+import paths from '../paths'
 
 gulp.task('browserSync', () => {
 	const browserSync = require('browser-sync').create();
@@ -14,7 +15,7 @@ gulp.task('browserSync', () => {
 		logPrefix: 'SP.Starter',
 		open: false,
 		files: [
-			'build/media/css/*.css'
+			paths.build.styles + '*.css'
 		],
 		middleware: [historyApiFallback({
 			htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'],
@@ -30,8 +31,8 @@ gulp.task('browserSync', () => {
 	Rx.Observable.create(function (observer) {
 		const watcher = chokidar
 			.watch([
-				'build/media/js/*.js',
-				'build/*.html',
+				paths.build.scripts + '/*.js',
+				paths.build.html + '/*.html',
 			], {ignoreInitial: true})
 			.on('all', function (event, file) {
 				observer.onNext({event, file});

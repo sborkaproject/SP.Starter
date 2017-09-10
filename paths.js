@@ -1,7 +1,7 @@
 export default {
 	build: {
 		html: 'build',
-		js: 'build/media/js/',
+		scripts: 'build/media/js/',
 		styles: 'build/media/css/',
 		images: 'build/media/img/',
 		fonts: 'build/media/fonts/',
@@ -12,7 +12,7 @@ export default {
 	src: {
 		templates: './src/templates/',
 		nunj: 'src/templates/*.nunj',
-		js: ['src/media/js/main.js'],
+		scripts: ['src/media/js/main.js'],
 		styles: 'src/media/sass/screen.sass',
 		images: 'src/media/img/**/*.*',
 		fonts: 'src/media/fonts/**/*.*',
@@ -22,7 +22,7 @@ export default {
 	},
 	watch: {
 		nunj: 'src/templates/**/*.nunj',
-		js: 'src/media/js/**/*.js',
+		scripts: 'src/media/js/**/*.js',
 		styles: 'src/media/sass/**/*.sass',
 		images: 'src/media/img/**/*.*',
 		fonts: 'src/media/fonts/**/*.*',
