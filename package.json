@@ -25,7 +25,7 @@
     "gulp-html-prettify": "0.0.1",
     "gulp-if": "^2.0.1",
     "gulp-imagemin": "^2.4.0",
-    "gulp-nunjucks-api": "^0.7.0",
+    "gulp-nunjucks-api": "git://github.com/einomi/gulp-nunjucks-api.git#d36149d834c315ee6a39a6ab18d21534e5cd511f",
     "gulp-plumber": "^1.1.0",
     "gulp-postcss": "^6.4.0",
     "gulp-rename": "^1.2.2",

@@ -1,3 +1,0 @@
-{% macro exampleMacro(value) %}
-	<p>{{ value }}</p>
-{% endmacro %}

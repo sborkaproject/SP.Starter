@@ -2379,9 +2379,9 @@ gulp-match@^1.0.3:
   dependencies:
     minimatch "^3.0.3"
 
-gulp-nunjucks-api@^0.7.0:
+"gulp-nunjucks-api@git://github.com/einomi/gulp-nunjucks-api.git#d36149d834c315ee6a39a6ab18d21534e5cd511f":
   version "0.7.0"
-  resolved "https://registry.yarnpkg.com/gulp-nunjucks-api/-/gulp-nunjucks-api-0.7.0.tgz#a4ecdc1844379f83a0a3cdea7eabb177f12bf371"
+  resolved "git://github.com/einomi/gulp-nunjucks-api.git#d36149d834c315ee6a39a6ab18d21534e5cd511f"
   dependencies:
     glob "^7.0.3"
     gulp-util "^3.0.7"
