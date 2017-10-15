@@ -3,6 +3,8 @@
 		"node_modules/**/*"
 	],
 	"presets": [
-		"es2015"
+		["env", {
+			"targets": "last 2 versions ie 10"
+		}]
 	]
 }

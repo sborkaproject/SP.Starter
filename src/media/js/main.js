@@ -1,8 +1,6 @@
 var $ = global.$ = global.jQuery = require('./vendor/jquery-3.2.0.min');
-
 var TweenMax = global.TweenMax = require('./vendor/tweenmax.min');
 require('./vendor/jquery.gsap.min');
-
 require('./utils/jqExtensions');
 
 var App = global.App = new (function App() {
@@ -33,4 +31,3 @@ var App = global.App = new (function App() {
 
 // App → ProjectName
 global.ProjectName = global.App, delete global.App;
-global.ProjectName.VERSION = '0.000';

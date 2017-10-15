@@ -1,6 +1,6 @@
 {
   "name": "sp.starter",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Boilerplate for html+js+css apps by Sborka Project",
   "repository": {
     "type": "git",
@@ -8,18 +8,20 @@
   },
   "scripts": {
     "start": "gulp",
-    "build": "NODE_ENV=production gulp build",
-    "zip": "NODE_ENV=production gulp zip"
+    "build": "cross-env NODE_ENV=production gulp build",
+    "zip": "cross-env NODE_ENV=production gulp zip"
   },
   "dependencies": {
     "autoprefixer": "^6.7.7",
-    "babel-core": "^6.25.0",
-    "babel-loader": "^6.4.1",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
     "browser-sync": "^2.18.13",
     "chokidar": "^1.7.0",
     "connect-history-api-fallback": "^1.3.0",
+    "cross-env": "^5.0.5",
     "del": "^2.2.2",
+    "global": "^4.3.2",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^2.4.0",
     "gulp-html-prettify": "0.0.1",
@@ -47,8 +49,8 @@
     "run-sequence": "^1.2.2",
     "rx": "^4.1.0",
     "vinyl-named": "^1.1.0",
-    "webpack": "^1.15.0",
-    "webpack-stream": "git://github.com/scootnetworks/webpack-stream.git#397124ef7f4cf08e890ca9b43bd3b345a7251ed4",
+    "webpack": "^3.7.1",
+    "webpack-stream": "^4.0.0",
     "yargs": "^3.32.0"
   }
 }

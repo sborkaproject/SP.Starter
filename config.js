@@ -8,6 +8,6 @@ export default {
 	compress: {
 		css: IS_PRODUCTION,
 		js: IS_PRODUCTION,
-		img: IS_PRODUCTION
+		images: IS_PRODUCTION
 	}
 };
