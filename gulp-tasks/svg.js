@@ -6,7 +6,7 @@ import path from 'path'
 
 import PATHS from '../paths'
 
-gulp.task('svg:build', () => {
+export default function svg() {
 	return gulp.src(PATHS.src.svg)
 		.pipe(svgmin(file => {
 			const prefix = path.basename(file.relative, path.extname(file.relative));
@@ -25,4 +25,4 @@ gulp.task('svg:build', () => {
 		.pipe(svgstore({inlineSvg: true}))
 		.pipe(rename('sprite.svg'))
 		.pipe(gulp.dest(PATHS.build.svg));
-});
+}

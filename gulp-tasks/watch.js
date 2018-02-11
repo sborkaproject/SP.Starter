@@ -1,12 +1,16 @@
-import gulp from 'gulp'
-import watch from 'gulp-watch'
+import gulpWatch from 'gulp-watch'
 
 import PATHS from '../paths'
+import html from './html'
+import styles from './styles'
+import fonts from './fonts'
+import images from './images'
+import svg from './svg'
 
-gulp.task('watch', () => {
-	watch([PATHS.watch.nunj], (event, cb) => gulp.start('html:build'));
-	watch([PATHS.watch.styles], (event, cb) => gulp.start('styles:build'));
-	watch([PATHS.watch.images], (event, cb) => gulp.start('images:build'));
-	watch([PATHS.watch.svg], (event, cb) => gulp.start('svg:build'));
-	watch([PATHS.watch.fonts], (event, cb) => gulp.start('fonts:build'));
-});
+export default function watch() {
+	gulpWatch([PATHS.watch.nunj], html);
+	gulpWatch([PATHS.watch.styles], styles);
+	gulpWatch([PATHS.watch.fonts], fonts);
+	gulpWatch([PATHS.watch.images], images);
+	gulpWatch([PATHS.watch.svg], svg);
+}

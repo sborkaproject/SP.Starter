@@ -23,7 +23,7 @@ const defaultStatsOptions = {
 	errorDetails: false
 };
 
-gulp.task('webpack', function () {
+export default function webpack() {
 	return gulp.src(PATHS.src.scripts)
 		.pipe(named())
 		.pipe(webpackStream(WEBPACK_CONFIG, null, (err, stats) => {
@@ -42,4 +42,4 @@ gulp.task('webpack', function () {
             }
 		}))
 		.pipe(gulp.dest(PATHS.build.scripts));
-});
+}

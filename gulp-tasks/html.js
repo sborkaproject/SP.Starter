@@ -11,7 +11,7 @@ import filters from '../src/templates/lib/filters.js'
 import functions from '../src/templates/lib/functions.js'
 const globalData = require('../global-data.json');
 
-gulp.task('html:build', () => {
+export default function html() {
 	return gulp.src(PATHS.src.nunj)
 		.pipe(plumber({
 			errorHandler: function (err) {
@@ -38,4 +38,4 @@ gulp.task('html:build', () => {
 		}))
 		.pipe(prettify({indent_char: ' ', indent_size: 4}))
 		.pipe(gulp.dest(PATHS.build.html));
-});
+}

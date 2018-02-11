@@ -6,7 +6,7 @@ import pngquant from 'imagemin-pngquant'
 import PATHS from '../paths'
 import CONFIG from '../config'
 
-gulp.task('images:build', () => {
+export default function images() {
 	return gulp.src(PATHS.src.images)
 		.pipe(gulpif(CONFIG.compress.images, imagemin({
 			progressive: true,
@@ -15,4 +15,4 @@ gulp.task('images:build', () => {
 			interlaced: true
 		})))
 		.pipe(gulp.dest(PATHS.build.images));
-});
+}

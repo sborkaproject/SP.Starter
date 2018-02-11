@@ -34,8 +34,8 @@ const PROCESSORS = [
 	})
 ];
 
-gulp.task('styles:build', () => {
-	gulp.src(PATHS.src.styles)
+export default function styles() {
+	return gulp.src(PATHS.src.styles)
 		.pipe(plumber({
 			errorHandler: function (err) {
 				gutil.log(err.message);
@@ -56,4 +56,4 @@ gulp.task('styles:build', () => {
 		.pipe(gulpif(CONFIG.compress.css, cssmin({processImport: false})))
 		.pipe(gulpif(CONFIG.sourcemaps.css, sourcemaps.write()))
 		.pipe(gulp.dest(PATHS.build.styles));
-});
+}

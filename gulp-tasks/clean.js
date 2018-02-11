@@ -1,8 +1,7 @@
-import gulp from 'gulp'
 import del from 'del'
 
 import PATHS from '../paths'
 
-gulp.task('clean', () => {
+export default function clean() {
 	return del(PATHS.clean);
-});
+}

@@ -1,10 +1,9 @@
-import gulp from 'gulp'
 import historyApiFallback from 'connect-history-api-fallback'
 import Rx from 'rx'
 import chokidar from 'chokidar'
 import paths from '../paths'
 
-gulp.task('browserSync', () => {
+export default function server() {
 	const browserSync = require('browser-sync').create();
 	browserSync.init({
 		server: {
@@ -57,4 +56,4 @@ gulp.task('browserSync', () => {
 		.subscribe(function (x) {
 			browserSync.reload();
 		});
-});
+}
