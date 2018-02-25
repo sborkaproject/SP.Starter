@@ -47,7 +47,9 @@ const config = {
 				workers: 2
 			}
 		})
-	] : [],
+	] : [
+		new webpack.HotModuleReplacementPlugin()
+	],
 	devtool: IS_PRODUCTION ? false : '#eval',
 	externals: {
 		'../TweenLite': 'TweenLite',

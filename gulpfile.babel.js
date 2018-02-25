@@ -26,4 +26,4 @@ gulp.task('zip', gulp.series(
     zip,
 ));
 
-gulp.task('default', gulp.parallel('build', watch, server));
+gulp.task('default', gulp.parallel('build', server));
