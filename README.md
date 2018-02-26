@@ -59,6 +59,48 @@ HTML-шаблоны находятся в `src/templates/`.
 
 Для настройки синтаксиса в редакторах (Sublime, Webstorm) скачиваем плагин для шаблонизатора Twig и настраиваем открытие файлов с расширением .nunj с подстветкой Twig по умолчанию.
 
+## Webpack Hot Module Replacement
+
+В SP.Starter настроен [Webpack HMR](https://webpack.js.org/concepts/hot-module-replacement/). По умолчанию при изменении в JS файле происходит замена этого модуля и всех его зависимостей.
+
+<b>Важно!</b> Для корректной работы необходимо правильно обрабатывать side-эффекты, которые генерирует ваш код.
+
+Например, если есть код, добавляющий обработчик на событие клика:
+
+```document.body.addEventListener('click', this.someMethod);```
+
+То прямо в коде необходимо добавить следующую инструкцию для Webpack:
+
+```
+// Удаляем обработчик события, чтобы после повторного исполнения предыдущего кода этот обработчик не был добавлен повторно.
+if (module.hot) {
+	module.hot.dispose(() => {
+		document.body.removeEventListener('click', this.someMethod);
+	});
+}
+```
+
+В противном случае, обработчик на клик будет добавляться при каждом обновлении, генерируемом с помощью HMR.
+
+Таким же образом надо поступать и с изменением DOM-дерева:
+
+```
+var sideEffectNode = document.createElement("div");
+sideEffectNode.textContent = "Side Effect";
+document.body.appendChild(sideEffectNode);
+```
+
+Добавляем:
+
+```
+// Удаляем <div>, добавленный в DOM, чтобы после исполнения предыдущего кода этот <div> не был добавлен повторно.
+if (module.hot) {
+  module.hot.dispose(function() {
+    sideEffectNode.parentNode.removeChild(sideEffectNode);
+  });
+}
+```
+
 ## Респонсив сетка из 12 колонок
 
 На проектах можно использовать бутстрапоподобную сетку из 12 колонок.

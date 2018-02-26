@@ -12,7 +12,7 @@ export default {
 	src: {
 		templates: './src/templates/',
 		nunj: 'src/templates/*.nunj',
-		scripts: ['src/media/js/main.js'],
+		scripts: 'src/media/js/index.js',
 		styles: 'src/media/sass/screen.sass',
 		images: 'src/media/img/**/*.*',
 		fonts: 'src/media/fonts/**/*.*',

@@ -1,9 +1,10 @@
-var dom = require('./DOM');
+import MobileDetect from 'mobile-detect'
 
-var MobileDetect = require('../vendor/mobile-detect.min');
-var mobileDetectInstance = new MobileDetect(window.navigator.userAgent);
+import dom from './DOM'
 
-var env = {
+const mobileDetectInstance = new MobileDetect(window.navigator.userAgent);
+
+const env = {
     isMobile:           !!mobileDetectInstance.mobile(),
     isTablet:           !!mobileDetectInstance.tablet(),
     isPhone:            !!mobileDetectInstance.phone(),
@@ -16,7 +17,7 @@ var env = {
     isRetina:           window.devicePixelRatio > 1,
 };
 
-var htmlClasses = [
+const htmlClasses = [
     env.isDesktop ? '_desktop' : ('_mobile ' + (env.isPhone ? '_phone' : '_tablet')),
     env.isWin ? '_win' : '_mac',
 ];
@@ -32,7 +33,7 @@ dom.$window.on('resize', function (e) {
 }).trigger('resize');
 
 
-var SCROLLED = '_scrolled';
+const SCROLLED = '_scrolled';
 
 dom.$window.scroll(function (e) {
     if (dom.$window.scrollTop() > 0) {

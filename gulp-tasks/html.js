@@ -5,7 +5,7 @@ import prettify from 'gulp-html-prettify'
 import notifier from 'node-notifier'
 import plumber from 'gulp-plumber'
 
-import { IS_PRODUCTION } from '../config'
+import { PRODUCTION } from '../config'
 import PATHS from '../paths'
 import filters from '../src/templates/lib/filters.js'
 import functions from '../src/templates/lib/functions.js'
@@ -26,7 +26,7 @@ export default function html() {
 			src: PATHS.src.templates,
 			data: Object.assign(
 				{
-					DEVELOP: !IS_PRODUCTION
+					DEVELOP: !PRODUCTION
 				},
 				globalData
 			),

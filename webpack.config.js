@@ -1,26 +1,34 @@
 'use strict';
-import { IS_PRODUCTION } from './config'
 import webpack from 'webpack'
 import path from 'path'
 
-const PATHS = {
-	app: path.resolve(__dirname, 'src/media/js/')
-};
+import { PRODUCTION } from './config'
+import paths from './paths';
 
-const config = {
+let entry = [
+	path.resolve(__dirname, paths.src.scripts)
+];
+
+!PRODUCTION && entry.push(
+	'webpack/hot/dev-server',
+	'webpack-hot-middleware/client?quiet=true&noInfo=true'
+);
+
+export const config = {
+	entry,
+	output: {
+		filename: 'bundle.js',
+		path: path.resolve(__dirname, paths.build.scripts),
+		publicPath: '/media/js',
+	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.js$/,
 				exclude: [
 					/node_modules/
 				],
-				include: PATHS.app,
-				loader: 'babel-loader',
-				query: {
-					compact: true,
-					cacheDirectory: true
-				}
+				loader: 'babel-loader?cacheDirectory',
 			},
 			{
 				test: /\.json$/,
@@ -28,29 +36,21 @@ const config = {
 			}
 		],
 	},
-	watch: !IS_PRODUCTION,
-	watchOptions: {
-		aggregateTimeout: 500
-	},
 	resolve: {
 		extensions: ['.js'],
 		modules: ['node_modules'],
+		alias: {
+			TweenLite: path.resolve(__dirname, './node_modules/gsap/src/uncompressed/TweenLite.js'),
+			TweenMax: path.resolve(__dirname, './node_modules/gsap/src/uncompressed/TweenMax.js'),
+			ScrollToPlugin: path.resolve(__dirname, './node_modules/gsap/src/uncompressed/plugins/ScrollToPlugin.js'),
+			Draggable: path.resolve(__dirname, './node_modules/gsap/src/uncompressed/utils/Draggable.js'),
+			TextPlugin: path.resolve(__dirname, './node_modules/gsap/src/uncompressed/utils/TextPlugin.js'),
+		},
 	},
-	plugins: IS_PRODUCTION ? [
-		// new webpack.optimize.UglifyJsPlugin({
-		// 	minimize: true,
-		// 	beautify: false,
-		// 	compress: true,
-		// 	comments: false,
-		// 	parallel: {
-		// 		cache: true,
-		// 		workers: 2
-		// 	}
-		// })
-	] : [
-		new webpack.HotModuleReplacementPlugin()
+	plugins: PRODUCTION ? [] : [
+		new webpack.HotModuleReplacementPlugin(),
 	],
-	devtool: IS_PRODUCTION ? false : '#eval',
+	devtool: PRODUCTION ? false : '#eval',
 	externals: {
 		'../TweenLite': 'TweenLite',
 		'./TweenLite': 'TweenLite',
@@ -61,7 +61,11 @@ const config = {
 		'../CSSPlugin': 'CSSPlugin',
 		'./CSSPlugin': 'CSSPlugin',
 		'CSSPlugin': 'CSSPlugin',
-	}
+	},
+	mode: PRODUCTION ? 'production' : 'development',
+	optimization: {
+		minimize: PRODUCTION
+	},
 };
 
 export default config

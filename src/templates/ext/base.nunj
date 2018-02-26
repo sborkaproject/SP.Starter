@@ -30,7 +30,7 @@
 		</div>
 
 		{% block scripts %}
-			<script src="media/js/main.js"></script>
+			<script src="media/js/bundle.js"></script>
 		{% endblock scripts %}
 
 	</body>

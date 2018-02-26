@@ -10,8 +10,6 @@
 
 		{{ menu() }}
 
-		<button>Test</button>
-
 		<main style="float:left; width: 75%;">
 
 			<div style="padding:20px 0;">
