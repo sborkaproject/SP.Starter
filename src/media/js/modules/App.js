@@ -15,7 +15,7 @@ class App {
     //     SVGSprites: require('../helpers/SVGSprites'),
     // };
 	init() {
-		console.log('init!2');
+		console.log('init!');
         this.modules = {
             Test
         };

@@ -6,7 +6,7 @@ import named from 'vinyl-named'
 import { IS_PRODUCTION } from '../config'
 import webpack from 'webpack'
 import path from 'path'
-import WriteFilePlugin from 'write-file-webpack-plugin';
+// import WriteFilePlugin from 'write-file-webpack-plugin';
 
 
 import WEBPACK_CONFIG from '../webpack.config.js';
@@ -58,19 +58,27 @@ function webpackOld() {
 // if (!IS_PRODUCTION)
 // 	(Object.keys(entryPoints).forEach(entry => entryPoints[entry] = [hot_client].concat(entryPoints[entry])));
 
-export const config = {
-	entry: [
+
+let entry = [
+	path.resolve(__dirname, '../src/media/js/main.js')
+];
+
+if (!IS_PRODUCTION) {
+	entry.push(
 		'webpack/hot/dev-server',
-		'webpack-hot-middleware/client',
-		path.resolve(__dirname, '../src/media/js/main.js')
-	],
+		'webpack-hot-middleware/client'
+	);
+}
+
+export const config = {
+	entry,
 	output: {
 		filename: '[name].js',
 		path: path.resolve(__dirname, '../build/media/js'),
 		publicPath: '/media/js',
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.js$/,
 				exclude: [
@@ -93,18 +101,7 @@ export const config = {
 		extensions: ['.js'],
 		modules: ['node_modules'],
 	},
-	plugins: IS_PRODUCTION ? [
-		new webpack.optimize.UglifyJsPlugin({
-			minimize: true,
-			beautify: false,
-			compress: true,
-			comments: false,
-			parallel: {
-				cache: true,
-				workers: 2
-			}
-		})
-	] : [
+	plugins: IS_PRODUCTION ? [] : [
 		new webpack.HotModuleReplacementPlugin(),
 	],
 	// devtool: IS_PRODUCTION ? false : '#eval',
@@ -125,6 +122,10 @@ export const config = {
 		port: 9000,
 		stats: 'errors-only',
 	},
+	mode: IS_PRODUCTION ? 'production' : 'development',
+	optimization: {
+		minimize: true
+	}
 };
 
 export default function scripts() {

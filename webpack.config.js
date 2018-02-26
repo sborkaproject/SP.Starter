@@ -37,16 +37,16 @@ const config = {
 		modules: ['node_modules'],
 	},
 	plugins: IS_PRODUCTION ? [
-		new webpack.optimize.UglifyJsPlugin({
-			minimize: true,
-			beautify: false,
-			compress: true,
-			comments: false,
-			parallel: {
-				cache: true,
-				workers: 2
-			}
-		})
+		// new webpack.optimize.UglifyJsPlugin({
+		// 	minimize: true,
+		// 	beautify: false,
+		// 	compress: true,
+		// 	comments: false,
+		// 	parallel: {
+		// 		cache: true,
+		// 		workers: 2
+		// 	}
+		// })
 	] : [
 		new webpack.HotModuleReplacementPlugin()
 	],

@@ -11,7 +11,7 @@ class Test {
 	}
 
 	init() {
-		console.log('blah blah');
+		console.log('blah blah COOL!');
 	}
 
 	someMethod() {
