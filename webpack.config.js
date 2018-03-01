@@ -10,7 +10,6 @@ let entry = [
 ];
 
 !PRODUCTION && entry.push(
-	'webpack/hot/dev-server',
 	'webpack-hot-middleware/client?quiet=true&noInfo=true'
 );
 
