@@ -12,7 +12,7 @@ import cssmin from 'gulp-clean-css';
 import gulpif from 'gulp-if'
 
 import PATHS from '../paths'
-import CONFIG from '../config'
+import { PRODUCTION } from '../config'
 
 const PROCESSORS = [
 	autoprefixer({
@@ -45,15 +45,14 @@ export default function styles() {
 				});
 			}
 		}))
-		.pipe(gulpif(CONFIG.sourcemaps.styles, sourcemaps.init()))
+		.pipe(gulpif(!PRODUCTION, sourcemaps.init()))
 		.pipe(sass({
 			outputStyle: 'compact',
-			sourceMap: false,
 			errLogToConsole: true,
 			indentedSyntax: true
 		}))
 		.pipe(postcss(PROCESSORS))
-		.pipe(gulpif(CONFIG.compress.css, cssmin({processImport: false})))
-		.pipe(gulpif(CONFIG.sourcemaps.css, sourcemaps.write()))
+		.pipe(gulpif(PRODUCTION, cssmin({processImport: false})))
+		.pipe(gulpif(!PRODUCTION, sourcemaps.write()))
 		.pipe(gulp.dest(PATHS.build.styles));
 }
