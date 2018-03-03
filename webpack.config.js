@@ -24,10 +24,19 @@ export const config = {
 		rules: [
 			{
 				test: /\.js$/,
+				enforce: 'pre',
+				use: [
+					{
+						options: {
+							eslintPath: require.resolve('eslint'),
+							cache: true
+						},
+						loader: require.resolve('eslint-loader')
+					}
+				],
 				exclude: [
 					/node_modules/
-				],
-				loader: 'babel-loader?cacheDirectory',
+				]
 			},
 			{
 				test: /\.json$/,

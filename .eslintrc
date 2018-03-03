@@ -1,0 +1,23 @@
+{
+	"parser": "babel-eslint",
+	"env": {
+		"browser": true,
+		"es6": true,
+		"jquery": true,
+		"commonjs": true
+	},
+	"extends": [
+		"eslint:recommended"
+	],
+	"globals": {
+		"TweenMax": true,
+		"TweenLite": true,
+		"Draggable": true,
+		"cy": true
+	},
+	"rules": {
+		"no-class-assign": "off",
+		"import/no-named-as-default": "off",
+		"no-console": "off"
+	}
+}

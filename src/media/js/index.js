@@ -2,7 +2,7 @@ global.$ = global.jQuery = require('jquery');
 global.TweenMax = require('TweenMax');
 require('./utils/jqExtensions');
 
-const App = new (function App() {
+const App = new (function App() { // eslint-disable-line no-unused-vars
 	this.env = require('./utils/ENV');
 	this.dom = require('./utils/DOM');
 	this.utils = require('./utils/Utils');
