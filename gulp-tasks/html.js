@@ -7,6 +7,7 @@ import plumber from 'gulp-plumber'
 
 import { PRODUCTION } from '../config'
 import PATHS from '../paths'
+import * as extensions from '../src/templates/lib/extensions.js'
 import filters from '../src/templates/lib/filters.js'
 import functions from '../src/templates/lib/functions.js'
 const globalData = require('../global-data.json');
@@ -30,8 +31,9 @@ export default function html() {
 				},
 				globalData
 			),
-			filters: filters,
-			functions: functions,
+			extensions,
+			filters,
+			functions,
 			trimBlocks: true,
 			lstripBlocks: true,
 			autoescape: false

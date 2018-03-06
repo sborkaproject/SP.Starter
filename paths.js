@@ -14,6 +14,7 @@ export default {
 		nunj: 'src/templates/*.nunj',
 		scripts: 'src/media/js/index.js',
 		styles: 'src/media/sass/screen.sass',
+		imagesRoot: 'src/media/img/',
 		images: 'src/media/img/**/*.*',
 		fonts: 'src/media/fonts/**/*.*',
 		sprites: 'src/media/img/sprites/*.png',
