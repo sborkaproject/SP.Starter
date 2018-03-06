@@ -22,7 +22,8 @@ const PROCESSORS = [
 	assets({
 		basePath: 'src/',
 		baseUrl: '../',
-		loadPaths: ['media/img/']
+		loadPaths: ['media/img/'],
+		cache: true
 	}),
 	sprites({
 		stylesheetPath: './build/media/css/',
