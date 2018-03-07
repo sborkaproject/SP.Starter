@@ -7,7 +7,7 @@ import PATHS from '../paths'
 import CONFIG from '../config'
 
 export default function images() {
-	return gulp.src(PATHS.src.images)
+	return gulp.src([PATHS.src.images, `!${PATHS.src.imagesInline}/**.*`, `!${PATHS.src.sprites}`])
 		.pipe(gulpif(CONFIG.compress.images, imagemin({
 			progressive: true,
 			svgoPlugins: [{removeViewBox: false}],

@@ -1,6 +1,7 @@
-import paths from '../../../paths';
 import Assets from 'assets'
 import path from 'path'
+
+import PATHS from '../../../paths';
 
 const resolver = new Assets();
 
@@ -19,7 +20,7 @@ function InlineExtension() {
 	};
 
 	this.run = function (context, url, callback) {
-		const pathResolved = path.resolve(paths.src.imagesRoot + url);
+		const pathResolved = path.resolve(PATHS.src.imagesInline + url);
 		resolver.data(pathResolved, callback);
 	};
 }

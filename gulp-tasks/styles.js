@@ -20,9 +20,7 @@ const PROCESSORS = [
 		cascade: true
 	}),
 	assets({
-		basePath: 'src/',
-		baseUrl: '../',
-		loadPaths: ['media/img/'],
+		loadPaths: [PATHS.src.imagesInline],
 		cache: true
 	}),
 	sprites({
