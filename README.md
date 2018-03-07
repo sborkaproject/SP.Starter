@@ -154,7 +154,7 @@ background-size: size('sp.png')
 ### В Nunjucks-шаблонах
 
 ```
-<img src={% inline 'image.png' alt="Some image" %}
+<img src={% inline 'image.png' %} alt="Some image" />
 ```
 
 ## Полезные ссылки
