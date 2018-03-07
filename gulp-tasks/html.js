@@ -1,15 +1,16 @@
 import gulp from 'gulp'
 import gutil from 'gulp-util'
 import nunjucksRender from 'gulp-nunjucks-api'
-import prettify from 'gulp-html-prettify'
 import notifier from 'node-notifier'
 import plumber from 'gulp-plumber'
+import beautify from 'gulp-jsbeautifier'
 
 import { PRODUCTION } from '../config'
 import PATHS from '../paths'
 import * as extensions from '../src/templates/lib/extensions.js'
 import filters from '../src/templates/lib/filters.js'
 import functions from '../src/templates/lib/functions.js'
+import gulpif from 'gulp-if';
 const globalData = require('../global-data.json');
 
 export default function html() {
@@ -38,6 +39,12 @@ export default function html() {
 			lstripBlocks: true,
 			autoescape: false
 		}))
-		.pipe(prettify({indent_char: ' ', indent_size: 4}))
+		.pipe(gulpif(
+			PRODUCTION,
+			beautify({
+                max_preserve_newlines: 1,
+                wrap_line_length: 0,
+			})
+		))
 		.pipe(gulp.dest(PATHS.build.html));
 }
