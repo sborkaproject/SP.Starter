@@ -14,7 +14,7 @@
 	},
 	"dependencies": {
 		"assets": "^3.0.0",
-		"autoprefixer": "^6.7.7",
+		"autoprefixer": "^8.1.0",
 		"babel-core": "^6.26.0",
 		"babel-eslint": "^8.2.2",
 		"babel-preset-env": "^1.6.1",
@@ -54,9 +54,9 @@
 		"prettier": "^1.11.1",
 		"raw-loader": "^0.5.1",
 		"vinyl-named": "^1.1.0",
-		"webpack": "^4.0.0",
-		"webpack-dev-middleware": "^2.0.6",
-		"webpack-hot-middleware": "^2.21.0",
+		"webpack": "^4.1.1",
+		"webpack-dev-middleware": "^3.0.1",
+		"webpack-hot-middleware": "^2.21.2",
 		"yargs": "^3.32.0"
 	},
 	"devDependencies": {
