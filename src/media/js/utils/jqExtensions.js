@@ -1,57 +1,55 @@
-var dom = require('./DOM');
-var $body = dom.$body;
+const dom = require('./DOM');
+const $body = dom.$body;
 
-$.fn.outerClick = function (handler) {
-    var self = this;
-    $body.on('mousedown touchstart', function (e) {
-        var target = e.target;
+$.fn.outerClick = function(handler) {
+	$body.on('mousedown touchstart', e => {
+		const target = e.target;
 
-        if (self.is(target)) {
-            return;
-        }
+		if (this.is(target)) {
+			return;
+		}
 
-        if (self.has(target).length) {
-            return;
-        }
+		if (this.has(target).length) {
+			return;
+		}
 
-        handler(e);
-    });
+		handler(e);
+	});
 
-    return this;
+	return this;
 };
 
-$.fn.nope = function (state) {
-    return state === false ? this.removeClass('no-pe') : this.addClass('no-pe');
+$.fn.nope = function(state) {
+	return state === false ? this.removeClass('no-pe') : this.addClass('no-pe');
 };
 
-$.fn.outline = function (state) {
-    return this.css({ outline: state === false ? '' : '1px solid red' });
+$.fn.outline = function(state) {
+	return this.css({ outline: state === false ? '' : '1px solid red' });
 };
 
-var delayedFocusTimeout;
-$.fn.delayedFocus = function (delay) {
-    clearTimeout(delayedFocusTimeout);
+let delayedFocusTimeout;
 
-    var self = this;
-    delayedFocusTimeout = setTimeout(function () {
-        self.focus();
-    }, delay || 150);
+$.fn.delayedFocus = function(delay) {
+	clearTimeout(delayedFocusTimeout);
 
-    return this;
+	delayedFocusTimeout = setTimeout(() => {
+		this.focus();
+	}, delay || 150);
+
+	return this;
 };
 
-$.fn.focusOnEnd = function () {
-    this.focus().val(this.val());
-    return this;
+$.fn.focusOnEnd = function() {
+	this.focus().val(this.val());
+	return this;
 };
 
-$.fn.delayedFocusOnEnd = function (delay) {
-    clearTimeout(delayedFocusTimeout);
+$.fn.delayedFocusOnEnd = function(delay) {
+	clearTimeout(delayedFocusTimeout);
 
-    var self = this;
-    delayedFocusTimeout = setTimeout(function () {
-        self.focus().val(self.val());
-    }, delay || 150);
+	delayedFocusTimeout = setTimeout(() => {
+		this.focus().val(this.val());
+	}, delay || 150);
 
-    return this;
+	return this;
 };

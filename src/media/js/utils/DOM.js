@@ -1,6 +1,6 @@
 module.exports = {
-    $body: $('body'),
-    $html: $('html'),
-    $document: $(document),
-    $window: $(window),
+	$body: $('body'),
+	$html: $('html'),
+	$document: $(document),
+	$window: $(window)
 };

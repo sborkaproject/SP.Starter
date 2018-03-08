@@ -7,7 +7,8 @@
 		"commonjs": true
 	},
 	"extends": [
-		"eslint:recommended"
+		"eslint:recommended",
+		"prettier"
 	],
 	"globals": {
 		"TweenMax": true,
@@ -16,8 +17,12 @@
 		"cy": true
 	},
 	"rules": {
+		"prettier/prettier": 1,
 		"no-class-assign": "off",
 		"import/no-named-as-default": "off",
 		"no-console": "off"
-	}
+	},
+	"plugins": [
+		"prettier"
+	]
 }
