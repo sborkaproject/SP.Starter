@@ -13,7 +13,7 @@ function SVGSprites() {
 SVGSprites.prototype = {
 	addToContainer: function(html) {
 		return $(html).appendTo(this.$container);
-	}
+	},
 };
 
 module.exports = new SVGSprites();

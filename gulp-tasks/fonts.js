@@ -1,8 +1,7 @@
-import gulp from 'gulp'
+import gulp from 'gulp';
 
-import PATHS from '../paths'
+import PATHS from '../paths';
 
 export default function fonts() {
-	return gulp.src(PATHS.src.fonts)
-		.pipe(gulp.dest(PATHS.build.fonts));
+	return gulp.src(PATHS.src.fonts).pipe(gulp.dest(PATHS.build.fonts));
 }

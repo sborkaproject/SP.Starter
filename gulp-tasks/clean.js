@@ -1,6 +1,6 @@
-import del from 'del'
+import del from 'del';
 
-import PATHS from '../paths'
+import PATHS from '../paths';
 
 export default function clean() {
 	return del(PATHS.clean);

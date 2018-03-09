@@ -1,17 +1,13 @@
 'use strict';
-import webpack from 'webpack'
-import path from 'path'
+import webpack from 'webpack';
+import path from 'path';
 
-import { PRODUCTION } from './config'
+import { PRODUCTION } from './config';
 import paths from './paths';
 
-let entry = [
-	path.resolve(__dirname, paths.src.scripts)
-];
+let entry = [path.resolve(__dirname, paths.src.scripts)];
 
-!PRODUCTION && entry.push(
-	'webpack-hot-middleware/client?quiet=true&noInfo=true'
-);
+!PRODUCTION && entry.push('webpack-hot-middleware/client?quiet=true&noInfo=true');
 
 export const config = {
 	entry,
@@ -29,19 +25,17 @@ export const config = {
 					{
 						options: {
 							eslintPath: require.resolve('eslint'),
-							cache: true
+							cache: true,
 						},
-						loader: require.resolve('eslint-loader')
-					}
+						loader: require.resolve('eslint-loader'),
+					},
 				],
-				exclude: [
-					/node_modules/
-				]
+				exclude: [/node_modules/],
 			},
 			{
 				test: /\.json$/,
 				loader: 'json-loader',
-			}
+			},
 		],
 	},
 	resolve: {
@@ -55,25 +49,23 @@ export const config = {
 			TextPlugin: path.resolve(__dirname, './node_modules/gsap/src/uncompressed/utils/TextPlugin.js'),
 		},
 	},
-	plugins: PRODUCTION ? [] : [
-		new webpack.HotModuleReplacementPlugin(),
-	],
+	plugins: PRODUCTION ? [] : [new webpack.HotModuleReplacementPlugin()],
 	devtool: PRODUCTION ? false : '#eval',
 	externals: {
 		'../TweenLite': 'TweenLite',
 		'./TweenLite': 'TweenLite',
-		'TweenLite': 'TweenLite',
+		TweenLite: 'TweenLite',
 		'../TweenLite.min.js': 'TweenLite',
 		'./TweenLite.min.js': 'TweenLite',
 		'TweenLite.min.js': 'TweenLite',
 		'../CSSPlugin': 'CSSPlugin',
 		'./CSSPlugin': 'CSSPlugin',
-		'CSSPlugin': 'CSSPlugin',
+		CSSPlugin: 'CSSPlugin',
 	},
 	mode: PRODUCTION ? 'production' : 'development',
 	optimization: {
-		minimize: PRODUCTION
+		minimize: PRODUCTION,
 	},
 };
 
-export default config
+export default config;

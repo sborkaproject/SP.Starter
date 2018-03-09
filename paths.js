@@ -7,7 +7,7 @@ export default {
 		fonts: 'build/media/fonts/',
 		sprites: 'build/media/img/sprites/',
 		svg: 'build/media/svg/',
-		videos: 'build/media/video/'
+		videos: 'build/media/video/',
 	},
 	src: {
 		templates: './src/templates/',
@@ -19,7 +19,7 @@ export default {
 		fonts: 'src/media/fonts/**/*.*',
 		sprites: 'src/media/img/sprites/*.png',
 		svg: 'src/media/svg/**/*.svg',
-		videos: 'src/media/video/**/*.*'
+		videos: 'src/media/video/**/*.*',
 	},
 	watch: {
 		nunj: 'src/templates/**/*.nunj',
@@ -28,7 +28,7 @@ export default {
 		images: 'src/media/img/**/*.*',
 		fonts: 'src/media/fonts/**/*.*',
 		sprites: 'src/media/img/sprites/*.png',
-		svg: 'src/media/svg/**/*.svg'
+		svg: 'src/media/svg/**/*.svg',
 	},
-	clean: 'build/'
+	clean: 'build/',
 };

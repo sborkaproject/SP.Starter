@@ -1,5 +1,5 @@
-import gutil from 'gulp-util'
-import webpack from 'webpack'
+import gutil from 'gulp-util';
+import webpack from 'webpack';
 
 import config from '../webpack.config.js';
 
@@ -16,17 +16,19 @@ const defaultStatsOptions = {
 	cachedAssets: false,
 	reasons: false,
 	source: false,
-	errorDetails: false
+	errorDetails: false,
 };
 
 export default function scripts() {
-	return new Promise(resolve => webpack(config, (err, stats) => {
-		if (err) {
-			console.log('Webpack', err);
-		}
+	return new Promise(resolve =>
+		webpack(config, (err, stats) => {
+			if (err) {
+				console.log('Webpack', err);
+			}
 
-		console.log(stats.toString(defaultStatsOptions));
+			console.log(stats.toString(defaultStatsOptions));
 
-		resolve();
-	}));
+			resolve();
+		})
+	);
 }

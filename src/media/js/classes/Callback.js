@@ -58,7 +58,7 @@ Callback.prototype = {
 		setTimeout(function() {
 			self.call.apply(self, args);
 		}, delay);
-	}
+	},
 };
 
 module.exports = Callback;

@@ -6,6 +6,6 @@ export default {
 	},
 	compress: {
 		styles: PRODUCTION,
-		images: PRODUCTION
-	}
+		images: PRODUCTION,
+	},
 };

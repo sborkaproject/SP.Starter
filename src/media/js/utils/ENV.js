@@ -14,12 +14,12 @@ const env = {
 	width: window.innerWidth,
 	height: window.innerHeight,
 	detector: mobileDetectInstance,
-	isRetina: window.devicePixelRatio > 1
+	isRetina: window.devicePixelRatio > 1,
 };
 
 const htmlClasses = [
 	env.isDesktop ? '_desktop' : '_mobile ' + (env.isPhone ? '_phone' : '_tablet'),
-	env.isWin ? '_win' : '_mac'
+	env.isWin ? '_win' : '_mac',
 ];
 env.isRetina && htmlClasses.push('_retina');
 
