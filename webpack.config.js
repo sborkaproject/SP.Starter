@@ -5,12 +5,18 @@ import path from 'path';
 import { PRODUCTION } from './config';
 import paths from './paths';
 
-let entry = [path.resolve(__dirname, paths.src.scripts)];
+const entryPoints = {
+	bundle: path.resolve(__dirname, paths.src.scripts),
+};
 
-!PRODUCTION && entry.push('webpack-hot-middleware/client?quiet=true&noInfo=true');
+const hotMiddlewareString = 'webpack-hot-middleware/client?quiet=true&noInfo=true';
 
 export const config = {
-	entry,
+	entry: Object.keys(entryPoints).reduce((acc, currentKey) => {
+		acc[currentKey] = [entryPoints[currentKey]];
+		!PRODUCTION && acc[currentKey].push(hotMiddlewareString);
+		return acc;
+	}, {}),
 	output: {
 		filename: 'bundle.js',
 		path: path.resolve(__dirname, paths.build.scripts),
