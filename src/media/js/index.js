@@ -1,5 +1,5 @@
 global.$ = global.jQuery = require('jquery');
-global.TweenMax = require('TweenMax');
+global.TweenMax = require('gsap/TweenMax');
 require('./utils/jqExtensions');
 
 // prettier-ignore
