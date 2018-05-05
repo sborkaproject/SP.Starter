@@ -1,9 +1,11 @@
+import { hmrEnabled } from '../../../config';
+
 global.$ = global.jQuery = require('jquery');
 global.TweenMax = require('gsap/TweenMax');
 require('./utils/jqExtensions');
 
 // prettier-ignore
-const App = new function App() { // eslint-disable-line no-unused-vars
+const App = new function App() { // eslint-disable-line
 	this.env = require('./utils/ENV');
 	this.dom = require('./utils/DOM');
 	this.utils = require('./utils/Utils');
@@ -24,8 +26,8 @@ const App = new function App() { // eslint-disable-line no-unused-vars
 }();
 
 // App → ProjectName
-(global.ProjectName = global.App), delete global.App;
+(global.ProjectName = global.App), delete global.App; //eslint-disable-line
 
-if (module.hot) {
+if (module.hot && hmrEnabled) {
 	module.hot.accept();
 }

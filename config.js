@@ -1,11 +1,5 @@
-export const PRODUCTION = process.env.NODE_ENV == 'production';
+export const PRODUCTION = process.env.NODE_ENV == 'production'; // eslint-disable-line
 
-export default {
-	sourcemaps: {
-		styles: PRODUCTION,
-	},
-	compress: {
-		styles: PRODUCTION,
-		images: PRODUCTION,
-	},
-};
+export const hmrEnabled = true;
+
+export const shouldCompressImages = PRODUCTION;

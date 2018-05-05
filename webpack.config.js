@@ -2,7 +2,7 @@
 import webpack from 'webpack';
 import path from 'path';
 
-import { PRODUCTION } from './config';
+import { PRODUCTION, hmrEnabled } from './config';
 import paths from './paths';
 
 const entryPoints = {
@@ -14,7 +14,7 @@ const hotMiddlewareString = 'webpack-hot-middleware/client?quiet=true&noInfo=tru
 export const config = {
 	entry: Object.keys(entryPoints).reduce((acc, currentKey) => {
 		acc[currentKey] = [entryPoints[currentKey]];
-		!PRODUCTION && acc[currentKey].push(hotMiddlewareString);
+		!PRODUCTION && hmrEnabled && acc[currentKey].push(hotMiddlewareString);
 		return acc;
 	}, {}),
 	output: {
@@ -54,6 +54,7 @@ export const config = {
 	optimization: {
 		minimize: PRODUCTION,
 	},
+	watch: !PRODUCTION && !hmrEnabled,
 };
 
 export default config;

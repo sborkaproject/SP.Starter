@@ -4,14 +4,14 @@ import imagemin from 'gulp-imagemin';
 import pngquant from 'imagemin-pngquant';
 
 import PATHS from '../paths';
-import CONFIG from '../config';
+import * as CONFIG from '../config';
 
 export default function images() {
 	return gulp
 		.src([PATHS.src.images, `!${PATHS.src.imagesInline}/**.*`, `!${PATHS.src.sprites}`])
 		.pipe(
 			gulpif(
-				CONFIG.compress.images,
+				CONFIG.shouldCompressImages,
 				imagemin({
 					progressive: true,
 					svgoPlugins: [{ removeViewBox: false }],
