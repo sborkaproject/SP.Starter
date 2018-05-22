@@ -6,10 +6,7 @@
 		"jquery": true,
 		"commonjs": true
 	},
-	"extends": [
-		"eslint:recommended",
-		"prettier"
-	],
+	"extends": ["eslint:recommended", "prettier"],
 	"globals": {
 		"TweenMax": true,
 		"TweenLite": true,
@@ -20,9 +17,8 @@
 		"prettier/prettier": 1,
 		"no-class-assign": "off",
 		"import/no-named-as-default": "off",
-		"no-console": "off"
+		"no-console": "off",
+		"no-unused-vars": "warn"
 	},
-	"plugins": [
-		"prettier"
-	]
+	"plugins": ["prettier"]
 }

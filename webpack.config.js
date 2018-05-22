@@ -32,6 +32,7 @@ export const config = {
 						options: {
 							eslintPath: require.resolve('eslint'),
 							cache: true,
+							configFile: path.resolve('.eslintrc'),
 						},
 						loader: require.resolve('eslint-loader'),
 					},
