@@ -1,5 +1,3 @@
-import { hmrEnabled } from '../../../config';
-
 global.$ = global.jQuery = require('jquery');
 global.TweenMax = require('gsap/TweenMax');
 require('./utils/jqExtensions');
@@ -28,6 +26,6 @@ const App = new function App() { // eslint-disable-line
 // App → ProjectName
 (global.ProjectName = global.App), delete global.App; //eslint-disable-line
 
-if (module.hot && hmrEnabled) {
+if (module.hot) {
 	module.hot.accept();
 }
