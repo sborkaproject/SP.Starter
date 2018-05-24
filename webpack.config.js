@@ -48,6 +48,15 @@ export const config = {
 	resolve: {
 		extensions: ['.js'],
 		modules: ['node_modules'],
+		alias: {
+			TweenLite: path.resolve('node_modules/gsap/src/uncompressed/TweenLite.js'),
+			TweenMax: path.resolve('node_modules/gsap/src/uncompressed/TweenMax.js'),
+			TimelineMax: path.resolve('node_modules/gsap/src/uncompressed/TimelineMax.js'),
+			TimelineLite: path.resolve('node_modules/gsap/src/uncompressed/TimelineLite.js'),
+			ScrollToPlugin: path.resolve('node_modules/gsap/src/uncompressed/plugins/ScrollToPlugin.js'),
+			Draggable: path.resolve('node_modules/gsap/src/uncompressed/utils/Draggable.js'),
+			TextPlugin: path.resolve('node_modules/gsap/src/uncompressed/utils/TextPlugin.js'),
+		},
 	},
 	plugins: PRODUCTION ? [] : [new webpack.HotModuleReplacementPlugin()],
 	devtool: PRODUCTION ? false : '#eval',
@@ -56,6 +65,20 @@ export const config = {
 		minimize: PRODUCTION,
 	},
 	watch: !PRODUCTION && !hmrEnabled,
+	externals: {
+		'../TweenLite': 'TweenLite',
+		'./TweenLite': 'TweenLite',
+		TweenLite: 'TweenLite',
+		'../TimelineLite': 'TimelineLite',
+		'./TimelineLite': 'TimelineLite',
+		TimelineLite: 'TimelineLite',
+		'../TweenLite.min.js': 'TweenLite',
+		'./TweenLite.min.js': 'TweenLite',
+		'TweenLite.min.js': 'TweenLite',
+		'../CSSPlugin': 'CSSPlugin',
+		'./CSSPlugin': 'CSSPlugin',
+		CSSPlugin: 'CSSPlugin',
+	},
 };
 
 export default config;
