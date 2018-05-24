@@ -6,11 +6,8 @@
 		"jquery": true,
 		"commonjs": true
 	},
-	"extends": ["eslint:recommended", "prettier"],
+	"extends": ["eslint:recommended", "prettier", "gsap"],
 	"globals": {
-		"TweenMax": true,
-		"TweenLite": true,
-		"Draggable": true,
 		"cy": true
 	},
 	"rules": {
