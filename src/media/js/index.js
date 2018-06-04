@@ -1,5 +1,6 @@
+import { TweenMax } from 'gsap';
+global.TweenMax = TweenMax;
 global.$ = global.jQuery = require('jquery');
-global.TweenMax = require('TweenMax');
 require('./utils/jqExtensions');
 
 // prettier-ignore
