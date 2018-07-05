@@ -4,7 +4,6 @@
 		<!-- Client-side programming by sborkaproject.com -->
 		<meta charset="utf-8" />
 		<title>{% block title %}| Start Project{% endblock %}</title>
-		<!-- <link rel="shortcut icon" href="" /> -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		{% block stylesheets %}
 			<link rel="stylesheet" href="media/css/screen.css" />

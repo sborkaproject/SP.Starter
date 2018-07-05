@@ -13,21 +13,27 @@
 		<main style="float:left; width: 75%;">
 
 			<div style="padding:20px 0;">
+				
 				<h2 style="margin-bottom: 15px;">Респонсив сетка из 12 колонок:</h2>
+				
 				<div class="row">
 					<div class="col-lg-6 col-md-4 col-xs-12">Колонка 1</div>
 					<div class="col-lg-6 col-md-4 col-xs-12">Колонка 2</div>
 					<div class="col-lg-6 offset-lg-6 col-md-4 offset-md-4 col-xs-12 offset-xs-0">Колонка с отступом</div>
 				</div>
+
 			</div>
 
 			<div style="padding:20px 0;">
+				
 				<h2 style="margin-bottom: 15px;">Пример использования циклов и функции range():</h2>
+				
 				<div class="row">
 					{% for i in range(1, 13)  %}
 						<div class="col-lg-1">{{ i }}</div>
 					{% endfor %}
 				</div>
+
 			</div>
 
 			<div style="padding:20px 0;">
@@ -48,7 +54,7 @@
 
 			{% if DEVELOP %}
 				<div class="debug" style="margin-bottom: 20px;">
-					<h2 style="margin-bottom: 15px;">Debug</h2>
+					<h2 style="margin-bottom: 15px;">Debug:</h2>
 					<p>Эта информация будет выводиться только при DEVELOP = true.</p>
 				</div>
 			{% endif %}
