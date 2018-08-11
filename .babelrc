@@ -8,5 +8,19 @@
 				}
 			}
 		]
+	],
+	"plugins": [
+		[
+			"module-resolver",
+			{
+				"root": ["./src/media/js"],
+				"alias": {
+					"classes": "./src/media/js/classes",
+					"helpers": "./src/media/js/helpers",
+					"modules": "./src/media/js/modules",
+					"utils": "./src/media/js/utils"
+				}
+			}
+		]
 	]
 }
