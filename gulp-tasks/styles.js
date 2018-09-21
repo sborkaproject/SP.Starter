@@ -28,6 +28,7 @@ const PROCESSORS = [
 		spritePath: './build/media/img/',
 		retina: true,
 		padding: 4,
+		filterBy: image => (/sprites\/.*\.png$/gi.test(image.url) ? Promise.resolve() : Promise.reject()),
 	}),
 ];
 
