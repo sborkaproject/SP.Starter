@@ -25,11 +25,10 @@ const PROCESSORS = [
 	}),
 	sprites({
 		stylesheetPath: './build/media/css/',
-		spritePath: './build/media/img/sprite.png',
+		spritePath: './build/media/img/',
 		retina: true,
-		outputDimensions: true,
 		padding: 4,
-		filterBy: image => /sprites\/.*\.png$/gi.test(image.url),
+		filterBy: image => (/sprites\/.*\.png$/gi.test(image.url) ? Promise.resolve() : Promise.reject()),
 	}),
 ];
 
