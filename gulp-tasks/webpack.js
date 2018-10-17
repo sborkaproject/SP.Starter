@@ -1,10 +1,10 @@
-import gutil from 'gulp-util';
 import webpack from 'webpack';
+import log from 'fancy-log';
 
 import config from '../webpack.config.js';
 
 const defaultStatsOptions = {
-	colors: gutil.colors.supportsColor,
+	colors: true,
 	hash: false,
 	timings: false,
 	chunks: false,
@@ -23,7 +23,7 @@ export default function scripts() {
 	return new Promise(resolve =>
 		webpack(config, (err, stats) => {
 			if (err) {
-				console.log('Webpack', err);
+				log.error(err.message);
 			}
 
 			console.log(stats.toString(defaultStatsOptions));
