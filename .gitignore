@@ -6,3 +6,5 @@ build
 *.log
 .fuse_hidden*
 build.zip
+temp/
+*.sublime*
