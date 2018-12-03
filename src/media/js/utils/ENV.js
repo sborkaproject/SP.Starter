@@ -68,25 +68,4 @@ env.isIPhoneX && htmlClasses.push('_iphonex');
 
 dom.$html.addClass(htmlClasses.join(' '));
 
-dom.$window
-	.on('resize', () => {
-		env.width = window.innerWidth;
-		env.height = window.innerHeight;
-		env.maxSize = Math.max(window.innerWidth, window.innerHeight);
-		env.minSize = Math.min(window.innerWidth, window.innerHeight);
-	})
-	.trigger('resize');
-
-const SCROLLED = '_scrolled';
-
-dom.$window.scroll(() => {
-	if (dom.$window.scrollTop() > 0) {
-		dom.$html.addClass(SCROLLED);
-	} else {
-		dom.$html.removeClass(SCROLLED);
-	}
-
-	env.scrollTop = dom.$window.scrollTop();
-});
-
 module.exports = env;
