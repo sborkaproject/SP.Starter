@@ -22,7 +22,7 @@ export default {
 		videos: 'src/media/video/**/*.*',
 	},
 	watch: {
-		nunj: 'src/templates/**/*.nunj',
+		nunj: ['src/templates/**/*.nunj', 'global-data.json'],
 		scripts: 'src/media/js/**/*.js',
 		styles: 'src/media/sass/**/*.sass',
 		images: 'src/media/img/**/*.*',

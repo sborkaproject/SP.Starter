@@ -12,9 +12,11 @@ import * as extensions from '../src/templates/lib/extensions.js';
 import filters from '../src/templates/lib/filters.js';
 import functions from '../src/templates/lib/functions.js';
 import gulpif from 'gulp-if';
-const globalData = require('../global-data.json');
 
 export default function html() {
+	delete require.cache[require.resolve('../global-data.json')];
+	const globalData = require('../global-data.json');
+
 	return gulp
 		.src(PATHS.src.nunj)
 		.pipe(
