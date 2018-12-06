@@ -8,9 +8,7 @@
 {% block content %}
 	<div class="skin clearfix">
 
-		{{ menu() }}<svg class="clients__ico"><use xlink:href="#icon-beamed-note"></use></svg>
-					<svg class="clients__ico"><use xlink:href="#icon-bell"></use></svg>
-					<svg class="clients__ico"><use xlink:href="#icon-chat"></use></svg>
+		{{ menu() }}
 
 		<main style="float:left; width: 75%;">
 
