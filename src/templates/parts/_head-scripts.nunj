@@ -57,6 +57,31 @@
 				browser: browserClass,
 			};
 			htmlElement.className += ' ' + modificators.join(' ');
+
+			// SVG sprites
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', '/media/svg/sprite.svg', true);
+			xhr.overrideMimeType('image/svg+xml');
+			
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+					var container = document.createElement('div');
+					container.className = 'invisible-container';
+					container.appendChild(xhr.responseXML.documentElement);
+
+					function waitForBody(){
+						if(document.body){
+							document.body.appendChild(container);
+						} else {
+							setTimeout(waitForBody, 16)
+						}
+					}
+
+					waitForBody();	
+				};
+			}
+
+			xhr.send('');
 		})();
 	</script>
 {% endmacro %}

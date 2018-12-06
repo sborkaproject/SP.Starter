@@ -1,7 +1,6 @@
 // Callback is equal to Signal
-
 function Callback() {
-	this._handlers = [];
+	this.handlers = [];
 
 	const self = this;
 	this.callShim = function() {
@@ -19,9 +18,7 @@ Callback.prototype = {
 			this._throwError();
 			return;
 		}
-
-		this._handlers.push({ handler: handler, context: context });
-
+		this.handlers.push({ handler: handler, context: context });
 		return handler;
 	},
 
@@ -30,25 +27,24 @@ Callback.prototype = {
 			this._throwError();
 			return;
 		}
-
-		const totalHandlers = this._handlers.length;
+		const totalHandlers = this.handlers.length;
 		for (let k = 0; k < totalHandlers; k++) {
-			if (handler === this._handlers[k].handler) {
-				this._handlers.splice(k, 1);
+			if (handler === this.handlers[k].handler) {
+				this.handlers.splice(k, 1);
 				return handler;
 			}
 		}
 	},
 
 	call: function() {
-		const totalHandlers = this._handlers.length;
+		const totalHandlers = this.handlers.length;
 		for (let k = 0; k < totalHandlers; k++) {
-			const handlerData = this._handlers[k];
+			const handlerData = this.handlers[k];
 			handlerData.handler.apply(handlerData.context || null, arguments);
 		}
 	},
 
-	delayedCall: function(delay) {
+	delayedCall: function(delay = 16) {
 		const self = this;
 		delay = delay || 100;
 

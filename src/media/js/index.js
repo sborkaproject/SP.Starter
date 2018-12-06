@@ -13,10 +13,8 @@ global.ProjectName = new function ProjectName() { // eslint-disable-line
 		Callback: require('./classes/Callback')
 	};
 
-	this.helpers = {
-		InvisibleContainer: require('./helpers/InvisibleContainer'),
-		SVGSprites: require('./helpers/SVGSprites')
-	};
+	this.helpers = {};
+	this.modules = {};
 
 	// Startup
 	$(() => {
