@@ -14,7 +14,7 @@ export default function assetsVersion() {
 	return gulp
 		.src(buildPath + '/**/*.html')
 		.pipe(
-			replace(/([\w\/]+\.[js|css]+\?)<%=hash%>/gi, function(match) {
+			replace(/([\w\/]+\.[js|css]+\?)hash/gi, function(match) {
 				var assetPath = __dirname;
 
 				assetPath = assetPath.replace('gulp-tasks', buildPath);
@@ -46,7 +46,7 @@ export default function assetsVersion() {
 					console.log(`${assetPath} ${isRealHash ? 'real' : 'fake'} hash added: ${hash}`);
 				}
 
-				var res = match.replace('<%=hash%>', '');
+				var res = match.replace('hash', '');
 				res = PRODUCTION ? res + hash : res.replace('?', '');
 				return res;
 			})
