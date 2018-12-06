@@ -4,6 +4,7 @@ import nunjucksRender from 'gulp-nunjucks-api';
 import notifier from 'node-notifier';
 import plumber from 'gulp-plumber';
 import beautify from 'gulp-jsbeautifier';
+import minifyInline from 'gulp-minify-inline-scripts';
 
 import { PRODUCTION } from '../config';
 import PATHS from '../paths';
@@ -53,5 +54,6 @@ export default function html() {
 				})
 			)
 		)
+		.pipe(gulpif(PRODUCTION, minifyInline()))
 		.pipe(gulp.dest(PATHS.build.html));
 }
