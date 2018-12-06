@@ -1,19 +1,24 @@
-function SVGSprites() {
-	this.$container = $('<div style="width:0;height:0;overflow:hidden"></div>').prependTo(document.body);
+const Callback = require('../classes/Callback');
+const InvisibleContainer = require('./InvisibleContainer');
 
-	$.get('media/svg/sprite.svg', data => {
-		this.$container.append(
+function SVGSprites() {
+	this.onLoad = new Callback();
+	this.loaded = false;
+
+	$.get('/media/svg/sprite.svg', data => {
+		if (!data || !data.documentElement || typeof data.documentElement !== 'object') {
+			this.loaded = true;
+			this.onLoad.call();
+			return;
+		}
+		InvisibleContainer.add(
 			typeof XMLSerializer !== 'undefined'
 				? new XMLSerializer().serializeToString(data.documentElement)
 				: $(data.documentElement).html()
 		);
+		this.loaded = true;
+		this.onLoad.call();
 	});
 }
-
-SVGSprites.prototype = {
-	addToContainer: function(html) {
-		return $(html).appendTo(this.$container);
-	},
-};
 
 module.exports = new SVGSprites();

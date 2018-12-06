@@ -4,7 +4,7 @@ global.$ = global.jQuery = require('jquery');
 require('./utils/jqExtensions');
 
 // prettier-ignore
-const App = new function App() { // eslint-disable-line
+global.ProjectName = new function ProjectName() { // eslint-disable-line
 	this.env = require('./utils/ENV');
 	this.dom = require('./utils/DOM');
 	this.utils = require('./utils/Utils');
@@ -14,6 +14,7 @@ const App = new function App() { // eslint-disable-line
 	};
 
 	this.helpers = {
+		InvisibleContainer: require('./helpers/InvisibleContainer'),
 		SVGSprites: require('./helpers/SVGSprites')
 	};
 
@@ -23,9 +24,6 @@ const App = new function App() { // eslint-disable-line
 		this.dom.$html.removeClass('_loading');
 	});
 }();
-
-// App → ProjectName
-(global.ProjectName = global.App), delete global.App; //eslint-disable-line
 
 if (module.hot) {
 	module.hot.accept();
