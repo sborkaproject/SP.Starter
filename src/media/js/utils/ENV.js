@@ -1,49 +1,28 @@
-const MobileDetect = require('mobile-detect');
-
-const dom = require('./DOM');
-
-const mobileDetectInstance = new MobileDetect(window.navigator.userAgent);
+let envObject = window.environmentObject;
 
 const env = {
-	isMobile: !!mobileDetectInstance.mobile(),
-	isTablet: !!mobileDetectInstance.tablet(),
-	isPhone: !!mobileDetectInstance.phone(),
-	isDesktop: !mobileDetectInstance.mobile(),
-	isMac: navigator.platform.indexOf('Mac') > -1,
-	isWin: navigator.platform.indexOf('Win') > -1,
-	width: window.innerWidth,
-	height: window.innerHeight,
-	detector: mobileDetectInstance,
-	isRetina: window.devicePixelRatio > 1,
+	// Platform
+	isMobile: envObject.platform === '_mobile',
+	isDesktop: envObject.platform === '_desktop',
+
+	// OS
+	isMac: envObject.os === '_mac',
+	isWin: envObject.os === '_win',
+	isLinux: envObject.os === '_linux',
+	isAndroid: envObject.os === '_android',
+	isIOS: envObject.os === '_ios',
+
+	// Browsers
+	isFF: envObject.browser === '_ff',
+	isOpera: envObject.browser === '_opera',
+	isYandex: envObject.browser === '_yandex',
+	isIE: envObject.browser === '_ie',
+	isEdge: envObject.browser === '_edge',
+	isChrome: envObject.browser === '_chrome',
+	isSafari: envObject.browser === '_safari',
 };
 
-const htmlClasses = [
-	env.isDesktop ? '_desktop' : '_mobile ' + (env.isPhone ? '_phone' : '_tablet'),
-	env.isWin ? '_win' : '_mac',
-];
-env.isRetina && htmlClasses.push('_retina');
-
-dom.$html.addClass(htmlClasses.join(' '));
-
-dom.$window
-	.on('resize', () => {
-		env.width = window.innerWidth;
-		env.height = window.innerHeight;
-		env.maxSize = Math.max(window.innerWidth, window.innerHeight);
-		env.minSize = Math.min(window.innerWidth, window.innerHeight);
-	})
-	.trigger('resize');
-
-const SCROLLED = '_scrolled';
-
-dom.$window.scroll(() => {
-	if (dom.$window.scrollTop() > 0) {
-		dom.$html.addClass(SCROLLED);
-	} else {
-		dom.$html.removeClass(SCROLLED);
-	}
-
-	env.scrollTop = dom.$window.scrollTop();
-});
+window.environmentObject = null;
+delete window.environmentObject;
 
 module.exports = env;
