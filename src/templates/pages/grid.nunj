@@ -325,8 +325,8 @@
 						<div class="box d_inline">d_inline</div>
 						<div class="box d_block">d_block</div>
 						<br/>
-						<div class="box d-md-none">Скрыть на экране больше md</div>
-						<div class="box d-none d-md-block">Скрыть на экране меньше md</div>
+						<div class="box d_md-none">Скрыть на экране больше md</div>
+						<div class="box d_none d_md-block">Скрыть на экране меньше md</div>
 					</div>
 				</div>
 				<br/>
