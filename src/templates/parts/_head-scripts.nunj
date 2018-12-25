@@ -62,26 +62,61 @@
 			var xhr = new XMLHttpRequest();
 			xhr.open('GET', 'media/svg/sprite.svg', true);
 			xhr.overrideMimeType('image/svg+xml');
-			
-			xhr.onreadystatechange = function(){
-				if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
 					var container = document.createElement('div');
 					container.className = 'invisible-container';
 					container.appendChild(xhr.responseXML.documentElement);
 
-					function waitForBody(){
-						if(document.body){
+					function waitForBody() {
+						if (document.body) {
 							document.body.appendChild(container);
 						} else {
 							setTimeout(waitForBody, 16)
 						}
 					}
 
-					waitForBody();	
+					waitForBody();
 				};
 			}
 
 			xhr.send('');
+
+			// Fix 100vh bug on iPhoneX
+			// and other mobile devices
+			if (localStorage && localStorage.getItem('fix100vhValue')) {
+				document.documentElement.classList.add('_fix100vh');
+				typeof document.documentElement.style.setProperty === 'function' && document.documentElement.style.setProperty('--fix100vhValue', localStorage.getItem('fix100vhValue') + 'px');
+			} else {
+				var waitForBody = function() {
+					if (document.body) {
+						var tolerance = 10;
+						var check100vhElem = document.createElement('div');
+						var check100vhElemStyle = check100vhElem.style;
+						check100vhElemStyle.visibility = 'hidden';
+						check100vhElemStyle.position = 'absolute';
+						check100vhElemStyle.left = '0';
+						check100vhElemStyle.top = '0';
+						check100vhElemStyle.width = '1px';
+						check100vhElemStyle.height = '100vh';
+						document.body.appendChild(check100vhElem);
+						var real100vhHeight = check100vhElem.clientHeight;
+						check100vhElem.parentNode.removeChild(check100vhElem);
+						var delta = real100vhHeight - window.innerHeight;
+						if (Math.abs(delta) > tolerance) {
+							document.documentElement.classList.add('_fix100vh');
+							typeof document.documentElement.style.setProperty === 'function' && document.documentElement.style.setProperty('--fix100vhValue', delta + 'px');
+							if (localStorage) {
+								localStorage.setItem('fix100vhValue', delta);
+							}
+						}
+					} else {
+						setTimeout(waitForBody, 16)
+					}
+				}
+				waitForBody();
+			}
 		})();
 	</script>
 {% endmacro %}

@@ -1,7 +1,8 @@
 import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 import notifier from 'node-notifier';
-import postcss from 'gulp-postcss';
+import postcss from 'postcss';
+import gulpPostcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
 import sprites from 'postcss-sprites';
 import assets from 'postcss-assets';
@@ -14,7 +15,28 @@ import gulpif from 'gulp-if';
 import PATHS from '../paths';
 import { PRODUCTION } from '../config';
 
+const fixVieportHeight = postcss.plugin('postcss-fix-vh', function() {
+	return function(root) {
+		root.walkRules(function(rule) {
+			let ruleSelectors = rule.selector.split(',').map(str => str.trim());
+			rule.walkDecls(function(decl) {
+				let value = decl.value;
+				let hasVhUnits = /vh/.test(value) && !/calc\(.*vh.*\)/.test(value);
+				if (!hasVhUnits) {
+					return;
+				}
+
+				let newValue = value.replace(/([0-9\.\-]+)vh/g, 'calc($1vh - $1 / 100 * var(--fix100vhValue))');
+				let newRuleString =
+					ruleSelectors.map(selector => `._fix100vh ${selector}`).join(', ') + ` { ${decl.prop}: ${newValue} }`;
+				rule.parent.insertAfter(rule, '\n' + newRuleString);
+			});
+		});
+	};
+});
+
 const PROCESSORS = [
+	fixVieportHeight(),
 	autoprefixer({
 		browsers: ['last 4 versions'],
 		cascade: true,
@@ -54,7 +76,7 @@ export default function styles() {
 				indentedSyntax: true,
 			})
 		)
-		.pipe(postcss(PROCESSORS))
+		.pipe(gulpPostcss(PROCESSORS))
 		.pipe(gulpif(PRODUCTION, cssmin({ processImport: false })))
 		.pipe(gulpif(!PRODUCTION, sourcemaps.write()))
 		.pipe(gulp.dest(PATHS.build.styles));
