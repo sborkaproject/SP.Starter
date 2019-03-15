@@ -2,6 +2,7 @@ import gulp from 'gulp';
 import gulpif from 'gulp-if';
 import imagemin from 'gulp-imagemin';
 import pngquant from 'imagemin-pngquant';
+import imageminMozjpeg from 'imagemin-mozjpeg';
 
 import PATHS from '../paths';
 import * as CONFIG from '../config';
@@ -12,12 +13,21 @@ export default function images() {
 		.pipe(
 			gulpif(
 				CONFIG.shouldCompressImages,
-				imagemin({
-					progressive: true,
-					svgoPlugins: [{ removeViewBox: false }],
-					use: [pngquant()],
-					interlaced: true,
-				})
+				imagemin(
+					[
+						pngquant(),
+						imagemin.jpegtran({
+							progressive: true,
+						}),
+						imageminMozjpeg({
+							quality: 80,
+						}),
+						imagemin.svgo({ plugins: [{ removeViewBox: false }] }),
+					],
+					{
+						verbose: true,
+					}
+				)
 			)
 		)
 		.pipe(gulp.dest(PATHS.build.images));
