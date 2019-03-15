@@ -5,11 +5,12 @@ import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
 import sprites from 'postcss-sprites';
 import assets from 'postcss-assets';
-import gutil from 'gulp-util';
 import sass from 'gulp-sass';
 import sourcemaps from 'gulp-sourcemaps';
 import cssmin from 'gulp-clean-css';
 import gulpif from 'gulp-if';
+import log from 'fancy-log';
+import colors from 'ansi-colors';
 
 import PATHS from '../paths';
 import { PRODUCTION } from '../config';
@@ -38,7 +39,7 @@ export default function styles() {
 		.pipe(
 			plumber({
 				errorHandler: function(err) {
-					gutil.log(err.message);
+					log.error(colors.red(err.message));
 					notifier.notify({
 						title: 'SASS compilation error',
 						message: err.message,
