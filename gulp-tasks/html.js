@@ -1,10 +1,12 @@
 import gulp from 'gulp';
-import gutil from 'gulp-util';
 import nunjucksRender from 'gulp-nunjucks-api';
 import notifier from 'node-notifier';
 import plumber from 'gulp-plumber';
 import beautify from 'gulp-jsbeautifier';
 import minifyInline from 'gulp-minify-inline-scripts';
+import gulpif from 'gulp-if';
+import log from 'fancy-log';
+import colors from 'ansi-colors';
 
 import { PRODUCTION } from '../config';
 import PATHS from '../paths';
@@ -22,7 +24,7 @@ export default function html() {
 		.pipe(
 			plumber({
 				errorHandler: function(err) {
-					gutil.log(err.message);
+					log.error(colors.red(err.message));
 					notifier.notify({
 						title: 'Nunjucks compilation error',
 						message: err.message,
