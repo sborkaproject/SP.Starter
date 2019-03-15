@@ -13,7 +13,6 @@ import PATHS from '../paths';
 import * as extensions from '../src/templates/lib/extensions.js';
 import filters from '../src/templates/lib/filters.js';
 import functions from '../src/templates/lib/functions.js';
-import gulpif from 'gulp-if';
 
 export default function html() {
 	delete require.cache[require.resolve('../global-data.json')];
