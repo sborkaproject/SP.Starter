@@ -1,32 +1,37 @@
 {% extends "../ext/base.nunj" %}
 
+{% from "../parts/_menu.nunj" import menu %}
+
 {# Пример расширения существующего блока #}
-{% block title %}Home {{ super() }}{% endblock title %}
+{# Например можно использовать для добавления уникальных тайтлов для каждой страницы #}
+{# {% block title %}Home {{ super() }}{% endblock title %} #}
 
 {% block content %}
-	<div class="container clearfix">
+	<div class="skin clearfix">
+
+		{{ menu() }}
 
 		<main style="float:left; width: 75%;">
 
 			<div style="padding:20px 0;">
-
+				
 				<h2 style="margin-bottom: 15px;">Респонсив сетка из 12 колонок:</h2>
-
-				<div class="grid">
-					<div class="col col_lg-6 col_md-4 col_12">Колонка 1</div>
-					<div class="col col_lg-6 col_md-4 col_12">Колонка 2</div>
-					<div class="col col_lg-6 col_lg-offset-6 col_md-4 col_md-offset-4 col_12 col_xs-offset-0">Колонка с отступом</div>
+				
+				<div class="row">
+					<div class="col-lg-6 col-md-4 col-xs-12">Колонка 1</div>
+					<div class="col-lg-6 col-md-4 col-xs-12">Колонка 2</div>
+					<div class="col-lg-6 offset-lg-6 col-md-4 offset-md-4 col-xs-12 offset-xs-0">Колонка с отступом</div>
 				</div>
 
 			</div>
 
 			<div style="padding:20px 0;">
-
+				
 				<h2 style="margin-bottom: 15px;">Пример использования циклов и функции range():</h2>
-
-				<div class="grid">
+				
+				<div class="row">
 					{% for i in range(1, 13)  %}
-						<div class="col col_1">{{ i }}</div>
+						<div class="col-lg-1">{{ i }}</div>
 					{% endfor %}
 				</div>
 

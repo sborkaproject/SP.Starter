@@ -1,5 +1,5 @@
 {% macro menu(active=false) %}
-	<nav class="menu">
+	<nav class="menu" style="padding-top:30px;">
 		{% for item in menuItems %}
 			<a href="{{ item.path }}" class="menu__item{% if item.id == activeItem %} _active{% endif %}" style="margin-right: 15px;">{{ item.name }}</a>
 		{% endfor %}
