@@ -7,9 +7,7 @@
 {# {% block title %}Home {{ super() }}{% endblock title %} #}
 
 {% block content %}
-	<div class="skin clearfix">
-
-		{{ menu() }}
+	<div class="container clearfix">
 
 		<main style="float:left; width: 75%;">
 

@@ -1,16 +1,17 @@
 .wrapper
-	position: relative
+	@extend %overflow-y
+	display: flex
+	flex-direction: column
+	justify-content: space-between
 	min-height: 100%
-	height: auto !important
-	height: 100%
-	margin-bottom: -110px
-	&__push
-		height: 110px
+	&__content
+		flex: 1 1 auto
 
-.skin
-	position: relative
-	width: 960px
+.container
+	max-width: 980px
 	margin: auto
+	box-sizing: content-box
+	padding: 0 $site-paddings
 
 .row
 	@extend .clearfix
