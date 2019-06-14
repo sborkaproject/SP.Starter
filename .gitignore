@@ -8,3 +8,4 @@ build
 build.zip
 temp/
 *.sublime*
+package-lock.json
