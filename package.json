@@ -62,6 +62,7 @@
 		"postcss-sprites": "^4.2.1",
 		"prettier": "^1.18.2",
 		"raw-loader": "^0.5.1",
+		"static-eval": "^2.0.2",
 		"vinyl-named": "^1.1.0",
 		"webpack": "^4.34.0",
 		"webpack-dev-middleware": "^3.7.0",
