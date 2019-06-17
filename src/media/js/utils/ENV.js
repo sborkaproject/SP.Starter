@@ -20,6 +20,9 @@ const env = {
 	isEdge: envObject.browser === '_edge',
 	isChrome: envObject.browser === '_chrome',
 	isSafari: envObject.browser === '_safari',
+
+	// Dev environment
+	isLocal: envObject.isLocal,
 };
 
 window.environmentObject = null;

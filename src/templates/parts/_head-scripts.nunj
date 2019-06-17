@@ -55,6 +55,7 @@
 				platform: platformClass,
 				os: osClass,
 				browser: browserClass,
+				isLocal: window.location.href.indexOf('http://localhost:') == 0
 			};
 			htmlElement.className += ' ' + modificators.join(' ');
 
