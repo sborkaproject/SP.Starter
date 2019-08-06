@@ -12,6 +12,12 @@
 		"zip": "cross-env NODE_ENV=production gulp zip",
 		"precommit": "pretty-quick --staged"
 	},
+	"browserslist": [
+		"last 2 versions",
+		"not ie < 11",
+		"android >= 5",
+		"ios >= 10"
+	],
 	"dependencies": {
 		"@babel/core": "^7.4.5",
 		"@babel/plugin-proposal-object-rest-spread": "^7.4.4",
