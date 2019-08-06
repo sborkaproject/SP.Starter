@@ -18,7 +18,6 @@ import { PRODUCTION } from '../config';
 const fixVieportHeight = postcss.plugin('postcss-fix-vh', function() {
 	return function(root) {
 		root.walkRules(function(rule) {
-			let ruleSelectors = rule.selector.split(',').map(str => str.trim());
 			rule.walkDecls(function(decl) {
 				let value = decl.value;
 				let hasVhUnits = /vh/.test(value) && !/calc\(.*vh.*\)/.test(value);
@@ -27,9 +26,8 @@ const fixVieportHeight = postcss.plugin('postcss-fix-vh', function() {
 				}
 
 				let newValue = value.replace(/([0-9\.\-]+)vh/g, 'calc($1vh - $1 / 100 * var(--fix100vhValue))');
-				let newRuleString =
-					ruleSelectors.map(selector => `._fix100vh ${selector}`).join(', ') + ` { ${decl.prop}: ${newValue} }`;
-				rule.parent.insertAfter(rule, '\n' + newRuleString);
+				let newRuleString = `${decl.prop}: ${newValue}`;
+				decl.after(newRuleString);
 			});
 		});
 	};

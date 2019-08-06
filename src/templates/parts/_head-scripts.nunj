@@ -86,7 +86,6 @@
 			// Fix 100vh bug on iPhoneX
 			// and other mobile devices
 			if (localStorage && localStorage.getItem('fix100vhValue')) {
-				document.documentElement.classList.add('_fix100vh');
 				typeof document.documentElement.style.setProperty === 'function' && document.documentElement.style.setProperty('--fix100vhValue', localStorage.getItem('fix100vhValue') + 'px');
 			} else {
 				var waitForBody = function() {
@@ -105,7 +104,6 @@
 						check100vhElem.parentNode.removeChild(check100vhElem);
 						var delta = real100vhHeight - window.innerHeight;
 						if (Math.abs(delta) > tolerance) {
-							document.documentElement.classList.add('_fix100vh');
 							typeof document.documentElement.style.setProperty === 'function' && document.documentElement.style.setProperty('--fix100vhValue', delta + 'px');
 							if (localStorage) {
 								localStorage.setItem('fix100vhValue', delta);
