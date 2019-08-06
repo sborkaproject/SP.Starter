@@ -1,0 +1,45 @@
+{#
+	TODO: Проверить на ретине и в IE. Для последнего, при необходимости,
+	подключить полифилл: https://github.com/scottjehl/picturefill
+#}
+{% macro dummyImage(size, category) %}
+	{% set src = "//placeimg.com/" + size + "/" + size + "/" + category + "?rnd" + ([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] | random) %}
+	{{ src }}
+{% endmacro %}
+
+{% macro responsiveImage(path = "", className = "", altText = "", additionalAttributes = "", dummy = false, dummyCategory = "any") %}
+	{% if not dummy %}
+		{% set dummy = path.indexOf("placeimg.com") >= 0 %}
+	{% endif %}
+
+	{% if not dummy %}
+		{% set path = path.toLowerCase() %}
+		{% if (path.indexOf("jpg") >= 0) %}
+			{% set ext = "jpg" %}
+		{% elseif (path.indexOf("jpeg") >= 0) %}
+			{% set ext = "jpeg" %}
+		{% elseif (path.indexOf("png") >= 0) %}
+			{% set ext = "png" %}
+		{% elseif (path.indexOf("gif") >= 0) %}
+			{% set ext = "gif" %}
+		{% else %}
+			{% set ext = path.substring(path.indexOf(".") + 1) %}
+		{% endif %}
+		{% set pathMainPart = path.substring(0, path.indexOf(ext) - 1) %}
+		{% set pathMainPart = uploadServerPath + pathMainPart %}
+	{% endif %}
+
+	<img
+		src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+		{% if dummy %}
+			data-src="{{ dummyImage(800, dummyCategory) }}"
+			data-srcset="{{ dummyImage(200, dummyCategory) }} 360w, {{ dummyImage(400, dummyCategory) }} 800w, {{ dummyImage(800, dummyCategory) }} 2560w"
+		{% else %}
+			data-src="{{ pathMainPart }}--l.{{ ext }}"
+			data-srcset="{{ pathMainPart }}--s.{{ ext }} 360w, {{ pathMainPart }}--m.{{ ext }} 800w, {{ pathMainPart }}--l.{{ ext }} 1400w, {{ pathMainPart }}--hd.{{ ext }} 2560w"
+		{% endif %}
+		alt="{{ altText }}"
+		class="{{ className }}"
+		{{ additionalAttributes }}
+		/>
+{% endmacro %}

@@ -1,8 +1,10 @@
 {
+	"siteAddress": "http://example.com/",
+	"uploadServerPath": "",
 	"menuItems": [
 		{
 			"name": "Главная",
-			"path": "/"
+			"path": "./"
 		},
 		{
 			"name": "Элемент меню 2",
@@ -17,14 +19,13 @@
 			"path": "#"
 		}
 	],
-	"someData": [
-		{
-			"title": "Item 1",
-			"text": "Desc 1"
-		},
-		{
-			"title": "Item 2",
-			"text": "Desc 2"
+	"common": {
+		"companyTitle": "SP.Starter",
+		"defaultMeta": {
+			"ogTitle": "",
+			"shareImage": "",
+			"ogDescription": "",
+			"keywords": ""
 		}
-	]
+	}
 }

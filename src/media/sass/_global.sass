@@ -1,13 +1,4 @@
-// .pseudo
-// 	color: #000
-// 	border-bottom: 1px dotted
-// 	cursor: pointer
-// 	&:hover
-// 		color: #333
-// 		border-bottom: 1px dotted transparent
-
 .clearfix
-	// zoom: 1
 	&:after
 		content: " "
 		display: block
@@ -25,38 +16,17 @@
 	overflow: hidden
 	z-index: -1
 
-// .video-container
-// 	position: relative
-// 	padding-bottom: 56.25%
-// 	padding-top: 30px
-// 	height: 0
-// 	overflow: hidden
-// 	iframe, object, embed
-// 		position: absolute
-// 		top: 0
-// 		left: 0
-// 		width: 100%
-// 		height: 100%
+%unselectable
+	+unselectable
 
 .no-select
-	user-select: none
+	@extend %unselectable
 
 .no-pe
 	pointer-events: none
 
-// .dragging, .dragging *
-// 	cursor: ew-resize
-// 	cursor: grabbing
-// 	cursor: -moz-grabbing
-// 	cursor: -webkit-grabbing
-// 	cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAgMAAABinRfyAAAACVBMVEUAAAD///8AAABzxoNxAAAAAXRSTlMAQObYZgAAADFJREFUCNdjQAeLuhgYmCJTFzAwhYbOYGCYGhrBwAQiOEMhRAJIIgEk0cDAoAoj4AAA6jIM345/MPUAAAAASUVORK5CYII='), auto
-
-// .draggable, .draggable *
-// 	cursor: ew-resize
-// 	cursor: grab
-// 	cursor: -moz-grab
-// 	cursor: -webkit-grab
-// 	cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAgMAAABinRfyAAAADFBMVEUAAAD///8AAADAwMAJ6vS1AAAAAXRSTlMAQObYZgAAAEVJREFUCNctxLENgDAMRcEndxkkFfMYQUeTAqZwCQN8j8CcxBLFHVhMzwXtHFHd2D7eKlnkScpXJN/oPmt/B1YhD+gV8AEVfxL3aRgilwAAAABJRU5ErkJggg=='), auto
+.no-trs
+	transition: none !important
 
 .static-text
 	p
@@ -78,23 +48,239 @@
 	opacity: 1
 	animation: rotating 0.65s linear infinite
 
-.animated
-	@extend .transition-active
-	&:hover
-		@extend .transition-hover
+%pointer
+	+desktop
+		cursor: pointer
 
-.transition-active
-	transition: color $default-transition-duration $default-transition-function, background $default-transition-duration $default-transition-function, border-color $default-transition-duration $default-transition-function
+%animated
+	+desktop
+		@extend %transition--default
+		&:hover
+			@extend %transition-none
 
-.transition-hover
+%animated--color
+	+desktop
+		@extend %transition--color
+		&:hover
+			@extend %transition-none
+
+%animated--transform
+	+desktop
+		@extend %transition--transform
+		&:hover
+			@extend %transition-none
+
+%animated--opacity
+	+desktop
+		@extend %transition--opacity
+		&:hover
+			@extend %transition-none
+
+@keyframes rotate-ccw
+	0%
+		transform: rotate(0deg)
+	100%
+		transform: rotate(-90deg)
+
+%rotate-ccw
+	+desktop
+		will-change: transform
+		&:hover
+			animation: rotate-ccw $default-transition-duration
+
+%transition-none
 	transition: none
+
+%transition-options
+	transition-duration: $default-transition-duration
+	transition-timing-function: $default-transition-function
+	transition-property: none
+
+%transition--color
+	@extend %transition-options
+	transition-property: color
+
+%transition--transform
+	@extend %transition-options
+	transition-property: transform
+
+%transition--background
+	@extend %transition-options
+	transition-property: background
+
+%transition--opacity
+	@extend %transition-options
+	transition-property: opacity
+
+%transition--border-color
+	@extend %transition-options
+	transition-property: border-color
+
+%transition--all
+	@extend %transition-options
+	transition-property: all
+
+%transition--default
+	@extend %transition-options
+	transition-property: color, background, border-color, opacity
 
 .force3D
 	transform: translate3d(0,0,0)
 	backface-visibility: hidden
+
+=full-sized($position: absolute)
+	position: $position
+	left: 0
+	top: 0
+	width: 100%
+	height: 100%
+
+%full-sized
+	+full-sized
+
+%full-sized-fixed
+	+full-sized(fixed)
+
+%centered-transform
+	position: absolute
+	left: 50%
+	top: 50%
+	transform: translate(-50%, -50%)
+
+svg
+	display: block
+	width: 100%
+	height: 100%
+	fill: currentColor
 
 %overflow-y
 	overflow: hidden
 	overflow-x: hidden
 	overflow-y: auto
 	-webkit-overflow-scrolling: touch
+
+html, body
+	@extend %overflow-y
+
+=img-cover
+	position: absolute
+	left: 0
+	top: 0
+	width: auto
+	height: auto
+	width: 100%
+	height: auto
+	@supports (object-fit: cover)
+		width: 100%
+		height: 100%
+		object-fit: cover
+
+%img-cover
+	+img-cover
+
+=img-contain
+	position: absolute
+	left: 0
+	top: 0
+	width: auto
+	height: auto
+	max-width: 100%
+	max-height: 100%
+	@supports (object-fit: contain)
+		width: 100%
+		height: 100%
+		object-fit: contain
+
+%img-contain
+	+img-contain
+
+=overlay-default
+	+full-sized
+	content: ""
+	background-color: $c-overlay-default
+	opacity: $overlay-default-opacity
+	pointer-events: none
+
+%overlay-default
+	@extend %transition--opacity
+	+overlay-default
+
+.g-nobr
+	white-space: nowrap
+
+.g-hidden
+	display: none !important
+
+.g-hidden-soft
+	display: none
+
+.g-hidden--desktop
+	+screen-desktop
+		display: none !important
+
+.g-visible--desktop
+	display: none
+	+screen-desktop
+		display: block
+
+.g-relative
+	position: relative
+
+a
+	&:link:not([class])
+		@extend %hover-effect--sm
+
+%inline-block-middle
+	display: inline-block
+	vertical-align: middle
+
+=custom-scrollbar($bgColor: $c-background, $fgColor: $c-main-accent)
+	&::-webkit-scrollbar
+		width: 4px
+		height: 4px
+		@if $bgColor == false
+			background: none
+		@else
+			background: $bgColor
+
+	&::-webkit-scrollbar-button
+		display: none
+
+	&::-webkit-scrollbar-track
+		background: none
+
+	&::-webkit-scrollbar-thumb
+		@if $fgColor == false
+			background: none
+		@else
+			background: $fgColor
+
+	&::-webkit-scrollbar-thumb:hover
+		@if $fgColor == false
+			background: none
+		@else
+			background: lighten($fgColor, 10)
+
+html
+	&._desktop
+		+custom-scrollbar
+		*
+			+custom-scrollbar
+	&._resizing
+		*
+			transition: none !important
+	// NOTE: Из-за очередного странного бага на айфончиках,
+	// вешаем на все элементы поинтер, чтобы корректно
+	// всплывали события click на элементах.
+	// http://gravitydept.com/blog/js-click-event-bubbling-on-ios
+	&._ios
+		*
+			cursor: pointer
+
+body
+	*
+		@extend %focus-effect
+
+%smooth-bg
+	+desktop
+		filter: blur(1px)

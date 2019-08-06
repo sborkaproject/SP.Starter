@@ -1,6 +1,7 @@
 // Callback is equal to Signal
+
 function Callback() {
-	this.handlers = [];
+	this._handlers = [];
 
 	const self = this;
 	this.callShim = function() {
@@ -13,12 +14,14 @@ Callback.prototype = {
 		throw new TypeError('Callback handler must be function!');
 	},
 
-	add: function(handler, context) {
+	add: function(handler, context, once = false) {
 		if (typeof handler !== 'function') {
 			this._throwError();
 			return;
 		}
-		this.handlers.push({ handler: handler, context: context });
+
+		this._handlers.push({ handler: handler, context: context, once: once });
+
 		return handler;
 	},
 
@@ -27,24 +30,28 @@ Callback.prototype = {
 			this._throwError();
 			return;
 		}
-		const totalHandlers = this.handlers.length;
+
+		const totalHandlers = this._handlers.length;
 		for (let k = 0; k < totalHandlers; k++) {
-			if (handler === this.handlers[k].handler) {
-				this.handlers.splice(k, 1);
+			if (handler === this._handlers[k].handler) {
+				this._handlers.splice(k, 1);
 				return handler;
 			}
 		}
 	},
 
 	call: function() {
-		const totalHandlers = this.handlers.length;
-		for (let k = 0; k < totalHandlers; k++) {
-			const handlerData = this.handlers[k];
+		for (let k = 0; k < this._handlers.length; k++) {
+			const handlerData = this._handlers[k];
 			handlerData.handler.apply(handlerData.context || null, arguments);
+			if (handlerData.once) {
+				this.remove(handlerData.handler);
+				k--;
+			}
 		}
 	},
 
-	delayedCall: function(delay = 16) {
+	delayedCall: function(delay) {
 		const self = this;
 		delay = delay || 100;
 

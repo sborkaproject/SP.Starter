@@ -36,7 +36,7 @@
 	overflow: hidden
 	text-overflow: ellipsis
 	white-space: nowrap
-	
+
 =letterSpacing($interval)
 	letter-spacing: unquote(($interval / 1000) + 'em')
 
@@ -47,6 +47,10 @@
 
 =retina
 	@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2)
+		@content
+
+=retina3x
+	@media only screen and (-webkit-min-device-pixel-ratio: 3), only screen and (min-device-pixel-ratio: 3)
 		@content
 
 =box
@@ -186,7 +190,7 @@
 			vertical-align: middle
 			height: 100%
 			width: 0
-	
+
 =loading
 	@at-root html._loading #{&}
 		@content
@@ -198,19 +202,139 @@
 =windows
 	@at-root html._win #{&}
 		@content
-	
+
 =desktop
 	@at-root html._desktop #{&}
 		@content
-	
+
 =mobile
 	@at-root html._mobile #{&}
 		@content
-	
+
 =tablet
 	@at-root html._tablet #{&}
 		@content
-	
+
 =phone
 	@at-root html._phone #{&}
 		@content
+
+=screen-phone
+	@include mq($max-width: $breakpoint-sm)
+		@content
+
+=screen-tablet
+	@include mq($min-width: $breakpoint-sm)
+		@content
+
+=screen-tablet-only
+	@include mq($min-width: $breakpoint-sm, $max-width: $breakpoint-md)
+		@content
+
+=screen-desktop
+	@include mq($min-width: $breakpoint-md)
+		@content
+
+=screen-desktop-only
+	@include mq($min-width: $breakpoint-md, $max-width: $breakpoint-lg)
+		@content
+
+=screen-desktop-lg
+	@include mq($min-width: $breakpoint-lg)
+		@content
+
+=screen-desktop-lg-only
+	@include mq($min-width: $breakpoint-lg, $max-width: $breakpoint-lg-mid)
+		@content
+
+=screen-desktop-lg-mid
+	@include mq($min-width: $breakpoint-lg-mid)
+		@content
+
+=screen-desktop-lg-mid-only
+	@include mq($min-width: $breakpoint-lg-mid, $max-width: $breakpoint-lg2)
+		@content
+
+=screen-desktop-lg2
+	@include mq($min-width: $breakpoint-lg2)
+		@content
+
+=screen-below-desktop
+	@include mq($max-width: $breakpoint-md)
+		@content
+
+
+// Aspect-ratio blocks.
+// Stealed from here:
+// https://github.com/timbilalov/aspect-ratio
+
+// Original version
+=aspect-ratio($w, $h, $position: false, $childSelector: false)
+	@if $position
+		position: $position
+	$pt: percentage($h / $w)
+
+	&:before
+		display: block
+		content: ""
+		width: 100%
+		padding-top: $pt
+
+	@if $childSelector
+		#{$childSelector}
+			position: absolute
+			left: 0
+			top: 0
+			width: 100%
+			height: 100%
+
+// Updated version
+=aspect-ratio--upd($w, $h: $w, $childSelector: false)
+	$pt: percentage($h / $w)
+	padding-top: $pt
+
+	@if $childSelector
+		#{$childSelector}
+			margin-top: (- $pt)
+
+=centered($width, $height: $width)
+	@if $width and $height
+		width: $width
+		height: $height
+		position: absolute
+		@if unit($width) == "%" and unit($height) == "%"
+			left: (100% - $width) / 2
+			top: (100% - $height) / 2
+		@else
+			left: 50%
+			top: 50%
+			margin-left: -$width / 2
+			margin-top: -$height / 2
+
+=font-responsive($cp1-fsize, $cp1-wsize, $cp2-fsize, $cp2-wsize, $only-min: true)
+	$koef: strip-units($cp2-fsize - $cp1-fsize) / strip-units($cp2-wsize - $cp1-wsize)
+	font-size: calc(#{$cp1-fsize} + (100vw - #{$cp1-wsize}) * #{$koef})
+
+	@if $only-min
+		@media screen and (max-width: $cp1-wsize)
+			font-size: $cp1-fsize
+
+
+=font-responsive--v2($cp1-fsize, $cp1-wsize, $cp2-fsize, $cp2-wsize, $cp3-fsize, $cp3-wsize, $only-min: true)
+	@media screen and (max-width: $cp2-wsize)
+		$koef1: strip-units($cp2-fsize - $cp1-fsize) / strip-units($cp2-wsize - $cp1-wsize)
+		font-size: calc(#{$cp1-fsize} + (100vw - #{$cp1-wsize}) * #{$koef1})
+
+	@media screen and (min-width: $cp2-wsize)
+		$koef2: strip-units($cp3-fsize - $cp2-fsize) / strip-units($cp3-wsize - $cp2-wsize)
+		font-size: calc(#{$cp2-fsize} + (100vw - #{$cp2-wsize}) * #{$koef2})
+
+	@if $only-min
+		@media screen and (max-width: $cp1-wsize)
+			font-size: $cp1-fsize
+
+=font-size($fz, $fz-parent: false)
+	@if $fz-parent == false
+		font-size: rel-size($fz)
+	@else
+		font-size: rel-size($fz, $fz-parent, 'em')

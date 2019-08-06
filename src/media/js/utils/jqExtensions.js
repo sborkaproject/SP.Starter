@@ -23,6 +23,10 @@ $.fn.nope = function(state) {
 	return state === false ? this.removeClass('no-pe') : this.addClass('no-pe');
 };
 
+$.fn.notrs = function(state) {
+	return state === false ? this.removeClass('no-trs') : this.addClass('no-trs');
+};
+
 $.fn.outline = function(state) {
 	return this.css({ outline: state === false ? '' : '1px solid red' });
 };
@@ -52,4 +56,15 @@ $.fn.delayedFocusOnEnd = function(delay) {
 	}, delay || 150);
 
 	return this;
+};
+
+$.fn.isInViewport = function() {
+	let elem = this;
+	if (elem instanceof jQuery) {
+		elem = elem.get(0);
+	}
+	let box = elem.getBoundingClientRect();
+	let elementTop = box.top;
+	let elementBottom = box.bottom;
+	return elementBottom > 0 && elementTop < window.innerHeight;
 };

@@ -1,10 +1,22 @@
 {% from "../parts/_head-scripts.nunj" import headScripts %}
+{% from "../parts/_responsive-image.nunj" import responsiveImage %}
+{% from "../parts/_menu.nunj" import menu %}
+
 <!DOCTYPE html>
-<html>
+<html class="_no-js _loading">
 	<head>
 		<!-- Client-side programming by sborkaproject.com -->
 		<meta charset="utf-8" />
-		<title>{% block title %}Project{% endblock %}</title>
+		{% if not pageTitle %}
+			{% set pageTitle = "Home" %}
+		{% endif %}
+		{% if not pageTitlePart2 %}
+			{% set pageTitlePart2 = common.companyTitle %}
+		{% endif %}
+		{% if not pageTitleFull %}
+			{% set pageTitleFull = pageTitle + " | " + pageTitlePart2 %}
+		{% endif %}
+		<title>{{ pageTitleFull }}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
 		{{ headScripts() }}
@@ -12,14 +24,51 @@
 		{% block stylesheets %}
 			<link rel="stylesheet" href="media/css/screen.css?hash" />
 		{% endblock stylesheets %}
-	</head>
-	<body>
 
-		<div class="wrapper">
+		<!-- Meta -->
+		{% if not metaShareImage %}
+			{% set metaShareImage = ogImage %}
+		{% endif %}
+		{% if not metaShareImage %}
+			{% set metaShareImage = common.defaultMeta.shareImage %}
+		{% endif %}
+		{% if not "http" in metaShareImage %}
+			{% if "http" in siteAddress %}
+				{% set metaShareImage = siteAddress + metaShareImage %}
+			{% else %}
+				{% set metaShareImage = "https:" + siteAddress + metaShareImage %}
+			{% endif %}
+		{% endif %}
+		{% if not metaDescription %}
+			{% set metaDescription = common.defaultMeta.ogDescription %}
+		{% endif %}
+		{% if not metaKeywords %}
+			{% set metaKeywords = common.defaultMeta.keywords %}
+		{% endif %}
+		{% if not metaSiteName %}
+			{% set metaSiteName = common.companyTitle %}
+		{% endif %}
+		{% if not ogTitle %}
+			{% set ogTitle = common.defaultMeta.ogTitle %}
+		{% endif %}
+		{% if not ogDescription %}
+			{% set ogDescription = common.defaultMeta.ogDescription %}
+		{% endif %}
+		<meta name="description" content="{{ metaDescription }}">
+		<meta name="keywords" content="{{ metaKeywords }}">
+		<meta property="og:image" content="{{ metaShareImage }}">
+		<meta property="og:type" content="website">
+		<meta property="og:site_name" content="{{ metaSiteName }}">
+		<meta property="og:title" content="{{ ogTitle }}">
+		<meta property="og:description" content="{{ ogDescription }}">
+	</head>
+
+	<body>
+		<div class="wrapper" data-page-wrapper>
 			<div class="wrapper__header">
 				<div class="header">
 					<div class="container">
-						{{ menu() }}
+						{{ menu(menuIndex) }}
 					</div>
 				</div>
 			</div>

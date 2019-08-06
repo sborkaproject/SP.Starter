@@ -1,0 +1,176 @@
+// TODO: Проверить, какие элементы используются на сайте,
+// а какие можно удалить (например, списки или цитаты).
+
+%heading-font-weight
+	font-weight: $heading-font-weight
+
+%heading-line-height
+	line-height: $heading-line-height
+
+%heading-letter-spacing
+	letter-spacing: $heading-letter-spacing
+
+%heading-common-styles
+	@extend %heading-font-weight, %heading-line-height
+
+%h1
+	@extend %heading-common-styles
+	margin: 0 0 0.6em
+	font-size: 38px
+h1, .like-h1
+	@extend %h1
+
+%h2
+	@extend %heading-common-styles, %heading-letter-spacing
+	margin: 0 0 0.65em
+	font-size: 35px
+h2, .like-h2
+	@extend %h2
+
+%h3
+	@extend %heading-font-weight, %heading-letter-spacing
+	margin: 0 0 0.75em
+	font-size: 31px
+	line-height: 1.6
+h3, .like-h3
+	@extend %h3
+
+%h4
+	@extend %heading-font-weight
+	margin: 0 0 1.25em
+	font-size: 23px
+	line-height: 1.7
+h4, .like-h4
+	@extend %h4
+
+%h5
+	@extend %heading-common-styles, %heading-letter-spacing
+	margin: 0 0 1.15em
+	font-size: 20px
+h5, .like-h5
+	@extend %h5
+
+%h6
+	@extend %heading-common-styles
+	margin: 0 0 0.75em
+	font-size: inherit
+	letter-spacing: 0.005em
+h6, .like-h6
+	@extend %h6
+
+%p
+	margin: 1em 0
+	&:first-child
+		margin-top: 0
+	&:last-child
+		margin-bottom: 0
+
+p, .like-p
+	@extend %p
+
+%hr
+	display: block
+	margin: 44px auto
+	max-width: 200px
+	width: 100%
+	height: 3px
+	box-sizing: border-box
+	border: none
+	outline: none
+	background-color: $c-main-accent
+
+hr, .like-hr
+	@extend %hr
+
+%blockquote
+	display: block
+	margin: 70px 0 61px
+	padding: 7px 0 0px 20px
+	border-left: 3px solid currentColor
+	color: $c-main-accent
+	font-style: italic
+	font-weight: 500
+	font-size: 18px
+	line-height: 1.8
+	%blockquote-footer
+		margin-top: 15px
+		text-transform: uppercase
+	+screen-desktop
+		margin: 58px 0
+		padding: 0 0 0 35px
+		font-size: 27px
+
+blockquote
+	@extend %blockquote
+	footer
+		@extend %blockquote-footer
+.like-blockquote
+	@extend %blockquote
+	$parent-selector: &
+	&__footer
+		@extend %blockquote-footer
+
+%list
+	display: block
+	margin: 80px 0
+	font-size: 18px
+	%li
+		position: relative
+		display: block
+		padding-left: 36px
+		margin-bottom: 25px
+		&:last-child
+			margin-bottom: 0
+		&:before
+			position: absolute
+			left: 11px
+			top: 0
+			font-weight: 500
+	> %li
+		> %list
+			margin: 23px 0
+			> %li
+				&:before
+					top: -1px
+	+screen-desktop
+		margin: 54px 0
+%ul
+	@extend %list
+	> %li
+		&:before
+			content: "\2022"
+		> %ul
+			> %li
+				&:before
+					content: "\2010"
+%ol
+	@extend %list
+	counter-reset: ol-level-1
+	> %li
+		counter-increment: ol-level-1
+		&:before
+			content: counter(ol-level-1) "."
+			left: auto
+			right: 100%
+			min-width: 1em
+			margin-right: -29px
+		> %ol
+			counter-reset: ol-level-2
+			> %li
+				counter-increment: ol-level-2
+				&:before
+					content: counter(ol-level-1) "." counter(ol-level-2) "."
+					min-width: 2em
+				> %ol
+					> %li
+						&:before
+							content: "\2010"
+							min-width: 0
+							right: auto
+							left: 11px
+ul, .like-ul
+	@extend %ul
+ol, .like-ol
+	@extend %ol
+li, .like-li
+	@extend %li

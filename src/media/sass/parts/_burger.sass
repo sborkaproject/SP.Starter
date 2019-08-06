@@ -1,0 +1,72 @@
+.burger
+	@extend %pointer, %unselectable
+	$width: 18px
+	$line-height: 2px
+	$hover-shift: 2px
+	position: relative
+	display: inline-block
+	width: $width
+	height: $width
+	&:before
+		content: ""
+		+centered(160%)
+	i
+		display: block
+		position: absolute
+		width: $width
+		height: $line-height
+		top: 50%
+		left: 50%
+		margin-left: -$width / 2
+		margin-top: -$line-height / 2
+		transition: transform 0.15s ease-out
+		will-change: transform
+		background-color: currentColor
+		&:nth-child(1)
+			transform: translate(0, (-$width / 3))
+			opacity: 1
+			transition: transform 0.15s ease-out 0.15s, opacity 0s ease-out 0.15s
+		&:nth-child(2)
+			transform: translate(0, 0)
+			opacity: 1
+			transition: transform 0.15s ease-out 0.15s, opacity 0s ease-out 0.15s
+		&:nth-child(3)
+			transform: translate(0, ($width / 3))
+			opacity: 1
+			transition: transform 0.15s ease-out 0.15s, opacity 0s ease-out 0.15s
+		&:nth-child(4)
+			transform: rotate(0)
+			transition-delay: 0s
+		&:nth-child(5)
+			transform: rotate(0)
+			transition-delay: 0s
+	+desktop
+		&:hover
+			i
+				transition-delay: 0s
+				&:nth-child(1)
+					transform: translate(0, (-$width / 3 - $hover-shift))
+				&:nth-child(3)
+					transform: translate(0, ($width / 3 + $hover-shift))
+	._menu-opened &
+		i
+			&:nth-child(1)
+				transform: translate(0, 0)
+				opacity: 0
+				transition: transform 0.15s ease-out 0s, opacity 0s ease-out 0.075s
+			&:nth-child(2)
+				transform: translate(0, 0)
+				opacity: 0
+				transition: transform 0.15s ease-out 0s, opacity 0s ease-out 0.075s
+			&:nth-child(3)
+				transform: translate(0, 0)
+				opacity: 0
+				transition: transform 0.15s ease-out 0s, opacity 0s ease-out 0.075s
+			&:nth-child(4)
+				transform: rotate(45deg)
+				transition-delay: 0.15s
+			&:nth-child(5)
+				transform: rotate(-45deg)
+				transition-delay: 0.15s
+	._menu-opened._desktop &
+			@extend %rotate-ccw

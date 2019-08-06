@@ -1,6 +1,9 @@
 {% macro headScripts() %}
 	<script type="text/javascript">
 		;(function(){
+			document.documentElement.classList.remove('_no-js');
+			document.documentElement.classList.add('_resizing');
+
 			var modificators = [],
 				nv = navigator,
 				pl = nv.platform.toLowerCase(),
@@ -55,7 +58,6 @@
 				platform: platformClass,
 				os: osClass,
 				browser: browserClass,
-				isLocal: window.location.href.indexOf('http://localhost:') == 0
 			};
 			htmlElement.className += ' ' + modificators.join(' ');
 
@@ -63,22 +65,22 @@
 			var xhr = new XMLHttpRequest();
 			xhr.open('GET', 'media/svg/sprite.svg', true);
 			xhr.overrideMimeType('image/svg+xml');
-			
-			xhr.onreadystatechange = function(){
-				if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
 					var container = document.createElement('div');
 					container.className = 'invisible-container';
 					container.appendChild(xhr.responseXML.documentElement);
 
-					function waitForBody(){
-						if(document.body){
+					function waitForBody() {
+						if (document.body) {
 							document.body.appendChild(container);
 						} else {
 							setTimeout(waitForBody, 16)
 						}
 					}
 
-					waitForBody();	
+					waitForBody();
 				};
 			}
 

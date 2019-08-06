@@ -1,67 +1,14 @@
+{% set pageTitle = "Home" %}
 {% extends "../ext/base.nunj" %}
 
-{% from "../parts/_menu.nunj" import menu %}
-
-{# Пример расширения существующего блока #}
-{# Например можно использовать для добавления уникальных тайтлов для каждой страницы #}
-{# {% block title %}Home {{ super() }}{% endblock title %} #}
-
 {% block content %}
-	<div class="container clearfix">
+	<div class="container">
+		<h1>{{ common.companyTitle }}</h1>
+		<p>Lorem <a href="#">ipsum</a> dolor <a href="#">sit amet</a>.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, deleniti, culpa. Autem odio suscipit, quas commodi culpa explicabo provident molestias inventore at sequi distinctio reprehenderit quos placeat laboriosam deserunt in voluptatibus nesciunt, voluptates perspiciatis dolor minus repellat animi! Doloremque molestias dolorem sapiente ex quaerat aperiam inventore enim quibusdam sed nihil et voluptatem qui, possimus consectetur architecto, consequatur incidunt, voluptates a, vitae temporibus! Vel aperiam, ipsam totam, maiores repudiandae voluptates ut harum, aut impedit, rem assumenda. Optio voluptatem adipisci libero ad fuga est quasi sit, soluta voluptates ullam. Delectus aliquam tenetur optio perspiciatis. Facilis, corporis. Maxime a, libero quidem sapiente et, obcaecati consequatur, expedita ducimus saepe excepturi aspernatur iure animi quisquam tenetur, voluptatibus id officia aliquid vel provident. Nisi laboriosam aut veniam aperiam similique animi totam deleniti, placeat saepe. Aut, laboriosam earum. Neque minus qui rem debitis sint incidunt veniam, aut tempore sit quia quaerat similique consectetur, quos dolor dolores nostrum repudiandae labore rerum vel iure suscipit alias accusamus maxime tenetur eos? Quaerat officia unde quod quam ea quia dolore ex sunt delectus non beatae minima facere optio nostrum nam sapiente, doloribus, rerum mollitia odio ad inventore iusto iure odit praesentium. Dolores temporibus cupiditate voluptatibus vitae eos modi, ipsam ullam ut.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis excepturi nesciunt nostrum possimus libero saepe officia similique, a dignissimos quam sit dicta, quod vitae, sapiente corporis quas nihil assumenda rem animi. Doloribus amet dolore, quidem perferendis assumenda! Reiciendis obcaecati, aperiam deleniti sint earum blanditiis voluptate ullam omnis temporibus beatae, fuga voluptatibus autem cum maxime ipsam ducimus qui provident fugiat, molestias eaque! Consequatur quibusdam facere ratione fuga, quas ducimus cum, odit et aliquid nisi vel amet sed, sapiente similique delectus modi necessitatibus, voluptatum dolorum quidem adipisci repellat quam quis suscipit. Iusto aliquam quo accusamus repellendus, omnis qui officiis vitae corporis. Totam eos commodi debitis nostrum sit et porro qui facilis quam veniam atque consectetur ratione sunt corrupti velit mollitia fugit, adipisci odio eius nisi sequi, a harum aut. Quam velit veniam obcaecati voluptatum ex nisi ad, quas perferendis aliquam quod id pariatur soluta excepturi dolore ab, iusto reprehenderit nihil et quae, ipsa amet tempora odio. Nam, neque minus laborum aperiam expedita itaque natus cum soluta? Dolores doloremque, temporibus obcaecati cumque quidem? Mollitia ea libero consequuntur sed, quos necessitatibus explicabo id distinctio est? Sapiente ducimus a porro numquam magnam nesciunt! Ex, rerum dolor id accusamus. Eaque ullam cum nobis, molestias reprehenderit, tenetur voluptates similique. Voluptates nostrum non voluptatum qui natus laudantium debitis dolor deserunt, nesciunt quaerat eligendi labore doloribus culpa necessitatibus voluptatem optio, molestias, laboriosam. Itaque quia ad eligendi animi illo optio iste velit libero non consequuntur voluptatibus magni tempora quo expedita laborum commodi, quisquam blanditiis, eum dignissimos necessitatibus a unde doloribus, dolores. Porro itaque, sit eos optio pariatur numquam sint! Beatae pariatur quos explicabo, praesentium nostrum? Iusto quaerat praesentium, cupiditate consequuntur ad officia esse officiis itaque, sapiente, eaque voluptatem corporis sed magnam debitis voluptas atque possimus molestiae harum. Ratione qui optio minima et facilis rerum rem, perferendis totam illo praesentium beatae tempore nobis debitis mollitia autem quo ipsa nihil facere repellendus earum possimus. Modi dicta soluta, quam harum dolore voluptatum fugit iure, alias error iusto optio veritatis quis magni quasi earum minima odit libero eligendi necessitatibus fuga dolorem recusandae voluptatem! Dignissimos eos debitis ducimus corporis excepturi accusantium odit error, optio, a dicta, ex reprehenderit! Velit cumque officia mollitia earum ducimus tempora dolor quos enim placeat nesciunt obcaecati sit maiores perferendis suscipit error, in recusandae! Expedita deserunt natus beatae aut harum maiores, quis ex sequi illum veniam possimus assumenda sed? Sint ipsum eum vel molestias eveniet ipsa architecto iure autem vitae laborum aliquid neque sit assumenda quo nobis, reiciendis, perferendis tempora omnis dolor fuga harum dicta? Consequatur totam, similique nulla reiciendis vero, in aspernatur eius nesciunt, iusto laudantium ex animi quasi! Dicta sed, porro voluptatem dolorum optio, animi quos distinctio accusantium autem unde. Assumenda repellat, rem recusandae officiis necessitatibus labore delectus tempora incidunt ipsa qui voluptas maxime cum non, inventore vel consequatur sint ullam asperiores soluta sed modi quis. Unde nemo perspiciatis voluptatum illum odio excepturi a, iste suscipit dicta eos, animi, quasi obcaecati commodi porro distinctio aut dolorum amet rerum enim soluta optio dolores odit laboriosam. Quia sapiente placeat sed aliquid?</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum quam repudiandae enim ullam dicta quidem esse, cumque id aperiam reprehenderit!</p>
 
-		<main style="float:left; width: 75%;">
-
-			<div style="padding:20px 0;">
-				
-				<h2 style="margin-bottom: 15px;">Респонсив сетка из 12 колонок:</h2>
-				
-				<div class="row">
-					<div class="col-lg-6 col-md-4 col-xs-12">Колонка 1</div>
-					<div class="col-lg-6 col-md-4 col-xs-12">Колонка 2</div>
-					<div class="col-lg-6 offset-lg-6 col-md-4 offset-md-4 col-xs-12 offset-xs-0">Колонка с отступом</div>
-				</div>
-
-			</div>
-
-			<div style="padding:20px 0;">
-				
-				<h2 style="margin-bottom: 15px;">Пример использования циклов и функции range():</h2>
-				
-				<div class="row">
-					{% for i in range(1, 13)  %}
-						<div class="col-lg-1">{{ i }}</div>
-					{% endfor %}
-				</div>
-
-			</div>
-
-			<div style="padding:20px 0;">
-
-				<h2 style="margin-bottom: 15px;">Пример с переменными:</h2>
-
-				{% for item in someData %}
-					<div style="margin-bottom: 15px;">
-						<h3>{{ item.title }}</h3>
-						<p>{{ item.text }}</p>
-					</div>
-				{% endfor %}
-
-			</div>
-
-			{# Пример с функциями #}
-			<p style="margin-bottom: 20px;">{{ addAwesome('Это текст для теста функций') }}</p>
-
-			{% if DEVELOP %}
-				<div class="debug" style="margin-bottom: 20px;">
-					<h2 style="margin-bottom: 15px;">Debug:</h2>
-					<p>Эта информация будет выводиться только при DEVELOP = true.</p>
-				</div>
-			{% endif %}
-
-		</main>
-
-		{# Вложенные шаблоны #}
-		{% include '../parts/_sidebar.nunj' %}
-
+		{{ responsiveImage(dummy = true) }}
 	</div>
 {% endblock content %}

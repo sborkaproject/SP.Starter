@@ -1,0 +1,60 @@
+%hover-effect
+	@extend %pointer
+	display: inline-block
+	vertical-align: baseline
+	position: relative
+	padding-bottom: 0.5em
+	line-height: 1
+	&:before
+		content: ""
+		position: absolute
+		bottom: 0
+		left: 0
+		width: 100%
+		height: 2px
+		background-color: currentColor
+		will-change: transform
+		transform: scaleX(1)
+		transform-origin: 0 50%
+		transition: transform .35s cubic-bezier(.25,.46,.45,.94)
+	&._active,
+	&._loading,
+	._desktop &:hover
+		&:before
+			transform: scaleX(0)
+			transform-origin: 100% 50%
+			transition-timing-function: ease
+			transition-delay: 0.07s
+
+%hover-effect--inverted
+	@extend %hover-effect
+	&:before
+		transform: scaleX(0)
+		transform-origin: 100% 50%
+	&._active,
+	&._loading,
+	._desktop &:hover
+		&:before
+			transform: scaleX(1)
+			transform-origin: 0 50%
+
+%hover-effect--sm
+	@extend %hover-effect
+	padding-bottom: 0.3em
+	&:before
+		height: 1px
+
+%hover-effect--button
+	@extend %hover-effect--inverted
+	&:before
+		left: 0
+		top: 0
+		right: 0
+		bottom: 0
+		height: auto
+
+%hover-effect--color
+	@extend %animated--color, %pointer
+	&._active,
+	._desktop &:hover
+		color: $c-main-accent

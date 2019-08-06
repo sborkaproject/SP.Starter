@@ -1,0 +1,21 @@
+.wrapper
+	@extend %overflow-y
+	$parent-selector: &
+	display: flex
+	flex-direction: column
+	justify-content: space-between
+	min-height: 100vh
+	box-sizing: border-box
+	._header-fixed &
+		padding-top: var(--header-height)
+	&__content
+		@extend %transition--opacity
+		display: block
+		flex: 1 1 auto
+		overflow: hidden
+		._menu-opened &
+			opacity: 0.35
+	&__header,
+	&__footer
+		display: block
+		flex: none

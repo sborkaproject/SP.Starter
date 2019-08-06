@@ -3,4 +3,5 @@ module.exports = {
 	$html: $('html'),
 	$document: $(document),
 	$window: $(window),
+	$wrapper: $('[data-page-wrapper]'),
 };
