@@ -1,6 +1,7 @@
 import gulp from 'gulp';
 import gulpif from 'gulp-if';
 import imagemin from 'gulp-imagemin';
+import imageminJpegtran from 'imagemin-jpegtran';
 import pngquant from 'imagemin-pngquant';
 import imageminMozjpeg from 'imagemin-mozjpeg';
 
@@ -16,7 +17,7 @@ export default function images() {
 				imagemin(
 					[
 						pngquant(),
-						imagemin.jpegtran({
+						imageminJpegtran({
 							progressive: true,
 						}),
 						imageminMozjpeg({
