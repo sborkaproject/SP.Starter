@@ -5,7 +5,7 @@
 	width: 100%;
 	height: 100%;
 	text-align: center;
-	background: rgba(#000, .6);
+	background: rgba(#000, 0.6);
 	z-index: 100;
 	overflow: auto;
 	white-space: nowrap;
@@ -33,6 +33,5 @@
 .popup {
 	position: relative;
 	padding: 20px;
-	background: #F1F1F1;
+	background: #f1f1f1;
 }
-

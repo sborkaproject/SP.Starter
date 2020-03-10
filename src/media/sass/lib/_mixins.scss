@@ -1,6 +1,6 @@
 @mixin b {
 	display: block;
-	content: " ";
+	content: ' ';
 	position: absolute;
 }
 
@@ -27,15 +27,14 @@
 
 /* Grid */
 @mixin cols($cols, $max-cols) {
-	width: (100%/$max-cols*$cols);
+	width: (100% / $max-cols * $cols);
 }
 
 @mixin offset($offset-cols, $max-cols) {
 	@if $offset-cols == 0 {
 		margin-left: 0;
-	}
-	@else {
-		margin-left: (100%/$max-cols*$offset-cols);
+	} @else {
+		margin-left: (100% / $max-cols * $offset-cols);
 	}
 }
 
@@ -56,7 +55,8 @@
 }
 
 @mixin retina {
-	@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+	@media only screen and (-webkit-min-device-pixel-ratio: 2),
+		only screen and (min-device-pixel-ratio: 2) {
 		@content;
 	}
 }
@@ -215,12 +215,15 @@
 
 @mixin background-retina($normal, $retina, $contain: false) {
 	background-image: image-url($normal);
-	@media (-webkit-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 3/2), (min--moz-device-pixel-ratio: 2), (min-device-pixel-ratio: 2), (min-resolution: 144dppx) {
+	@media (-webkit-min-device-pixel-ratio: 2),
+		(-o-min-device-pixel-ratio: 3/2),
+		(min--moz-device-pixel-ratio: 2),
+		(min-device-pixel-ratio: 2),
+		(min-resolution: 144dppx) {
 		background-image: image-url($retina);
 		@if $contain == true {
 			background-size: contain;
-		}
-		@else {
+		} @else {
 			background-size: (image-width($retina) / 2) (image-height($retina) / 2);
 		}
 	}
@@ -235,7 +238,7 @@
 		white-space: nowrap;
 		font-size: 0;
 		&:before {
-			content: "";
+			content: '';
 			display: inline-block;
 			vertical-align: middle;
 			height: 100%;
@@ -285,4 +288,3 @@
 		@content;
 	}
 }
-
