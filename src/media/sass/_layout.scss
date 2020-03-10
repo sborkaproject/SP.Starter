@@ -1,0 +1,147 @@
+.wrapper {
+	@extend %overflow-y;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: 100%;
+	&__content {
+		flex: 1 1 auto;
+	}
+}
+
+.container {
+	max-width: 980px;
+	margin: auto;
+	box-sizing: content-box;
+	padding: 0 $site-paddings;
+}
+
+.row {
+	@extend .clearfix;
+	position: relative;
+	margin-left: -$indent-col-lg;
+	margin-right: -$indent-col-lg;
+	@include max-screen($breakpoint-lg) {
+		margin-left: -$indent-col-md;
+		margin-right: -$indent-col-md;
+	}
+	@include max-screen($breakpoint-md) {
+		margin-left: -$indent-col-sm;
+		margin-right: -$indent-col-sm;
+	}
+	@include max-screen($breakpoint-sm) {
+		margin-left: -$indent-col-xs;
+		margin-right: -$indent-col-xs;
+	}
+}
+
+@mixin col($max-cols) {
+	@for $i from 1 through $max-cols {
+		&-#{$i} {
+			display: block;
+			float: left;
+			width: (100% / $max-cols * $i);
+		}
+	}
+}
+
+.col {
+	&-lg,
+	&-md,
+	&-sm,
+	&-xs {
+		@for $i from 1 through $cols-total {
+			&-#{$i} {
+				@include box;
+			}
+		}
+	}
+	&-lg {
+		@for $i from 1 through $cols-total {
+			&-#{$i} {
+				padding-left: $indent-col-lg;
+				padding-right: $indent-col-lg;
+			}
+		}
+		@include col($cols-total);
+	}
+	&-md {
+		@include max-screen($breakpoint-lg) {
+			@for $i from 1 through $cols-total {
+				&-#{$i} {
+					padding-right: $indent-col-md;
+					padding-left: $indent-col-md;
+				}
+			}
+			@include col($cols-total);
+		}
+	}
+	&-sm {
+		@include max-screen($breakpoint-md) {
+			@for $i from 1 through $cols-total {
+				&-#{$i} {
+					padding-right: $indent-col-sm;
+					padding-left: $indent-col-sm;
+				}
+			}
+			@include col($cols-total);
+		}
+	}
+	&-xs {
+		@include max-screen($breakpoint-sm) {
+			@for $i from 1 through $cols-total {
+				&-#{$i} {
+					padding-right: $indent-col-xs;
+					padding-left: $indent-col-xs;
+				}
+			}
+			@include col($cols-total);
+		}
+	}
+}
+
+@mixin offset-width($max-cols) {
+	@for $i from 0 through $max-cols {
+		&-#{$i} {
+			@if $i == 0 {
+				margin-left: 0;
+			} @else {
+				margin-left: (100% / $max-cols * $i);
+			}
+		}
+	}
+}
+
+.offset {
+	&-lg {
+		@include offset-width($cols-total);
+	}
+	&-md {
+		@include max-screen($breakpoint-lg) {
+			@include offset-width($cols-total);
+		}
+	}
+	&-sm {
+		@include max-screen($breakpoint-md) {
+			@include offset-width($cols-total);
+		}
+	}
+	&-xs {
+		@include max-screen($breakpoint-sm) {
+			@include offset-width($cols-total);
+		}
+	}
+}
+
+.hidden-xs {
+	@include max-screen($breakpoint-sm) {
+		display: none;
+	}
+}
+
+.visible-xs {
+	display: none;
+	@include max-screen($breakpoint-sm) {
+		display: block;
+	}
+}
