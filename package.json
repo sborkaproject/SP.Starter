@@ -50,6 +50,7 @@
     "gulp-svgstore": "^7.0.1",
     "gulp-watch": "^5.0.1",
     "gulp-zip": "^5.0.1",
+    "husky": "^4.2.3",
     "imagemin-jpegtran": "^6.0.0",
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-pngquant": "^8.0.0",
@@ -59,15 +60,16 @@
     "postcss-assets": "^5.0.0",
     "postcss-sprites": "^4.2.1",
     "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
     "raw-loader": "^4.0.0",
     "static-eval": "^2.0.3",
+    "stylelint": "^13.2.1",
+    "stylelint-prettier": "^1.1.2",
     "vinyl-named": "^1.1.0",
     "webpack": "^4.42.0",
     "webpack-dev-middleware": "^3.7.2",
     "webpack-hot-middleware": "^2.25.0",
-    "yargs": "^15.1.0",
-    "husky": "^4.2.3",
-    "pretty-quick": "^2.0.1"
+    "yargs": "^15.1.0"
   },
   "dependencies": {
     "global": "^4.4.0",

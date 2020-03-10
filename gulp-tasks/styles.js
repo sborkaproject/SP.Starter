@@ -28,7 +28,8 @@ const PROCESSORS = [
 		spritePath: './build/media/img/',
 		retina: true,
 		padding: 4,
-		filterBy: image => (/sprites\/.*\.png$/gi.test(image.url) ? Promise.resolve() : Promise.reject()),
+		filterBy: image =>
+			/sprites\/.*\.png$/gi.test(image.url) ? Promise.resolve() : Promise.reject(),
 	}),
 ];
 
@@ -51,7 +52,7 @@ export default function styles() {
 			sass({
 				outputStyle: 'compact',
 				errLogToConsole: true,
-				indentedSyntax: true,
+				indentedSyntax: false,
 			})
 		)
 		.pipe(postcss(PROCESSORS))
