@@ -18,23 +18,6 @@
 	}
 }
 
-.box {
-	position: absolute;
-	top: 10px;
-
-	&__red {
-		position: absolute;
-	}
-
-	&__beep {
-		position: relative;
-	}
-
-	&__dd {
-		position: absolute;
-	}
-}
-
 .invisible-container {
 	position: absolute;
 	top: -9999px;
