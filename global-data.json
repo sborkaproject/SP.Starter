@@ -1,19 +1,19 @@
 {
 	"menuItems": [
 		{
-			"name": "Главная",
+			"name": "Index",
 			"path": "/"
 		},
 		{
-			"name": "Элемент меню 2",
+			"name": "Menu Item 1",
 			"path": "#"
 		},
 		{
-			"name": "Элемент меню 3",
+			"name": "Menu Item 2",
 			"path": "#"
 		},
 		{
-			"name": "Элемент меню 4",
+			"name": "Menu Item 3",
 			"path": "#"
 		}
 	],

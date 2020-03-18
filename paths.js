@@ -24,7 +24,7 @@ export default {
 	watch: {
 		nunj: ['src/templates/**/*.nunj', 'global-data.json'],
 		scripts: 'src/media/js/**/*.js',
-		styles: 'src/media/sass/**/*.sass',
+		styles: 'src/media/sass/**/*.scss',
 		images: 'src/media/img/**/*.*',
 		fonts: 'src/media/fonts/**/*.*',
 		sprites: 'src/media/img/sprites/*.png',
