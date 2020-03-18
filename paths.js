@@ -10,7 +10,7 @@ export default {
 		videos: 'build/assets/video/',
 	},
 	src: {
-		templates: './src/templates/',
+		templates: './src/',
 		nunj: 'src/templates/pages/**/*.nunj',
 		scripts: 'src/assets/js/index.js',
 		styles: 'src/assets/styles/styles.scss',

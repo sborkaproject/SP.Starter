@@ -1,6 +1,6 @@
 {% extends "../ext/base.nunj" %}
 
-{% from "../parts/_menu.nunj" import menu %}
+{% from "../../components/menu/menu.nunj" import menu %}
 
 {# Пример расширения существующего блока #}
 {# Например можно использовать для добавления уникальных тайтлов для каждой страницы #}
@@ -61,7 +61,7 @@
 		</main>
 
 		{# Вложенные шаблоны #}
-		{% include '../parts/_sidebar.nunj' %}
+		{% include '../../components/sidebar/sidebar.nunj' %}
 
 	</div>
 {% endblock content %}

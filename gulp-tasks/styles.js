@@ -41,7 +41,7 @@ export default function styles() {
 				errorHandler: function(err) {
 					log.error(colors.red(err.message));
 					notifier.notify({
-						title: 'SASS compilation error',
+						title: 'SCSS compilation error',
 						message: err.message,
 					});
 				},
@@ -52,7 +52,7 @@ export default function styles() {
 			sass({
 				outputStyle: 'compact',
 				errLogToConsole: true,
-				indentedSyntax: false,
+				indentedSyntax: true,
 			})
 		)
 		.pipe(postcss(PROCESSORS))

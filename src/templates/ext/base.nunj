@@ -1,4 +1,4 @@
-{% from "../parts/_head-scripts.nunj" import headScripts %}
+{% from "../../components/head-scripts/head-scripts.nunj" import headScripts %}
 <!DOCTYPE html>
 <html>
 	<head>
