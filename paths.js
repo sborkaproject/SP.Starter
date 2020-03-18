@@ -13,7 +13,7 @@ export default {
 		templates: './src/templates/',
 		nunj: 'src/templates/pages/**/*.nunj',
 		scripts: 'src/media/js/index.js',
-		styles: 'src/media/sass/screen.scss',
+		styles: 'src/media/styles/styles.scss',
 		images: 'src/media/img/**/*.*',
 		imagesInline: 'src/media/img/inline/',
 		fonts: 'src/media/fonts/**/*.*',
@@ -24,7 +24,7 @@ export default {
 	watch: {
 		nunj: ['src/templates/**/*.nunj', 'global-data.json'],
 		scripts: 'src/media/js/**/*.js',
-		styles: 'src/media/sass/**/*.scss',
+		styles: 'src/media/styles/**/*.scss',
 		images: 'src/media/img/**/*.*',
 		fonts: 'src/media/fonts/**/*.*',
 		sprites: 'src/media/img/sprites/*.png',

@@ -110,25 +110,25 @@ if (module.hot) {
 }
 ```
 
-## SASS files structure
+## SCSS files structure
 
-The following structure of SASS files exists in Starter:
+The following structure of SCSS files exists in Starter:
 
 ```
-/sass/
+/styles/
 	/lib/			// Libraries and Mixins
 	/pages/			// Styles for project pages
-		_main.sass	// Styles for the main page
+		_main.scss	// Styles for the main page
 	/parts/			// Parts or components of a project
-		_controls.sass	// Controls (buttons, inputs, checkboxes, selects)
-		_footer.sass	// SASS footer implementation
-		_popup.sass	// SASS implementation of the popup
-	_constants.sass		// Variables and constants
-	_fonts.sass		// Plug-in fonts
-	_global.sass		// Global Blocks Styles
-	_layout.sass		// Layout styles
-	_reset.sass		// CSS-reset and nulling styles
-	screen.sass		// The main file that compiles into screen.css
+		_controls.scss	// Controls (buttons, inputs, checkboxes, selects)
+		_footer.scss	// SCSS footer implementation
+		_popup.scss	// SCSS implementation of the popup
+	_constants.scss		// Variables and constants
+	_fonts.scss		// Plug-in fonts
+	_global.scss		// Global Blocks Styles
+	_layout.scss		// Layout styles
+	_reset.scss		// CSS-reset and nulling styles
+	styles.scss		// The main file that compiles into styles.css
 ```
 
 A separate file is created for each page in the `pages` folder. A separate file is created for each part or component in the `parts` folder.
@@ -141,7 +141,7 @@ On projects, you can use a bootstrap-like grid of 12 columns.
 
 To check examples of using the grid, see `index.nunj`, as well as the [bootstrap website](http://getbootstrap.com/css/#grid).
 
-For instance, if you need to make a grid of 10 columns, not of 12, then you can fix the corresponding mixins in `_layout.sass`. Breakpoints can be changed in `_variables.sass`
+For instance, if you need to make a grid of 10 columns, not of 12, then you can fix the corresponding mixins in `_layout.scss`. Breakpoints can be changed in `_variables.scss`
 
 ## SVG sprites
 
@@ -175,7 +175,7 @@ Images that are collected in the sprite must be in `.png` format and located in 
 
 <b>Pay attention!</b> Images to be inline should be in the `src/media/img/inline` directory.
 
-### IN SASS
+### IN SCSS
 
 The postcss-assets plugin allows you to inline images directly into Base64 (or as code in the case of SVG):
 
