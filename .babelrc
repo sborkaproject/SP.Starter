@@ -19,12 +19,12 @@
 		[
 			"module-resolver",
 			{
-				"root": ["./src/media/js"],
+				"root": ["./src/assets/js"],
 				"alias": {
-					"classes": "./src/media/js/classes",
-					"helpers": "./src/media/js/helpers",
-					"modules": "./src/media/js/modules",
-					"utils": "./src/media/js/utils"
+					"classes": "./src/assets/js/classes",
+					"helpers": "./src/assets/js/helpers",
+					"modules": "./src/assets/js/modules",
+					"utils": "./src/assets/js/utils"
 				}
 			}
 		]

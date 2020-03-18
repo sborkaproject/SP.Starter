@@ -24,8 +24,8 @@ const PROCESSORS = [
 		cache: true,
 	}),
 	sprites({
-		stylesheetPath: './build/media/css/',
-		spritePath: './build/media/img/',
+		stylesheetPath: './build/assets/css/',
+		spritePath: './build/assets/img/',
 		retina: true,
 		padding: 4,
 		filterBy: image =>

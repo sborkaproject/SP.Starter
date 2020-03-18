@@ -61,7 +61,7 @@
 
 			// SVG sprites
 			var xhr = new XMLHttpRequest();
-			xhr.open('GET', 'media/svg/sprite.svg', true);
+			xhr.open('GET', 'assets/svg/sprite.svg', true);
 			xhr.overrideMimeType('image/svg+xml');
 			
 			xhr.onreadystatechange = function(){

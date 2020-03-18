@@ -151,7 +151,7 @@ The ability to create SVG sprites with the help of [gulp-svgstore](https://githu
 <svg><use xlink:href="# icon-some-vector-image"></use></svg>
 ```
 
-The SVG file `some-vector-image.svg` should be in the folder `src/media/svg/`. Width and height must be set in styles for such element. You can also change fill, stroke, but the element should not have the same attributes (fill and stroke) in the source file `some-vector-image.svg`.
+The SVG file `some-vector-image.svg` should be in the folder `src/assets/svg/`. Width and height must be set in styles for such element. You can also change fill, stroke, but the element should not have the same attributes (fill and stroke) in the source file `some-vector-image.svg`.
 
 **Please note that when connecting the svg sprite, the `#icon-` prefix in the path to the sprite is used: `#icon-some-vector-image` (in fact,`some-vector-image.svg` will be used).**
 
@@ -169,11 +169,11 @@ The next mixin for sprite for retina. You need to use 2 images: simple and 2 tim
 +sr(name)
 ```
 
-Images that are collected in the sprite must be in `.png` format and located in the `media/img/sprites/` directory.
+Images that are collected in the sprite must be in `.png` format and located in the `assets/img/sprites/` directory.
 
 ## Inline of pictures or SVG
 
-<b>Pay attention!</b> Images to be inline should be in the `src/media/img/inline` directory.
+<b>Pay attention!</b> Images to be inline should be in the `src/assets/img/inline` directory.
 
 ### IN SCSS
 

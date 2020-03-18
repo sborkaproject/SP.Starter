@@ -10,7 +10,7 @@
 		{{ headScripts() }}
 
 		{% block stylesheets %}
-			<link rel="stylesheet" href="media/css/styles.css?hash" />
+			<link rel="stylesheet" href="assets/css/styles.css?hash" />
 		{% endblock stylesheets %}
 	</head>
 	<body>
@@ -39,7 +39,7 @@
 		</div>
 
 		{% block scripts %}
-			<script src="media/js/bundle.js?hash"></script>
+			<script src="assets/js/bundle.js?hash"></script>
 		{% endblock scripts %}
 	</body>
 </html>

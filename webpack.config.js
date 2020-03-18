@@ -20,14 +20,17 @@ export const config = {
 	output: {
 		filename: 'bundle.js',
 		path: path.resolve(__dirname, paths.build.scripts),
-		publicPath: '/media/js',
+		publicPath: '/assets/js',
 	},
 	module: {
 		rules: [
 			{
 				test: /\.js$/,
 				enforce: 'pre',
-				include: [path.resolve(__dirname, 'src/media/js'), path.resolve(__dirname, 'node_modules/gsap')],
+				include: [
+					path.resolve(__dirname, 'src/assets/js'),
+					path.resolve(__dirname, 'node_modules/gsap'),
+				],
 				use: [
 					'babel-loader',
 					{
