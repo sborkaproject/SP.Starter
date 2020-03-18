@@ -4,7 +4,7 @@
 
 {# Пример расширения существующего блока #}
 {# Например можно использовать для добавления уникальных тайтлов для каждой страницы #}
-{# {% block title %}Home {{ super() }}{% endblock title %} #}
+{# {% block title %}Home / {{ super() }}{% endblock title %} #}
 
 {% block content %}
 	<div class="container clearfix">
