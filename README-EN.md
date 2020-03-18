@@ -169,11 +169,11 @@ The next mixin for sprite for retina. You need to use 2 images: simple and 2 tim
 +sr(name)
 ```
 
-Images that are collected in the sprite must be in `.png` format and located in the `assets/img/sprites/` directory.
+Images that are collected in the sprite must be in `.png` format and located in the `assets/images/sprites/` directory.
 
 ## Inline of pictures or SVG
 
-<b>Pay attention!</b> Images to be inline should be in the `src/assets/img/inline` directory.
+<b>Pay attention!</b> Images to be inline should be in the `src/assets/images/inline` directory.
 
 ### IN SCSS
 

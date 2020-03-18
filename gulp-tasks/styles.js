@@ -25,7 +25,7 @@ const PROCESSORS = [
 	}),
 	sprites({
 		stylesheetPath: './build/assets/css/',
-		spritePath: './build/assets/img/',
+		spritePath: './build/assets/images/',
 		retina: true,
 		padding: 4,
 		filterBy: image =>
