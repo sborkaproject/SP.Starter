@@ -46,6 +46,14 @@ npm run build
 npm run zip
 ```
 
+## Project Structure
+
+It's not mandatory but considered effective for many reasons to decompose the UI into separate, less coupled components.
+
+Create components at least for the parts of the UI that appear in multiple places of your project. It can be buttons, common page sections, widgets, sliders and so on.
+
+It is recommended that you will keep your components inside the `src/assets/components/` folder. This starter kit allows you to keep your markup, styles, and JavaScript code for a component in one folder and then to use them in multiple places. Please, see the `src/assets/components/` folder for examples. Notice how different types of components are arranged. Also, It is not absolutely mandatory to include Nunjucks or JS code for a component if you feel that it doesn't make too much sense. For example, when the markup is quite simple or when a component doesn't have JS logic.
+
 ## HTML template engine Nunjucks
 
 [Nunjucks](https://mozilla.github.io/nunjucks/) - is a full featured templating engine inspired by jinja2, which helps to create qualified and easy-to-maintain HTML code.
@@ -119,29 +127,18 @@ The following structure of SCSS files exists in Starter:
 	/lib/			// Libraries and Mixins
 	/pages/			// Styles for project pages
 		_main.scss	// Styles for the main page
-	/parts/			// Parts or components of a project
-		_controls.scss	// Controls (buttons, inputs, checkboxes, selects)
-		_footer.scss	// SCSS footer implementation
-		_popup.scss	// SCSS implementation of the popup
-	_constants.scss		// Variables and constants
+	_constants.scss	// Variables and constants
+	_controls.scss	// Styles for controls
 	_fonts.scss		// Plug-in fonts
-	_global.scss		// Global Blocks Styles
-	_layout.scss		// Layout styles
+	_global.scss	// Global Blocks Styles
+	_layout.scss	// Layout styles
 	_reset.scss		// CSS-reset and nulling styles
 	styles.scss		// The main file that compiles into styles.css
 ```
 
-A separate file is created for each page in the `pages` folder. A separate file is created for each part or component in the `parts` folder.
+A separate file is created for each page in the `pages` folder. A separate file is created for each component in the `src/components/<components_name>` folder.
 
 All included files must begin with a single underscore (`_`).
-
-## Responsive 12-column grid
-
-On projects, you can use a bootstrap-like grid of 12 columns.
-
-To check examples of using the grid, see `index.nunj`, as well as the [bootstrap website](http://getbootstrap.com/css/#grid).
-
-For instance, if you need to make a grid of 10 columns, not of 12, then you can fix the corresponding mixins in `_layout.scss`. Breakpoints can be changed in `_variables.scss`
 
 ## SVG sprites
 

@@ -46,6 +46,14 @@ npm run build
 npm run zip
 ```
 
+## Структура проекта
+
+It's not mandatory but considered effective for many reasons to decompose the UI into separate, less coupled components.
+
+Create components at least for the parts of the UI that appear in multiple places of your project. It can be buttons, common page sections, widgets, sliders and so on.
+
+It is recommended that you will keep your components inside the `src/assets/components/` folder. This starter kit allows you to keep your markup, styles, and JavaScript code for a component in one folder and then to use them in multiple places. Please, see the `src/assets/components/` folder for examples. Notice how different types of components are arranged. Also, It is not absolutely mandatory to include Nunjucks or JS code for a component if you feel that it doesn't make too much sense. For example, when the markup is quite simple or when a component doesn't have JS logic.
+
 ## HTML-шаблонизатор Nunjucks
 
 [Nunjucks](https://mozilla.github.io/nunjucks/) - мощный шаблонизатор с синтаксисом а-ля jinja2, который позволяет создавать качественный, легкоподдерживаемый HTML-код.
@@ -116,32 +124,21 @@ if (module.hot) {
 
 ```
 /styles/
-	/lib/			// Библиотеки и миксины
-	/pages/			// Стили для страниц проекта
-		_main.scss	// Стили для главной страницы
-	/parts/			// Части или компоненты проекта
-		_controls.scss	// Контроллы (кнопки, инпуты, чекбоксы, селекты)
-		_footer.scss	// SCSS-реализация футера
-		_popup.scss	// SCSS-реализация попапа
+	/lib/				// Библиотеки и миксины
+	/pages/				// Стили для страниц проекта
+		_main.scss		// Стили для главной страницы
 	_constants.scss		// Переменные и константы
-	_fonts.scss		// Подключаемые шрифты
+	_controls.scss		// Стили для контролов
+	_fonts.scss			// Подключаемые шрифты
 	_global.scss		// Стили глобальных блоков
 	_layout.scss		// Стили лэйаута
-	_reset.scss		// CSS-reset и обнуление стилей
-	styles.scss		// Основной файл, который компилируется в styles.css
+	_reset.scss			// CSS-reset и обнуление стилей
+	styles.scss			// Основной файл, который компилируется в styles.css
 ```
 
-Для каждой страницы создается отдельный файл в папке `pages`. Для каждой части или компонента создается отдельный файл в папке `parts`.
+Для каждой страницы создается отдельный файл в папке `pages`. Для каждого компонента создается отдельный файл в папке `src/components/<components_name>`.
 
 Все подключаемые файлы должны начинаться с одного подчеркивания (`_`).
-
-## Респонсив сетка из 12 колонок
-
-На проектах можно использовать бутстрапоподобную сетку из 12 колонок.
-
-Примеры использования сетки см. в `index.nunj`, а также на [сайте бутстрапа](http://getbootstrap.com/css/#grid).
-
-Если нужно например сделать сетку из 10 колонок, а не из 12, то можно подправить соответствующие миксины в `_layout.scss`. Брейкпоинты можно изменять в `_variables.scss`
 
 ## SVG-спрайты
 
