@@ -1,4 +1,4 @@
-{% from "../../components/head-scripts/head-scripts.nunj" import headScripts %}
+{% from "./_head-scripts.nunj" import headScripts %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,26 +16,8 @@
 	<body>
 
 		<div class="wrapper">
-			<div class="wrapper__header">
-				<div class="header">
-					<div class="container">
-						{{ menu() }}
-					</div>
-				</div>
-			</div>
-
-			<div class="wrapper__content">
-				{% block content %}
-				{% endblock content %}
-			</div>
-
-			<div class="wrapper__footer">
-				<div class="footer">
-					<div class="container">
-						Footer Content
-					</div>
-				</div>
-			</div>
+			{% block content %}
+			{% endblock content %}
 		</div>
 
 		{% block scripts %}

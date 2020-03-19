@@ -1,26 +1,30 @@
 {% extends "../ext/base.nunj" %}
 
 {% from "../../components/menu/menu.nunj" import menu %}
+{% from "../../components/button/button.nunj" import button %}
 
 {# Пример расширения существующего блока #}
 {# Например можно использовать для добавления уникальных тайтлов для каждой страницы #}
 {# {% block title %}Home / {{ super() }}{% endblock title %} #}
 
 {% block content %}
-	<div class="container clearfix">
+	
+	<div class="header">
+		<div class="container">
+			{{ menu() }}
+		</div>
+	</div>
+
+	<div class="container">
 
 		<main style="float:left; width: 75%;">
 
 			<div style="padding:20px 0;">
-				
-				<h2 style="margin-bottom: 15px;">Респонсив сетка из 12 колонок:</h2>
-				
-				<div class="row">
-					<div class="col-lg-6 col-md-4 col-xs-12">Колонка 1</div>
-					<div class="col-lg-6 col-md-4 col-xs-12">Колонка 2</div>
-					<div class="col-lg-6 offset-lg-6 col-md-4 offset-md-4 col-xs-12 offset-xs-0">Колонка с отступом</div>
-				</div>
-
+				{{ button({
+					className: '',
+					children: 'Buy something',
+					chevronRight: true
+				}) }}
 			</div>
 
 			<div style="padding:20px 0;">
@@ -29,7 +33,7 @@
 				
 				<div class="row">
 					{% for i in range(1, 13)  %}
-						<div class="col-lg-1">{{ i }}</div>
+						<span>{{ i }}</span>
 					{% endfor %}
 				</div>
 
