@@ -22,9 +22,9 @@ export default {
 		videos: 'src/assets/video/**/*.*',
 	},
 	watch: {
-		nunj: ['src/templates/**/*.nunj', 'src/components/**/*.nunj', 'global-data.json'],
-		scripts: ['src/assets/js/**/*.js', 'src/components/**/*.js'],
-		styles: ['src/assets/styles/**/*.scss', 'src/components/**/*.scss'],
+		nunj: ['src/**/*.nunj', 'global-data.json'],
+		scripts: 'src/**/*.js',
+		styles: 'src/**/*.scss',
 		images: 'src/assets/images/**/*.*',
 		fonts: 'src/assets/fonts/**/*.*',
 		sprites: 'src/assets/images/sprites/*.png',
