@@ -1,31 +1,23 @@
-// Callback is equal to Signal
-function Callback() {
-	this.handlers = [];
+class Signal {
+	constructor() {
+		this.handlers = [];
+	}
 
-	const self = this;
-	this.callShim = function() {
-		self.call.apply(self, arguments);
-	};
-}
+	_throwError() {
+		throw new TypeError('Signal handler must be function!');
+	}
 
-Callback.prototype = {
-	_throwError: function() {
-		throw new TypeError('Callback handler must be function!');
-	},
-
-	add: function(handler, context) {
+	add(handler, context) {
 		if (typeof handler !== 'function') {
-			this._throwError();
-			return;
+			return this._throwError();
 		}
 		this.handlers.push({ handler: handler, context: context });
 		return handler;
-	},
+	}
 
-	remove: function(handler) {
+	remove(handler) {
 		if (typeof handler !== 'function') {
-			this._throwError();
-			return;
+			return this._throwError();
 		}
 		const totalHandlers = this.handlers.length;
 		for (let k = 0; k < totalHandlers; k++) {
@@ -34,27 +26,26 @@ Callback.prototype = {
 				return handler;
 			}
 		}
-	},
+	}
 
-	call: function() {
+	call() {
 		const totalHandlers = this.handlers.length;
 		for (let k = 0; k < totalHandlers; k++) {
 			const handlerData = this.handlers[k];
 			handlerData.handler.apply(handlerData.context || null, arguments);
 		}
-	},
+	}
 
-	delayedCall: function(delay = 16) {
-		const self = this;
+	delayedCall(delay = 16) {
 		delay = delay || 100;
 
 		const args = Array.prototype.slice.call(arguments);
 		args.shift();
 
-		setTimeout(function() {
-			self.call.apply(self, args);
+		setTimeout(() => {
+			this.call.apply(this, args);
 		}, delay);
-	},
-};
+	}
+}
 
-module.exports = Callback;
+export default Signal;

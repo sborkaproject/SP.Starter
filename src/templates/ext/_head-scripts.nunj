@@ -66,15 +66,18 @@
 			
 			xhr.onreadystatechange = function(){
 				if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-					var container = document.createElement('div');
-					container.className = 'invisible-container';
-					container.appendChild(xhr.responseXML.documentElement);
-
 					function waitForBody(){
 						if(document.body){
-							document.body.appendChild(container);
+							var containerClass = 'invisible-container';
+							var container = document.querySelector('.'+containerClass);
+							if(!container){
+								container = document.createElement('div');
+								container.className = containerClass;
+								document.body.insertBefore(container, document.body.firstChild);
+							}
+							container.appendChild(xhr.responseXML.documentElement);
 						} else {
-							setTimeout(waitForBody, 16)
+							setTimeout(waitForBody, 16);
 						}
 					}
 

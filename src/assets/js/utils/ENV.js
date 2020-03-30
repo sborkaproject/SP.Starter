@@ -28,4 +28,4 @@ const env = {
 window.environmentObject = null;
 delete window.environmentObject;
 
-module.exports = env;
+export default env;

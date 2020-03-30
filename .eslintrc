@@ -8,7 +8,7 @@
 	},
 	"extends": ["eslint:recommended", "prettier", "gsap"],
 	"globals": {
-		"cy": true
+		"gsap": true
 	},
 	"rules": {
 		"prettier/prettier": 1,

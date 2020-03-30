@@ -1,25 +1,30 @@
-import { TweenMax } from 'gsap';
-global.TweenMax = TweenMax;
-global.$ = global.jQuery = require('jquery');
-require('./utils/jqExtensions');
+import '@babel/polyfill';
+
+// import jquery from 'jquery';
+// global.jquery = jquery;
+
+import { gsap } from 'gsap';
+// import { ScrollToPlugin } from 'gsap/ScrollToPlugin.js';
+// gsap.registerPlugin(ScrollToPlugin);
+
+global.gsap = gsap;
+gsap.defaults({ overwrite: 'auto' });
 
 // prettier-ignore
 global.ProjectName = new function ProjectName() { // eslint-disable-line
-	this.env = require('./utils/ENV');
-	this.dom = require('./utils/DOM');
-	this.utils = require('./utils/Utils');
+	this.env = require('./utils/env').default;
+	this.utils = require('./utils/utils').default;
 
 	this.classes = {
-		Callback: require('./classes/Callback')
+		Signal: require('./classes/Signal').default
 	};
 
+	this.components = {}
 	this.helpers = {};
 	this.modules = {};
 
-	// Startup
-	$(() => {
-		// Remove _loading modificator
-		this.dom.$html.removeClass('_loading');
+	document.addEventListener('DOMContentLoaded',e => {
+		document.documentElement.classList.remove('_loading')
 	});
 }();
 

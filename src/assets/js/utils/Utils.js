@@ -1,5 +1,5 @@
-module.exports = {
-	now: function() {
+const utils = {
+	now() {
 		const P = 'performance';
 		if (window[P] && window[P]['now']) {
 			this.now = function() {
@@ -14,7 +14,7 @@ module.exports = {
 		return this.now();
 	},
 
-	cubicProgress: function(value) {
+	cubicProgress(value) {
 		value = value < 0 ? 0 : value > 1 ? 1 : value;
 		value /= 1 / 2;
 		if (value < 1) {
@@ -26,13 +26,12 @@ module.exports = {
 		return (1 / 2) * (value * value * value + 2);
 	},
 
-	debounce: function(func, wait, immediate) {
+	debounce(func, wait = 100, immediate = false) {
 		let timeout;
-		wait = wait || 100;
-
 		return function() {
 			const context = this,
 				args = arguments;
+
 			const later = function() {
 				timeout = null;
 				if (!immediate) {
@@ -49,11 +48,10 @@ module.exports = {
 		};
 	},
 
-	throttle: function(func, ms) {
+	throttle(func, ms = 100) {
 		let isThrottled = false;
 		let savedArgs;
 		let savedThis;
-		ms = ms || 100;
 		function wrapper() {
 			if (isThrottled) {
 				savedArgs = arguments;
@@ -77,7 +75,7 @@ module.exports = {
 		return wrapper;
 	},
 
-	formatNumber: function(number) {
+	formatNumber(number) {
 		number = number + '';
 		let result = '';
 		let c = 0;
@@ -95,10 +93,12 @@ module.exports = {
 		return result;
 	},
 
-	declOfNum: function(number, titles) {
+	declOfNum(number, titles) {
 		const cases = [2, 0, 1, 1, 1, 2];
 		return titles[
 			number % 100 > 4 && number % 100 < 20 ? 2 : cases[number % 10 < 5 ? number % 10 : 5]
 		];
 	},
 };
+
+export default utils;
