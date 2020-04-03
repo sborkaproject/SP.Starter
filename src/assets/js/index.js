@@ -11,7 +11,7 @@ global.gsap = gsap;
 gsap.defaults({ overwrite: 'auto' });
 
 // prettier-ignore
-global.ProjectName = new function ProjectName() { // eslint-disable-line
+global.ProjectApp = new function ProjectApp() { // eslint-disable-line
 	this.env = require('./utils/env').default;
 	this.utils = require('./utils/utils').default;
 

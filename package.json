@@ -10,7 +10,7 @@
 		"start": "gulp",
 		"build": "cross-env NODE_ENV=production gulp production",
 		"zip": "cross-env NODE_ENV=production gulp zip",
-		"precommit": "pretty-quick -staged"
+		"precommit": "prettier ./src/**/*.scss --write; pretty-quick --staged"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.8.7",
