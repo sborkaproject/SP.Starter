@@ -8,7 +8,14 @@ import { gsap } from 'gsap';
 // gsap.registerPlugin(ScrollToPlugin);
 
 global.gsap = gsap;
-gsap.defaults({ overwrite: 'auto' });
+gsap.defaults(
+	{
+		overwrite: 'auto'
+
+
+
+
+		 });
 
 // prettier-ignore
 global.ProjectApp = new function ProjectApp() { // eslint-disable-line
@@ -19,9 +26,18 @@ global.ProjectApp = new function ProjectApp() { // eslint-disable-line
 		Signal: require('./classes/Signal').default
 	};
 
-	this.components = {}
-	this.helpers = {};
-	this.modules = {};
+	this.components = {
+
+		
+	}
+	this.helpers = {
+
+
+	};
+	this.modules = {
+
+
+	};
 
 	document.addEventListener('DOMContentLoaded',e => {
 		document.documentElement.classList.remove('_loading')
