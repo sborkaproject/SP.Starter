@@ -8,14 +8,9 @@ import { gsap } from 'gsap';
 // gsap.registerPlugin(ScrollToPlugin);
 
 global.gsap = gsap;
-gsap.defaults(
-	{
-		overwrite: 'auto'
-
-
-
-
-		 });
+gsap.defaults({
+	overwrite: 'auto',
+});
 
 // prettier-ignore
 global.ProjectApp = new function ProjectApp() { // eslint-disable-line
