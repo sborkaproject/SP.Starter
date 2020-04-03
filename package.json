@@ -10,7 +10,8 @@
 		"start": "gulp",
 		"build": "cross-env NODE_ENV=production gulp production",
 		"zip": "cross-env NODE_ENV=production gulp zip",
-		"precommit": "prettier ./src/**/*.scss --write; pretty-quick --staged"
+		"pretty-quick": "pretty-quick --staged",
+		"prettier": "prettier ./src/**/*.scss --write"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.8.7",
@@ -80,8 +81,11 @@
 		"gsap": "^3.2.4"
 	},
 	"lint-staged": {
-		"./src/**/*": [
-			"npm run precommit"
+		"./src/**/*.js": [
+			"npm run pretty-quick"
+		],
+		"./src/**/*.scss": [
+			"npm run prettier"
 		]
 	},
 	"husky": {
