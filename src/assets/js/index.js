@@ -34,7 +34,7 @@ global.ProjectApp = new function ProjectApp() { // eslint-disable-line
 
 	};
 
-	document.addEventListener('DOMContentLoaded',e => {
+	document.addEventListener('DOMContentLoaded', () => {
 		document.documentElement.classList.remove('_loading')
 	});
 }();
