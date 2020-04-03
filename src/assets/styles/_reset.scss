@@ -14,7 +14,7 @@ body {
 }
 
 body {
-	font: normal #{$default-font-size}/ 1.4 Arial, sans-serif;
+	font: normal 14px/1.4 Arial, sans-serif;
 	color: #000;
 	background: #fff;
 	@include mobile {

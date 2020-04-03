@@ -1,10 +1,6 @@
 {
 	"menuItems": [
 		{
-			"name": "Index",
-			"path": "/"
-		},
-		{
 			"name": "Menu Item 1",
 			"path": "#"
 		},
