@@ -2,7 +2,7 @@
 	"plugins": ["stylelint-prettier"],
 	"rules": {
 		"indentation": "tab",
-		"string-quotes": "double",
+		"string-quotes": "single",
 		"color-hex-case": "upper",
 		"selector-attribute-quotes": "always",
 		"selector-attribute-operator-space-before": "always",
@@ -11,7 +11,6 @@
 		"declaration-colon-space-before": "never",
 		"declaration-colon-space-after": "always",
 		"function-url-quotes": "always",
-		"rule-empty-line-before": "always",
 		"media-feature-parentheses-space-inside": "never",
 		"media-feature-colon-space-before": "never",
 		"media-feature-colon-space-after": "always"
