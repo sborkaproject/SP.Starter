@@ -81,8 +81,10 @@
 		"gsap": "^3.2.4"
 	},
 	"lint-staged": {
-		"./src/**/*": [
-			"npm run pretty-quick",
+		"./src/**/*.js": [
+			"npm run pretty-quick"
+		],
+		"./src/**/*.scss": [
 			"npm run prettier"
 		]
 	},
