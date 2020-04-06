@@ -12,13 +12,12 @@ gsap.defaults({
 	overwrite: 'auto',
 });
 
-// prettier-ignore
-global.ProjectApp = new function ProjectApp() { // eslint-disable-line
+global.ProjectApp = new (function ProjectApp() {
 	this.env = require('./utils/env').default;
 	this.utils = require('./utils/utils').default;
 
 	this.classes = {
-		Signal: require('./classes/Signal').default
+		Signal: require('./classes/Signal').default,
 	};
 
 	this.components = {};
@@ -26,9 +25,9 @@ global.ProjectApp = new function ProjectApp() { // eslint-disable-line
 	this.modules = {};
 
 	document.addEventListener('DOMContentLoaded', () => {
-		document.documentElement.classList.remove('_loading')
+		document.documentElement.classList.remove('_loading');
 	});
-}();
+})();
 
 if (module.hot) {
 	module.hot.accept();

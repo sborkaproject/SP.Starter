@@ -36,7 +36,14 @@
 		"no-param-reassign": "off",
 		"no-multi-assign": "off",
 		"prefer-spread": "off",
-		"no-unused-expressions": "off"
+		"no-unused-expressions": "off",
+		"no-restricted-syntax": "off",
+		"prefer-const": "warn",
+		"no-lonely-if": "off",
+		"eqeqeq": "warn",
+		"prefer-destructuring": "off",
+		"lines-between-class-members": "off",
+		"spaced-comment": "off",
 	},
 	"plugins": [
 		"prettier"
