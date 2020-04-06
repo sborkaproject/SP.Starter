@@ -17,13 +17,14 @@ class Signal {
 
 	remove(handler) {
 		if (typeof handler !== 'function') {
-			return this._throwError();
-		}
-		const totalHandlers = this.handlers.length;
-		for (let k = 0; k < totalHandlers; k++) {
-			if (handler === this.handlers[k].handler) {
-				this.handlers.splice(k, 1);
-				return handler;
+			this._throwError();
+		} else {
+			const totalHandlers = this.handlers.length;
+			for (let k = 0; k < totalHandlers; k++) {
+				if (handler === this.handlers[k].handler) {
+					this.handlers.splice(k, 1);
+					return handler;
+				}
 			}
 		}
 	}

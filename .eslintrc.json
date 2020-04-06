@@ -28,6 +28,10 @@
 		"import/no-unresolved": "off",
 		"no-underscore-dangle": "off",
 		"no-class-assign": "off",
-		"import/no-named-as-default": "off"
+		"import/no-named-as-default": "off",
+		"dot-notation": "warn",
+		"prefer-template": "off",
+		"no-plusplus": "off",
+		"prefer-rest-params": "off"
 	}
 }
