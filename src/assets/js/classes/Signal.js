@@ -9,7 +9,8 @@ class Signal {
 
 	add(handler, context) {
 		if (typeof handler !== 'function') {
-			return this._throwError();
+			this._throwError();
+			return null;
 		}
 		this.handlers.push({ handler: handler, context: context });
 		return handler;
@@ -18,15 +19,16 @@ class Signal {
 	remove(handler) {
 		if (typeof handler !== 'function') {
 			this._throwError();
-		} else {
-			const totalHandlers = this.handlers.length;
-			for (let k = 0; k < totalHandlers; k++) {
-				if (handler === this.handlers[k].handler) {
-					this.handlers.splice(k, 1);
-					return handler;
-				}
+			return null;
+		}
+		const totalHandlers = this.handlers.length;
+		for (let k = 0; k < totalHandlers; k++) {
+			if (handler === this.handlers[k].handler) {
+				this.handlers.splice(k, 1);
+				return handler;
 			}
 		}
+		return null;
 	}
 
 	call() {

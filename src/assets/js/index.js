@@ -21,20 +21,11 @@ global.ProjectApp = new function ProjectApp() { // eslint-disable-line
 		Signal: require('./classes/Signal').default
 	};
 
-	this.components = {
+	this.components = {};
+	this.helpers = {};
+	this.modules = {};
 
-		
-	}
-	this.helpers = {
-
-
-	};
-	this.modules = {
-
-
-	};
-
-	document.addEventListener('DOMContentLoaded',e => {
+	document.addEventListener('DOMContentLoaded', () => {
 		document.documentElement.classList.remove('_loading')
 	});
 }();

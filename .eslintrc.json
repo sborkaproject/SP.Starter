@@ -32,7 +32,11 @@
 		"dot-notation": "warn",
 		"prefer-template": "off",
 		"no-plusplus": "off",
-		"prefer-rest-params": "off"
+		"prefer-rest-params": "off",
+		"no-param-reassign": "off",
+		"no-multi-assign": "off",
+		"prefer-spread": "off",
+		"no-unused-expressions": "off"
 	},
 	"plugins": [
 		"prettier"

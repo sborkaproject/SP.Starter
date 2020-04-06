@@ -1,4 +1,4 @@
-let envObject = window.environmentObject;
+const envObject = window.environmentObject;
 
 const env = {
 	// Platform
