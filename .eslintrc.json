@@ -6,7 +6,7 @@
 		"jquery": true,
 		"commonjs": true
 	},
-	"extends": ["airbnb-base", "prettier", "gsap"],
+	"extends": ["airbnb-base", "prettier", "gsap", "eslint-config-prettier"],
 	"globals": {
 		"gsap": true,
 		"Atomics": "readonly",
@@ -29,12 +29,13 @@
 		"no-underscore-dangle": "off",
 		"no-class-assign": "off",
 		"import/no-named-as-default": "off",
-		"dot-notation": "warn",
+		"dot-notation": "off",
 		"prefer-template": "off",
 		"no-plusplus": "off",
 		"prefer-rest-params": "off"
 	},
 	"plugins": [
+		"babel",
 		"prettier"
 	]
 }
