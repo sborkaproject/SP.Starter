@@ -79,7 +79,9 @@
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
     "global": "^4.4.0",
-    "gsap": "^3.2.4"
+    "gsap": "^3.2.4",
+    "core-js": "^3.6.4",
+    "regenerator-runtime": "^0.13.5"
   },
   "lint-staged": {
     "./src/**/*.{js,json,scss}": [
