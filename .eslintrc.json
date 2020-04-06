@@ -33,5 +33,8 @@
 		"prefer-template": "off",
 		"no-plusplus": "off",
 		"prefer-rest-params": "off"
-	}
+	},
+	"plugins": [
+		"prettier"
+	]
 }
