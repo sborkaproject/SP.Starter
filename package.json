@@ -85,7 +85,7 @@
     "regenerator-runtime": "^0.13.5"
   },
   "lint-staged": {
-    "./src/**/*.{js,json,scss}": [
+    "./src/**/*.{js,json,scss} --no-stash": [
       "npm run prettier"
     ]
   },
