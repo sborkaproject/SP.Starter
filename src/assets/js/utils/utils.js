@@ -1,22 +1,22 @@
 const utils = {
 	now() {
-		const P = 'performance';
-		if (window[P] && window[P]['now']) {
-			this.now = function() {
+		if (window.performance && window.performance.now) {
+			this.now = () => {
 				return window.performance.now();
 			};
 		} else {
-			this.now = function() {
+			this.now = () => {
 				return +new Date();
 			};
 		}
-
 		return this.now();
 	},
 
 	cubicProgress(value) {
-		value = value < 0 ? 0 : value > 1 ? 1 : value;
+		value = value < 0 ? 0 : value;
+		value = value > 1 ? 1 : value;
 		value /= 1 / 2;
+
 		if (value < 1) {
 			return (1 / 2) * value * value * value;
 		}
@@ -29,65 +29,61 @@ const utils = {
 	debounce(func, wait = 100, immediate = false) {
 		let timeout;
 		return function() {
-			const context = this,
-				args = arguments;
+			const context = this;
+			const args = arguments;
 
-			const later = function() {
+			const later = () => {
 				timeout = null;
-				if (!immediate) {
-					func.apply(context, args);
-				}
+				!immediate && func.apply(context, args);
 			};
 
 			const callNow = immediate && !timeout;
 			clearTimeout(timeout);
+
 			timeout = setTimeout(later, wait);
-			if (callNow) {
-				func.apply(context, args);
-			}
+
+			callNow && func.apply(context, args);
 		};
 	},
 
-	throttle(func, ms = 100) {
+	throttle(func, wait = 100) {
 		let isThrottled = false;
 		let savedArgs;
 		let savedThis;
+
 		function wrapper() {
 			if (isThrottled) {
 				savedArgs = arguments;
 				savedThis = this;
-				return;
+			} else {
+				func.apply(this, arguments);
+
+				isThrottled = true;
+
+				setTimeout(() => {
+					isThrottled = false;
+					if (savedArgs) {
+						wrapper.apply(savedThis, savedArgs);
+						savedArgs = savedThis = null;
+					}
+				}, wait);
 			}
-
-			func.apply(this, arguments);
-
-			isThrottled = true;
-
-			setTimeout(function() {
-				isThrottled = false;
-				if (savedArgs) {
-					wrapper.apply(savedThis, savedArgs);
-					savedArgs = savedThis = null;
-				}
-			}, ms);
 		}
 
 		return wrapper;
 	},
 
 	formatNumber(number) {
-		number = number + '';
+		number = number.toString();
 		let result = '';
-		let c = 0;
-		for (let k = number.length - 1; k >= 0; k--) {
+
+		for (let k = number.length - 1, c = 0; k >= 0; k--, c++) {
 			if (c === 3) {
 				c = 0;
 				result = number.substr(k, 1) + ' ' + result;
 			} else {
 				result = number.substr(k, 1) + result;
 			}
-
-			c++;
 		}
 
 		return result;
