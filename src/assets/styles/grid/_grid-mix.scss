@@ -116,6 +116,7 @@
 	min-height: 1px;
 	flex: 0 1 auto;
 	max-width: 100%;
+  	box-sizing: border-box;
 	@include make-gutters($gutters);
 }
 
