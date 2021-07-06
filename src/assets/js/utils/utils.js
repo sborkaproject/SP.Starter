@@ -28,7 +28,7 @@ const utils = {
 
 	debounce(func, wait = 100, immediate = false) {
 		let timeout;
-		return function() {
+		return function () {
 			const context = this;
 			const args = arguments;
 

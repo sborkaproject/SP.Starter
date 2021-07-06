@@ -1,5 +1,5 @@
 module.exports = {
-	addAwesome: function(str) {
+	addAwesome: function (str) {
 		return str + ' Awesome!';
 	},
 };
