@@ -142,15 +142,19 @@ if (module.hot) {
 
 ## SVG-спрайты
 
-В стартовом проекте настроена возможность создания SVG-спрайтов с помощью [gulp-svgstore](https://github.com/w0rm/gulp-svgstore), поэтому SVG на сайт лучше добавлять следующим способом:
+В стартовом проекте настроена возможность создания SVG-спрайтов с помощью [gulp-svgstore](https://github.com/w0rm/gulp-svgstore), поэтому SVG на сайт лучше добавлять, используя компонент `icon`, следующим способом:
 
 ```
-<svg><use xlink:href="#icon-some-vector-image"></use></svg>
+{{ icon({
+    iconName: 'some-vector-image',
+    className: 'icon',
+    attributes: 'viewBox="0 0 20 20"'
+}) }}
 ```
 
-При этом SVG-файл `some-vector-image.svg` должен находиться в папке `src/assets/svg/`. Такому элементу необходимо задать width и height в стилях. Ему также можно менять fill, stroke при условии, что в исходном файле `some-vector-image.svg` у элемента не заданы такие же атрибуты (fill и stroke).
+Свойства `className` и `attributes` указывать необязательно. SVG-файл `some-vector-image.svg` должен находиться в папке `src/assets/svg/`. Такому элементу необходимо задать width и height в стилях. Ему также можно менять fill, stroke при условии, что в исходном файле `some-vector-image.svg` у элемента не заданы такие же атрибуты (fill и stroke).
 
-**Обратите внимание на то, что при подключении svg-спрайта используется `#icon-` префикс в пути до спрайта: `#icon-some-vector-image` (фактически будет использован `some-vector-image.svg`).**
+**Обратите внимание на то, что при подключении svg-спрайта в компоненте `icon` используется `#icon-` префикс в пути до спрайта: `#icon-some-vector-image` (фактически будет использован `some-vector-image.svg`).**
 
 ## Растровые спрайты
 
