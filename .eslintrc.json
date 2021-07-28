@@ -43,7 +43,19 @@
 		"eqeqeq": "warn",
 		"prefer-destructuring": "off",
 		"lines-between-class-members": "off",
-		"spaced-comment": "off"
+		"spaced-comment": "off",
+	  	"no-useless-constructor": "off",
+	  	"import/first": "off",
+	  	"import/newline-after-import": "off",
+	  	"new-cap": "off",
+		"guard-for-in": "off",
+		"camelcase": "off",
+		"operator-assignment": "off",
+		"no-new": "off",
+	  	"max-classes-per-file": "off",
+		"no-return-assign": "off",
+		"no-continue": "off",
+		"no-debugger": "off"
 	},
 	"plugins": [
 		"babel",
