@@ -9,3 +9,4 @@ build.zip
 temp/
 *.sublime*
 package-lock.json
+yarn.lock

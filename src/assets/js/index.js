@@ -1,9 +1,3 @@
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
-
-// import jquery from 'jquery';
-// global.jquery = jquery;
-
 import { gsap } from 'gsap';
 
 // import { ScrollToPlugin } from 'gsap/ScrollToPlugin.js';

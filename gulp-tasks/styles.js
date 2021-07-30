@@ -5,7 +5,6 @@ import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
 import sprites from 'postcss-sprites';
 import assets from 'postcss-assets';
-import sass from 'gulp-sass';
 import sourcemaps from 'gulp-sourcemaps';
 import cssmin from 'gulp-clean-css';
 import gulpif from 'gulp-if';
@@ -14,6 +13,8 @@ import colors from 'ansi-colors';
 
 import PATHS from '../paths';
 import { PRODUCTION } from '../config';
+
+const sass = require('gulp-dart-sass');
 
 const PROCESSORS = [
 	autoprefixer({
@@ -50,9 +51,7 @@ export default function styles() {
 		.pipe(gulpif(!PRODUCTION, sourcemaps.init()))
 		.pipe(
 			sass({
-				outputStyle: 'compact',
-				errLogToConsole: true,
-				indentedSyntax: true,
+				outputStyle: 'compressed',
 			})
 		)
 		.pipe(postcss(PROCESSORS))

@@ -142,15 +142,19 @@ All included files must begin with a single underscore (`_`).
 
 ## SVG sprites
 
-The ability to create SVG sprites with the help of [gulp-svgstore](https://github.com/w0rm/gulp-svgstore) is configured in the starter project, so it is better to add SVG to the site in the following way:
+The ability to create SVG sprites with the help of [gulp-svgstore](https://github.com/w0rm/gulp-svgstore) is configured in the starter project, so it is better to add SVG to the site using the component `icon` in the following way:
 
 ```
-<svg><use xlink:href="# icon-some-vector-image"></use></svg>
+{{ icon({
+    iconName: 'some-vector-image',
+    className: 'icon',
+    attributes: 'viewBox="0 0 20 20"'
+}) }}
 ```
 
-The SVG file `some-vector-image.svg` should be in the folder `src/assets/svg/`. Width and height must be set in styles for such element. You can also change fill, stroke, but the element should not have the same attributes (fill and stroke) in the source file `some-vector-image.svg`.
+The properties `className` and` attributes` are optional. The SVG file `some-vector-image.svg` should be in the folder `src/assets/svg/`. Width and height must be set in styles for such element. You can also change fill, stroke, but the element should not have the same attributes (fill and stroke) in the source file `some-vector-image.svg`.
 
-**Please note that when connecting the svg sprite, the `#icon-` prefix in the path to the sprite is used: `#icon-some-vector-image` (in fact,`some-vector-image.svg` will be used).**
+**Please note that when connecting the svg sprite in the component `icon`, the `#icon-` prefix in the path to the sprite is used: `#icon-some-vector-image` (in fact,`some-vector-image.svg` will be used).**
 
 ## Raster Sprites
 
