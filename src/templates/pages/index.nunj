@@ -1,8 +1,8 @@
 {% extends "../ext/base.nunj" %}
 
-{% from "../../components/menu/menu.nunj" import menu %}
-{% from "../../components/button/button.nunj" import button %}
-{% from "../../components/icon/icon.nunj" import icon %}
+{% from "../../components/macros/menu/menu.nunj" import menu %}
+{% from "../../components/macros/button/button.nunj" import button %}
+{% from "../../components/macros/icon/icon.nunj" import icon %}
 
 {# Пример расширения существующего блока #}
 {# Например можно использовать для добавления уникальных тайтлов для каждой страницы #}
@@ -10,7 +10,7 @@
 
 {% block content %}
 
-	{% include '../../components/header/header.nunj' %}
+	{% include '../../components/blocks/header/header.nunj' %}
 
 	<div class="container">
 
