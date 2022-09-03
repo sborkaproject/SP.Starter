@@ -1,5 +1,0 @@
-<div class="header">
-	<div class="container">
-		{{ menu() }}
-	</div>
-</div>
