@@ -1,0 +1,27 @@
+{% from "./_head-scripts.nunj" import headScripts %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Front-end by sborkaproject.com -->
+		<meta charset="utf-8" />
+		<title>{% block title %}Project{% endblock %}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		{{ headScripts() }}
+
+		{% block stylesheets %}
+			<link rel="stylesheet" href="assets/css/styles.css?hash" />
+		{% endblock stylesheets %}
+	</head>
+	<body>
+
+		<div class="wrapper">
+			{% block content %}
+			{% endblock content %}
+		</div>
+
+		{% block scripts %}
+			<script src="assets/js/bundle.js?hash"></script>
+		{% endblock scripts %}
+	</body>
+</html>

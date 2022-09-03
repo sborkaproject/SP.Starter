@@ -8,8 +8,10 @@
 // @import 'controls';
 
 // ======= COMPONENTS =======
-@import '../../components/header/header';
-@import '../../components/button/button';
+@import '../../includes/components/button/button';
+
+// ======= INCLUDES =======
+@import '../../includes/header/header';
 
 // ======= PAGES =======
 @import 'pages/main';

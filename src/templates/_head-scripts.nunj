@@ -1,0 +1,91 @@
+{% macro headScripts() %}
+	<script type="text/javascript">
+		;(function(){
+			var modificators = [],
+				nv = navigator,
+				pl = nv.platform.toLowerCase(),
+				ua = nv.userAgent.toLowerCase(),
+				an = nv.appName.toLowerCase(),
+				htmlElement = document.documentElement,
+				ls = localStorage;
+
+			function pli(s){return pl.indexOf(s) > -1;}
+			function uai(s){return ua.indexOf(s) > -1;}
+			function ani(s){return an.indexOf(s) > -1;}
+
+			// Platform
+			var platformClass = uai('iphone') || uai('ipod') || uai('ipad') || uai('android') || uai('iemobile') || uai('blackberry') || uai('bada') ? '_mobile' : '_desktop';
+			modificators.push(platformClass);
+
+			// OS
+			var osClass = '';
+			if (uai('ipad') || uai('iphone') || uai('ipod')) {
+				osClass = '_ios';
+			} else if (uai('android')) {
+				osClass = '_android';
+			} else if (pli('win')) {
+				osClass = '_win';
+			} else if (pli('mac')) {
+				osClass = '_mac';
+			} else if (pli('linux')) {
+				osClass = '_linux';
+			}
+			modificators.push(osClass);
+
+			// Browser
+			var browserClass = '';
+			if (uai('firefox')) {
+				browserClass = '_ff';
+			} else if (uai('opr')) {
+				browserClass = '_opera';
+			} else if (uai('yabrowser')) {
+				browserClass = '_yandex';
+			} else if (uai('edge')) {
+				browserClass = '_edge';
+			} else if (uai('trident') || ani('explorer') || ani('msie')) {
+				browserClass = '_ie';
+			} else if (uai('safari') && !uai('chrome')) {
+				browserClass = '_safari';
+			} else if (uai('chrome')) {
+				browserClass = '_chrome';
+			}
+			modificators.push(browserClass);
+
+			window.environmentObject = {
+				platform: platformClass,
+				os: osClass,
+				browser: browserClass,
+				isLocal: window.location.href.indexOf('http://localhost:') == 0
+			};
+			htmlElement.className += ' ' + modificators.join(' ');
+
+			// SVG sprites
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', 'assets/svg/sprite.svg', true);
+			xhr.overrideMimeType('image/svg+xml');
+			
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+					function waitForBody(){
+						if(document.body){
+							var containerClass = 'invisible-container';
+							var container = document.querySelector('.'+containerClass);
+							if(!container){
+								container = document.createElement('div');
+								container.className = containerClass;
+								document.body.insertBefore(container, document.body.firstChild);
+							}
+							container.appendChild(xhr.responseXML.documentElement);
+						} else {
+							setTimeout(waitForBody, 16);
+						}
+					}
+
+					waitForBody();	
+				};
+			}
+
+			xhr.send('');
+		})();
+	</script>
+{% endmacro %}

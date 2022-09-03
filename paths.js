@@ -11,7 +11,7 @@ export default {
 	},
 	src: {
 		templates: './src/',
-		nunj: 'src/templates/pages/**/*.nunj',
+		nunj: 'src/pages/**/*.nunj',
 		scripts: 'src/assets/js/index.js',
 		styles: 'src/assets/styles/styles.scss',
 		images: 'src/assets/images/**/*.*',
