@@ -1,0 +1,5 @@
+{% macro icon(props) %}
+	<svg {% if props.className %}class="{{ props.className }}"{% endif %}{% if props.attr %} {{ props.attr }}{% endif %}>
+		<use xlink:href="#icon-{{ props.iconName }}" />
+	</svg>
+{% endmacro %}

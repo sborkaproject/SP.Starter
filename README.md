@@ -48,11 +48,39 @@ npm run zip
 
 ## Структура проекта
 
-It's not mandatory but considered effective for many reasons to decompose the UI into separate, less coupled components.
+Не обязательно разделять интерфейс на отдельные части и компоненты, но это эффективный подход по многим причинам.
 
-Create components at least for the parts of the UI that appear in multiple places of your project. It can be buttons, common page sections, widgets, sliders and so on.
+Создавайте компоненты по крайней мере для тех частей интерфейса, которые появляются в нескольких местах вашего проекта. Это могут быть кнопки, общие разделы страницы, виджеты, слайдеры и так далее.
 
-It is recommended that you will keep your components inside the `src/components/` folder. This starter kit allows you to keep your markup, styles, and JavaScript code for a component in one folder and then to use them in multiple places. Please, see the `src/components/` folder for examples. Notice how different types of components are arranged. Also, It is not absolutely mandatory to include Nunjucks or JS code for a component if you feel that it doesn't make too much sense. For example, when the markup is quite simple or when a component doesn't have JS logic.
+Этот стартер позволяет хранить разметку, стили и код JavaScript для компонента в одной папке, а затем использовать их в нескольких местах. Пожалуйста, посмотрите примеры в папке `src/includes/`.
+
+Необходимо отличать простые компоненты от макро-компонентов, которые могут принимать параметры.
+
+Так называемые инклуды или простые компоненты рекомендуется хранить в папке `src/includes/`. Такие части в дальнейшем можно добавлять на страницы и в шаблоны с помощью <nobr>`{% include '../some-component/some-component.nunj' %}`.</nobr>
+
+Компоненты которые могут принимать параметры рекомендуется хранить в папке `src/includes/components/`.
+Пример макро-компонента `icon`:
+
+```
+{% macro icon(props) %}
+	<svg {% if props.className %}class="{{ props.className }}"{% endif %}{% if props.attr %} {{ props.attr }}{% endif %}>
+		<use xlink:href="#icon-{{ props.iconName }}" />
+	</svg>
+{% endmacro %}
+```
+Такой компонент можно импортировать и использовать в нескольких местах:
+
+```
+{% from "../icon/icon.nunj" import icon %}
+
+{{ icon({
+	iconName: 'chat',
+	className: 'icon',
+	attr: 'viewBox="0 0 20 20" style="width: 40px; height: 40px; fill: #212121;"'
+}) }}
+```
+
+ Кроме того, необязательно включать код Nunjucks или JS для компонента, если вы чувствуете, что в этом нет особого смысла. Например, когда разметка довольно простая или когда в компоненте нет логики JS.
 
 ## HTML-шаблонизатор Nunjucks
 
@@ -66,11 +94,9 @@ Nunjucks-шаблоны находятся в `src/templates/`.
 <p>Some title: {{ someData[0].title }}</p>
 ```
 
-Шаблоны страниц, которые должны быть скомпилированы в папку `build/`, кладем в папку `src/templates/pages`
+Шаблоны страниц, которые должны быть скомпилированы в папку `build/`, кладём в папку `src/pages/`
 
-Кастомные фильтры, макросы и функции складываем в соответствующих файлах в `src/templates/lib`.
-
-Так называемые инклуды создаем в `src/templates/parts` с префиксом `_`. Например, `src/templates/parts/_sidebar.nunj`.
+Кастомные фильтры, макросы и функции складываем в соответствующих файлах в `src/templates/lib/`.
 
 Для эффективного применения шаблонизатора см. примеры в стартовом проекте, а также [документацию](https://mozilla.github.io/nunjucks/templating.html).
 
