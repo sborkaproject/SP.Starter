@@ -11,7 +11,7 @@
     "build": "cross-env NODE_ENV=production gulp production",
     "zip": "cross-env NODE_ENV=production gulp zip",
     "prettier": "prettier ./src/**/*.{scss,js} --write",
-    "eslint": "eslint src/assets/js/**/*.js --fix",
+    "eslint": "eslint ./src/assets/js/**/*.js --fix",
     "lint": "npm run prettier && npm run eslint"
   },
   "devDependencies": {
