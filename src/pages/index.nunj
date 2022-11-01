@@ -1,7 +1,7 @@
 {% extends "../templates/base.nunj" %}
 
-{% from "../includes/components/button/button.nunj" import button %}
-{% from "../includes/components/icon/icon.nunj" import icon %}
+{% from "../components/button/button.nunj" import button %}
+{% from "../components/icon/icon.nunj" import icon %}
 
 {# Пример расширения существующего блока #}
 {# Например можно использовать для добавления уникальных тайтлов для каждой страницы #}

@@ -1,4 +1,4 @@
-{% from "../components/menu/menu.nunj" import menu %}
+{% from "../../components/menu/menu.nunj" import menu %}
 
 <div class="header">
 	<div class="container">
