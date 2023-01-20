@@ -18,6 +18,12 @@ export default function svg() {
 							removeUselessStrokeAndFill: false,
 						},
 						{
+							removeViewBox: false,
+						},
+						{
+							removeDimensions: false,
+						},
+						{
 							cleanupIDs: {
 								prefix: prefix + '-',
 								minify: true,
