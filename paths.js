@@ -1,13 +1,17 @@
+import { PRODUCTION } from './config';
+
+const buildFolder = PRODUCTION ? 'build-production' : 'build';
+
 export default {
 	build: {
-		html: 'build',
-		scripts: 'build/assets/js/',
-		styles: 'build/assets/css/',
-		images: 'build/assets/images/',
-		fonts: 'build/assets/fonts/',
-		sprites: 'build/assets/images/sprites/',
-		svg: 'build/assets/svg/',
-		videos: 'build/assets/video/',
+		html: `${buildFolder}`,
+		scripts: `${buildFolder}/assets/js/`,
+		styles: `${buildFolder}/assets/css/`,
+		images: `${buildFolder}/assets/images/`,
+		fonts: `${buildFolder}/assets/fonts/`,
+		sprites: `${buildFolder}/assets/images/sprites/`,
+		svg: `${buildFolder}/assets/svg/`,
+		videos: `${buildFolder}/assets/video/`,
 	},
 	src: {
 		templates: './src/',
@@ -30,5 +34,5 @@ export default {
 		sprites: 'src/assets/images/sprites/*.png',
 		svg: 'src/assets/svg/**/*.svg',
 	},
-	clean: 'build/',
+	clean: `${buildFolder}/`,
 };
