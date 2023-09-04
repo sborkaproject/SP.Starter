@@ -10,8 +10,9 @@ import webpack from './gulp-tasks/webpack';
 import zip from './gulp-tasks/zip';
 import watch from './gulp-tasks/watch';
 import server from './gulp-tasks/server';
+import robots from './gulp-tasks/robots';
 
-gulp.task('build', gulp.parallel(html, styles, fonts, images, svg, webpack));
+gulp.task('build', gulp.parallel(html, styles, fonts, images, svg, robots, webpack));
 
 gulp.task('production', gulp.series(clean, 'build', assetsVersion));
 

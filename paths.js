@@ -12,6 +12,7 @@ export default {
 		sprites: `${buildFolder}/assets/images/sprites/`,
 		svg: `${buildFolder}/assets/svg/`,
 		videos: `${buildFolder}/assets/video/`,
+		robots: `${buildFolder}`,
 	},
 	src: {
 		templates: './src/',
@@ -24,6 +25,7 @@ export default {
 		sprites: 'src/assets/images/sprites/*.png',
 		svg: 'src/assets/svg/**/*.svg',
 		videos: 'src/assets/video/**/*.*',
+		robots: `src/assets/robots/*.*`,
 	},
 	watch: {
 		nunj: ['src/**/*.nunj', 'global-data.json'],
@@ -33,6 +35,7 @@ export default {
 		fonts: 'src/assets/fonts/**/*.*',
 		sprites: 'src/assets/images/sprites/*.png',
 		svg: 'src/assets/svg/**/*.svg',
+		robots: `src/assets/robots/*.*`,
 	},
 	clean: `${buildFolder}/`,
 };
