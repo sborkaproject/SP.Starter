@@ -8,8 +8,8 @@
   },
   "scripts": {
     "start": "gulp",
-    "build": "cross-env NODE_ENV=production gulp production",
-    "zip": "cross-env NODE_ENV=production gulp zip",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider NODE_ENV=production gulp production",
+    "zip": "cross-env NODE_OPTIONS=--openssl-legacy-provider NODE_ENV=production gulp zip",
     "prettier": "prettier ./src/**/*.{scss,js} --write",
     "eslint": "eslint ./src/assets/js/**/*.js --fix",
     "lint": "npm run prettier && npm run eslint"
@@ -73,8 +73,7 @@
     "vinyl-named": "^1.1.0",
     "webpack": "^4.42.0",
     "webpack-dev-middleware": "^3.7.2",
-    "webpack-hot-middleware": "^2.25.0",
-    "yargs": "^15.1.0"
+    "webpack-hot-middleware": "^2.25.0"
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
