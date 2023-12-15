@@ -110,49 +110,49 @@
 }
 
 @mixin scrollbar {
-	& ::-moz-scrollbar {
+	&::-moz-scrollbar {
 		@content;
 	}
-	& ::-webkit-scrollbar {
+	&::-webkit-scrollbar {
 		@content;
 	}
-	& ::scrollbar {
+	&::scrollbar {
 		@content;
 	}
 }
 
 @mixin scrollbar-track {
-	& ::-moz-scrollbar-track {
+	&::-moz-scrollbar-track {
 		@content;
 	}
-	& ::-webkit-scrollbar-track {
+	&::-webkit-scrollbar-track {
 		@content;
 	}
-	& ::scrollbar-track {
+	&::scrollbar-track {
 		@content;
 	}
 }
 
 @mixin scrollbar-thumb {
-	& ::-moz-scrollbar-thumb {
+	&::-moz-scrollbar-thumb {
 		@content;
 	}
-	& ::-webkit-scrollbar-thumb {
+	&::-webkit-scrollbar-thumb {
 		@content;
 	}
-	& ::scrollbar-thumb {
+	&::scrollbar-thumb {
 		@content;
 	}
 }
 
 @mixin scrollbar-track-piece {
-	& ::-moz-scrollbar-track-piece {
+	&::-moz-scrollbar-track-piece {
 		@content;
 	}
-	& ::-webkit-scrollbar-track-piece {
+	&::-webkit-scrollbar-track-piece {
 		@content;
 	}
-	& ::scrollbar-track-piece {
+	&::scrollbar-track-piece {
 		@content;
 	}
 }
